@@ -173,5 +173,5 @@ class Subsets extends _Combinatoric {
     _Combinatoric._adjustedIndex(k, length), elements);
   
   @override String toString() =>
-     "Pseudo-list containing all $length subsets of items from $elements.";
+   "Pseudo-list containing all $length subsets of items from $elements.";
 }
