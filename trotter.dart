@@ -4,7 +4,7 @@ import "dart:math" as Math;
 
 Map<int, int> _factCache = {};
 
-class _Combinatoric {
+abstract class _Combinatoric {
   List _elements;
   int _length;
   List get elements => _elements;
@@ -91,6 +91,13 @@ class _Combinatoric {
     k %= n;
     return k;
   }
+  
+  List operator [](int k);
+  
+  List range([int from = 0, int to = -1]) { 
+    if (to == -1) to = length;
+    return new List.generate(to - from, (int i) => this[from + i]);
+  }
 }
 
 class Permutations extends _Combinatoric {
@@ -104,11 +111,14 @@ class Permutations extends _Combinatoric {
     _length = _Combinatoric._nPr(elements.length, r);
   }
   
-  List operator [](int k) => _Combinatoric._permutation(
+  @override List operator [](int k) => _Combinatoric._permutation(
     _Combinatoric._adjustedIndex(k, length), 
     r, 
     elements
   );
+  
+  @override String toString() =>
+    "A pseudo-list containing all $r-permutations of items taken from $elements.";
 }
 
 class Combinations extends _Combinatoric {
@@ -122,7 +132,7 @@ class Combinations extends _Combinatoric {
     _length = _Combinatoric._nCr(elements.length, r);
   }
     
-  List operator [](int k) => _Combinatoric._combination(
+  @override List operator [](int k) => _Combinatoric._combination(
     _Combinatoric._adjustedIndex(k, length), 
     r, 
     elements
@@ -140,7 +150,7 @@ class Pincodes extends _Combinatoric {
     _length = Math.pow(elements.length, r).toInt();
   }
   
-  List operator [](int k) => _Combinatoric._pincode(
+  @override List operator [](int k) => _Combinatoric._pincode(
     _Combinatoric._adjustedIndex(k, length), 
     r, 
     elements
@@ -153,6 +163,6 @@ class Subsets extends _Combinatoric {
     _length = 1 << elements.length;
   }
   
-  List operator [](int k) => _Combinatoric._subset(
+  @override List operator [](int k) => _Combinatoric._subset(
     _Combinatoric._adjustedIndex(k, length), elements);
 }
