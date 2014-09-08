@@ -1,7 +1,8 @@
 library trotter;
 
+import "dart:math" as Math;
+
 Map<int, int> _factCache = {};
-Map<int, int> _twoToCache = {};
 
 class _Combinatoric {
   List _elements;
@@ -12,10 +13,6 @@ class _Combinatoric {
   static int _fact(int n) => 
       _factCache.containsKey(n) ? _factCache[n] : 
         (n < 2 ? 1 : _factCache[n] = n * _fact(n - 1));
-  
-  static int _twoTo(int n) =>
-      _twoToCache.containsKey(n) ? _twoToCache[n] :
-        (n < 1 ? 1 : _twoToCache[n] = 2 * _twoTo(n - 1));
   
   static int _nPr(int n, int r) => _fact(n) ~/ _fact(n - r);
   
@@ -69,11 +66,23 @@ class _Combinatoric {
     return _permWorker(item, comb);
   }
   
+  static List _pincode(int k, int r, List elements) {
+    return new List.generate(r, (int i) {
+      int 
+        p = Math.pow(elements.length, r - i - 1).toInt(),
+        index = k ~/ p
+      ;
+      
+      k %= p;
+      return elements[index];
+    }); 
+  }
+  
   static List _subset(int k, List elements) {
-    k = _adjustedIndex(k, _twoTo(elements.length));
+    k = _adjustedIndex(k, 1 << elements.length);
     List r = [];
     for (int i = 0; i < elements.length; i++)
-      if (k & _twoTo(i) != 0) r.add(elements[i]);
+      if (k & (1 << i) != 0) r.add(elements[i]);
     return r;
   }
   
@@ -120,14 +129,30 @@ class Combinations extends _Combinatoric {
   );
 }
 
-class Subsets extends _Combinatoric {
+class Pincodes extends _Combinatoric {
+  int _r;
+  int get r => _r;
+  
+  Pincodes(int r, List elements) {
+    assert(r >= 0 && r <= elements.length);
+    _elements = new List.from(elements);
+    _r = r;
+    _length = Math.pow(elements.length, r).toInt();
+  }
+  
+  List operator [](int k) => _Combinatoric._pincode(
+    _Combinatoric._adjustedIndex(k, length), 
+    r, 
+    elements
+  );
+}
 
+class Subsets extends _Combinatoric {
   Subsets(List elements) {
     _elements = new List.from(elements);
-    _length = _Combinatoric._twoTo(elements.length);
+    _length = 1 << elements.length;
   }
   
   List operator [](int k) => _Combinatoric._subset(
     _Combinatoric._adjustedIndex(k, length), elements);
 }
-
