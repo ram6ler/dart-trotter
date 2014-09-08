@@ -118,7 +118,7 @@ class Permutations extends _Combinatoric {
   );
   
   @override String toString() =>
-    "A pseudo-list containing all $r-permutations of items taken from $elements.";
+    "Pseudo-list containing all $length $r-permutations of items from $elements.";
 }
 
 class Combinations extends _Combinatoric {
@@ -137,6 +137,9 @@ class Combinations extends _Combinatoric {
     r, 
     elements
   );
+  
+  @override String toString() =>
+   "Pseudo-list containing all $length $r-combinations of items from $elements.";
 }
 
 class Pincodes extends _Combinatoric {
@@ -155,6 +158,9 @@ class Pincodes extends _Combinatoric {
     r, 
     elements
   );
+  
+  @override String toString() =>
+   "Pseudo-list containing all $length $r-pincodes of items from $elements.";
 }
 
 class Subsets extends _Combinatoric {
@@ -165,4 +171,7 @@ class Subsets extends _Combinatoric {
   
   @override List operator [](int k) => _Combinatoric._subset(
     _Combinatoric._adjustedIndex(k, length), elements);
+  
+  @override String toString() =>
+     "Pseudo-list containing all $length subsets of items from $elements.";
 }
