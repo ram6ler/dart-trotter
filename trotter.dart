@@ -55,6 +55,27 @@ abstract class _Combinatoric {
     }
   }
   
+  static List _selection(int k, int r, List elements) {
+    int
+      n = elements.length,
+      position = 0, 
+      d = _nCr(n + r - position - 2, r - 1)
+    ;
+      
+    while (k >= d) {
+      k -= d;
+      ++position;
+      d = _nCr(n + r - position - 2, r - 1);
+    }
+      
+    if (r <= 1) return [elements[position]];
+    else {
+      List tail = elements.sublist(position);
+      return [elements[position]]
+        ..addAll(_selection(k, r - 1, tail));
+    }
+  }
+  
   static List _permutation(int k, int r, List elements) {
     int
       n = elements.length,
@@ -66,7 +87,7 @@ abstract class _Combinatoric {
     return _permWorker(item, comb);
   }
   
-  static List _pincode(int k, int r, List elements) {
+  static List _amalgam(int k, int r, List elements) {
     return new List.generate(r, (int i) {
       int 
         p = Math.pow(elements.length, r - i - 1).toInt(),
@@ -142,25 +163,46 @@ class Combinations extends _Combinatoric {
    "Pseudo-list containing all $length $r-combinations of items from $elements.";
 }
 
-class Pincodes extends _Combinatoric {
+class Amalgams extends _Combinatoric {
   int _r;
   int get r => _r;
   
-  Pincodes(int r, List elements) {
+  Amalgams(int r, List elements) {
     assert(r >= 0 && r <= elements.length);
     _elements = new List.from(elements);
     _r = r;
     _length = Math.pow(elements.length, r).toInt();
   }
   
-  @override List operator [](int k) => _Combinatoric._pincode(
+  @override List operator [](int k) => _Combinatoric._amalgam(
     _Combinatoric._adjustedIndex(k, length), 
     r, 
     elements
   );
   
   @override String toString() =>
-   "Pseudo-list containing all $length $r-pincodes of items from $elements.";
+   "Pseudo-list containing all $length $r-amalgams of items from $elements.";
+}
+
+class Selections extends _Combinatoric {
+  int _r;
+  int get r => _r;
+  
+  Selections(int r, List elements) {
+    assert(r >= 0 && r <= elements.length);
+    _elements = new List.from(elements);
+    _r = r;
+    _length = _Combinatoric._nCr(elements.length + r - 1, r);
+  }
+  
+  @override List operator [](int k) => _Combinatoric._selection(
+    _Combinatoric._adjustedIndex(k, length), 
+    r, 
+    elements
+  );
+  
+  @override String toString() =>
+   "Pseudo-list containing all $length $r-selections of items from $elements.";
 }
 
 class Subsets extends _Combinatoric {

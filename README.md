@@ -24,10 +24,10 @@ void main() {
   print("The first permutation is ${perm3[0]}.");
   print("\nThe first ten permutations:");
   (new List.generate(10, (int i) => perm3[i]))
-    .forEach((List perm) {print(perm);});
+    .forEach((List p) {print(p);});
   print("\nThe last five permutations:");
   (new List.generate(5, (int i) => perm3[i - 5]))
-    .forEach((List perm) {print(perm);});
+    .forEach((List p) {print(p);});
 }
 ```
 ### Output
@@ -77,10 +77,10 @@ void main() {
   print("The first combination is ${comb3[0]}.");
   print("\nThe first ten combinations:");
   (new List.generate(10, (int i) => comb3[i]))
-    .forEach((List comb) {print(comb);});
+    .forEach((List c) {print(c);});
   print("\nThe last five combinations:");
   (new List.generate(5, (int i) => comb3[i - 5]))
-    .forEach((List comb) {print(comb);});
+    .forEach((List c) {print(c);});
 }
 ```
 ### Output
@@ -109,8 +109,8 @@ The last five combinations:
 [strawberry, blueberry, cherry]
 ```
 
-## Class: Pincodes
- The `Pincodes` class defines instances of pseudo-lists containing all possible _pincodes_ (permutations with replacement) of a given number of objects taken from a group.
+## Class: Amalgams
+ The `Amalgams` class defines instances of pseudo-lists containing all possible _amalgams_ (permutations with replacement) of a given number of objects taken from a group.
 
 
 ### Example
@@ -125,24 +125,24 @@ void main() {
     "strawberry", "blueberry", "cherry"
   ];
   
-  var pins3 = new Trotter.Pincodes(3, fruits); 
-  print("\nThere are ${pins3.length} 3-pincodes of the objects in\n$fruits.");
-  print("The first pincode is ${pins3[0]}.");
-  print("\nThe first ten pincodes:");
-  (new List.generate(10, (int i) => pins3[i]))
-    .forEach((List pin) {print(pin);});
-  print("\nThe last five pincodes:");
-  (new List.generate(5, (int i) => pins3[i - 5]))
-    .forEach((List pin) {print(pin);});
+  var amals3 = new Trotter.Amalgams(3, fruits); 
+  print("\nThere are ${amals3.length} 3-amalgams of the objects in\n$fruits.");
+  print("The first amalgam is ${amals3[0]}.");
+  print("\nThe first ten amalgams:");
+  (new List.generate(10, (int i) => amals3[i]))
+    .forEach((List a) {print(a);});
+  print("\nThe last five amalgams:");
+  (new List.generate(5, (int i) => amals3[i - 5]))
+    .forEach((List a) {print(a);});
 }
 ```
 ### Output
 ```
-There are 729 3-pincodes of the objects in
+There are 729 3-amalgams of the objects in
 [apple, orange, pineapple, peach, apricot, pear, strawberry, blueberry, cherry].
-The first pincode is [apple, apple, apple].
+The first amalgam is [apple, apple, apple].
 
-The first ten pincodes:
+The first ten amalgams:
 [apple, apple, apple]
 [apple, apple, orange]
 [apple, apple, pineapple]
@@ -154,7 +154,7 @@ The first ten pincodes:
 [apple, apple, cherry]
 [apple, orange, apple]
 
-The last five pincodes:
+The last five amalgams:
 [cherry, cherry, apricot]
 [cherry, cherry, pear]
 [cherry, cherry, strawberry]
@@ -162,8 +162,49 @@ The last five pincodes:
 [cherry, cherry, cherry]
 ```
 
+## Class: Selections
+The `Selections` class defines instances of pseudo-lists containing all possible _selections_ (combinations with replacement) of a given number of objects taken from a group.
+
+### Example
+```
+var sels3 = new Trotter.Selections(3, fruits); 
+  print("\nThere are ${sels3.length} 3-selections of the objects in\n$fruits.");
+  print("The first selection is ${sels3[0]}.");
+  print("\nThe first ten selections:");
+  (new List.generate(10, (int i) => sels3[i]))
+    .forEach((List s) {print(s);});
+  print("\nThe last five selections:");
+  (new List.generate(5, (int i) => sels3[i - 5]))
+    .forEach((List s) {print(s);});
+```
+### Output
+```
+There are 165 3-selections of the objects in
+[apple, orange, pineapple, peach, apricot, pear, strawberry, blueberry, cherry].
+The first selection is [apple, apple, apple].
+
+The first ten selections:
+[apple, apple, apple]
+[apple, apple, orange]
+[apple, apple, pineapple]
+[apple, apple, peach]
+[apple, apple, apricot]
+[apple, apple, pear]
+[apple, apple, strawberry]
+[apple, apple, blueberry]
+[apple, apple, cherry]
+[apple, orange, orange]
+
+The last five selections:
+[strawberry, cherry, cherry]
+[blueberry, blueberry, blueberry]
+[blueberry, blueberry, cherry]
+[blueberry, cherry, cherry]
+[cherry, cherry, cherry]
+```
+
 ## Class: Subsets
- The `Subsets ` class defines instances of pseudo-lists containing all possible Subsets of objects taken from a group.
+The `Subsets ` class defines instances of pseudo-lists containing all possible subsets of objects taken from a group.
 
 
 ### Example
