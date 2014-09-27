@@ -1,6 +1,6 @@
 part of trotter;
 
-abstract class _Combinatoric {
+abstract class _Combinatorics {
   List _elements;
   int _length;
   
@@ -10,6 +10,7 @@ abstract class _Combinatoric {
   /// The number of arrangements "contained" in this pseudo-list.
   int get length => _length;
 
+  /// The kth arrangement. 
   List operator [](int k);
   
 /**
@@ -24,8 +25,4 @@ abstract class _Combinatoric {
     return new List.generate(to - from, (int i) => this[from + i]);
   }
   
-  List toList({bool growable: true}) => 
-    new List.from(_elements, growable: growable);
-  
-  Set toSet() => (new List.from(_elements, growable: false)).toSet();
 }

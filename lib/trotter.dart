@@ -8,12 +8,13 @@
  * to lists containing all possible respective arrangements.
  *
  */
+
 library trotter;
 import "dart:math" as Math;
-part "trotter_helpers.dart";
-part "combinatoric.dart";
-part "permutations.dart";
-part "combinations.dart";
-part "amalgams.dart";
-part "selections.dart";
-part "subsets.dart";
+part 'src/trotter_helpers.dart';
+part 'src/combinatorics.dart';
+part 'src/permutations.dart';
+part 'src/combinations.dart';
+part 'src/amalgams.dart';
+part 'src/selections.dart';
+part 'src/subsets.dart';

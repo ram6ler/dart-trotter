@@ -1,23 +1,26 @@
 part of trotter;
 
-class Permutations extends _Combinatoric {
-  int _r;
-  int get r => _r;
-
 /** An indexible pseudo-list of permutations.
  * 
  * A pseuso-list "containing" all the `r`-permutations of objects taken from
  * the list `elements`.
  * 
  * _Example_
- * ...
- *     var p = new Permutations(3, "abcd".split(""));
- *     print("There are ${p.length} 3-permutations of the objects");
- *     print("in ${p.elements}.");
- *     print("The first permutation is ${p[0]}.");
- * ...
+ * ```
+ * var p = new Permutations(3, "abcd".split(""));
+ * print("There are ${p.length} 3-permutations of the objects");
+ * print("in ${p.elements}.");
+ * print("The first permutation is ${p[0]}.");
+ * ```
  * 
  */
+class Permutations extends _Combinatorics {
+  int _r;
+  
+  /// The number of items taken from [elements].
+  int get r => _r;
+
+
   Permutations(int r, List elements) {
     assert(r >= 0 && r <= elements.length);
     _elements = new List.from(elements);
