@@ -38,8 +38,8 @@ List _combination(int k, int r, List elements) {
     ++position;
     d = _nCr(n - position - 1, r - 1);
   }
-    
-  if (r <= 1) return [elements[position]];
+  
+  if (r == 0) return [];
   else {
     List tail = elements.sublist(position + 1);
     return [elements[position]]
@@ -59,8 +59,8 @@ List _selection(int k, int r, List elements) {
     ++position;
     d = _nCr(n + r - position - 2, r - 1);
   }
-      
-  if (r <= 1) return [elements[position]];
+
+  if (r == 0) return [];
   else {
     List tail = elements.sublist(position);
     return [elements[position]]
