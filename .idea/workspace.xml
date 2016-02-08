@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2dfe52ea-5d1f-4f4d-8b6b-aae285013a57" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/src/misc.dart" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/test.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/amalgams.dart" afterPath="$PROJECT_DIR$/lib/src/amalgams.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/combinations.dart" afterPath="$PROJECT_DIR$/lib/src/combinations.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/combinatorics.dart" afterPath="$PROJECT_DIR$/lib/src/combinatorics.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/permutations.dart" afterPath="$PROJECT_DIR$/lib/src/permutations.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/selections.dart" afterPath="$PROJECT_DIR$/lib/src/selections.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/subsets.dart" afterPath="$PROJECT_DIR$/lib/src/subsets.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/src/trotter_helpers.dart" afterPath="$PROJECT_DIR$/lib/src/trotter_helpers.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/trotter.dart" afterPath="$PROJECT_DIR$/lib/trotter.dart" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dart_trotter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,11 +44,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.dart" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/test.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8943089">
-              <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="44" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.5555553">
+              <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.074257426">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -108,12 +119,12 @@
         <option value="$PROJECT_DIR$/lib/src/amalgams.dart" />
         <option value="$PROJECT_DIR$/lib/trotter.dart" />
         <option value="$PROJECT_DIR$/lib/src/subsets.dart" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/lib/scrap.dart" />
         <option value="$PROJECT_DIR$/lib/src/trotter_helpers.dart" />
         <option value="$PROJECT_DIR$/lib/src/combinatorics.dart" />
         <option value="$PROJECT_DIR$/lib/src/combinations.dart" />
         <option value="$PROJECT_DIR$/lib/test.dart" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -517,14 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.22727273">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/scrap.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -575,8 +578,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/test.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8943089">
-          <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="44" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.5555553">
+          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.074257426">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
