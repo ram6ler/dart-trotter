@@ -23,7 +23,7 @@ class Permutations extends _Combinatorics {
 
   Permutations(int r, List elements) {
     assert(r >= 0 && r <= elements.length);
-    _elements = new List.from(elements);
+    _items = new List.from(elements);
     _r = r;
     _length = _nPr(elements.length, r);
   }
@@ -33,6 +33,8 @@ class Permutations extends _Combinatorics {
     r, 
     elements
   );
+
+  int indexOf(List permutation) => _inversePermutation(permutation, _items);
   
   @override String toString() =>
     "Pseudo-list containing all $length $r-permutations of items from $elements.";

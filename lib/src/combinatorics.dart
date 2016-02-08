@@ -1,17 +1,20 @@
 part of trotter;
 
 abstract class _Combinatorics {
-  List _elements;
+  List _items;
   int _length;
   
   /// The list from which the objects are selected
-  List get elements => new List.from(_elements, growable: false);
+  List get elements => new List.from(_items, growable: false);
   
   /// The number of arrangements "contained" in this pseudo-list.
   int get length => _length;
 
   /// The kth arrangement. 
   List operator [](int k);
+
+  /// Iterator support.
+  get iterator => new List.generate(_length, (i) => this[i]).iterator;
   
 /**
  * Returns a range of arrangements.
@@ -20,7 +23,7 @@ abstract class _Combinatorics {
  * up to but not including `[to]`.
  * 
  */ 
-  List range([int from = 0, int to = -1]) { 
+  List range([int from = 0, int to = -1]) {
     if (to == -1) to = length;
     return new List.generate(to - from, (int i) => this[from + i]);
   }

@@ -23,7 +23,7 @@ class Amalgams extends _Combinatorics {
 
   Amalgams(int r, List elements) {
     assert(r >= 0 && r <= elements.length);
-    _elements = new List.from(elements);
+    _items = new List.from(elements);
     _r = r;
     _length = Math.pow(elements.length, r).toInt();
   }
@@ -33,6 +33,8 @@ class Amalgams extends _Combinatorics {
     r, 
     elements
   );
+
+  int indexOf(amalgam) => _inverseAmalgam(amalgam, _items);
   
   @override String toString() =>
    "Pseudo-list containing all $length $r-amalgams of items from $elements.";

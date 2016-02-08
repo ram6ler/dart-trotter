@@ -24,7 +24,7 @@ class Selections extends _Combinatorics {
 
   Selections(int r, List elements) {
     assert(r >= 0 && r <= elements.length);
-    _elements = new List.from(elements);
+    _items = new List.from(elements);
     _r = r;
     _length = _nCr(elements.length + r - 1, r);
   }
@@ -34,7 +34,9 @@ class Selections extends _Combinatorics {
     r, 
     elements
   );
-  
+
+  int indexOf(List selection) => _inverseSelection(selection, _items);
+
   @override String toString() =>
    "Pseudo-list containing all $length $r-selections of items from $elements.";
 }

@@ -18,13 +18,15 @@ class Subsets extends _Combinatorics {
   
 
   Subsets(List elements) {
-    _elements = new List.from(elements);
+    _items = new List.from(elements);
     _length = 1 << elements.length;
   }
   
   @override List operator [](int k) => _subset(
     _adjustedIndex(k, length), elements);
-  
+
+  int indexOf(List subset) => _inverseSubset(subset, _items);
+
   @override String toString() =>
    "Pseudo-list containing all $length subsets of items from $elements.";
 }
