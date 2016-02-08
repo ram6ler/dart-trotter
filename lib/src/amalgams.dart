@@ -1,11 +1,12 @@
 part of trotter;
 
-/** An indexible collection of amalgams (permutations with repetition allowed).
- * 
- * A pseuso-list "containing" all the `r`-amalgams of objects taken from 
- * the list `elements`.
+/** A pseudo-list of amalgams (permutations with repetition).
+ *
+ * A pseudo-list "containing" all the [r]-amalgams of objects taken from
+ * the list [items].
  * 
  * _Example_
+ *
  * ```
  * var a = new Amalgams(3, "abcd".split(""));
  * print("There are ${a.length} 3-amalgams of the objects");
@@ -14,28 +15,27 @@ part of trotter;
  * ```
  * 
  */
+
 class Amalgams extends _Combinatorics {
   int _r;
-  
-  /// The number of items taken from [elements].
+
+  /// The number of items taken from [items].
   int get r => _r;
-  
 
-  Amalgams(int r, List elements) {
-    assert(r >= 0 && r <= elements.length);
-    _items = new List.from(elements);
+  Amalgams(int r, List items) {
+    if (r < 0) throw new Exception("Cannot take $r items from ${items.length}.");
+    if (!_itemsAreUnique(items)) throw new Exception("Items are not unique.");
+
+    _items = new List.from(items);
     _r = r;
-    _length = Math.pow(elements.length, r).toInt();
+    _length = Math.pow(items.length, r).toInt();
   }
-  
-  @override List operator [](int k) => _amalgam(
-    _adjustedIndex(k, length), 
-    r, 
-    elements
-  );
 
+  @override List operator [](int k) => _amalgam(_adjustedIndex(k, length), r, items);
+
+  /// Returns the index of [amalgam] in the list of arranged amalgams.
   int indexOf(amalgam) => _inverseAmalgam(amalgam, _items);
-  
+
   @override String toString() =>
-   "Pseudo-list containing all $length $r-amalgams of items from $elements.";
+      "Pseudo-list containing all $length $r-amalgams of items from $items.";
 }

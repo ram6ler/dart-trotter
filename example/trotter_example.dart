@@ -12,8 +12,8 @@ void main() {
   print("\n\nHere are all the combinations of three items taken from this bag.");
   print("(For combinations, order is NOT important and items are NOT replaced.)\n");
   var combos = new Combinations(3, bagOfItems);
-  for (int i = 0; i < combos.length; i++) {
-    print("$i\t${combos[i]}");
+  for (List combo in combos) {
+    print(combo);
   }
 
   print("\n\nHere are all the permutations of three items taken from this bag.");
@@ -51,13 +51,14 @@ void main() {
   for (List x in new Selections(3, bagOfItems)) print(x);
 
   print("\n\nBetter to be more specific using the `range` method:\n");
+
   var largeBagOfItems = characters("abcdefghijklmnopqrstuvwxyz");
   var hugePseudoList = new Permutations(10, largeBagOfItems);
 
   print("\n\nThere are ${hugePseudoList.length} permutatations of 10 letters");
   print("taken from the alphabet. Don't try to access them all!!!\n");
   print("However, we can access whichever permutations in the pseudo-list");
-  print("that we are interested in. For example, the billionth to the billion-tenth");
+  print("we are interested in. For example, the billionth to the billion-tenth");
   print("permutations of these letters are:\n");
 
   for (List x in hugePseudoList.range(999999999, 1000000009)) print(x);
@@ -67,10 +68,26 @@ void main() {
   int algorithmsIndex = hugePseudoList.indexOf(["a", "l", "g", "o", "r", "i", "t", "h", "m", "s"]);
   print("The index of [a, l, g, o, r, i, t, h, m, s] is $algorithmsIndex.\n");
 
-  print("(That's almost seven trillion! Luckily we're only working with pseudo-lists!)\n");
+  print("(That's almost seven trillion! Luckily we didn't have to search");
+  print("through all the permutations!)\n");
 
-  print("hugePseudoList[$algorithmsIndex] = ${hugePseudoList[algorithmsIndex]}.");
+  print("hugePseudoList[$algorithmsIndex] = ${hugePseudoList[algorithmsIndex]}.\n");
 
-  print("\n\nEnjoy!\n\n");
+  print("With replacement, we can select more items than there are items:\n");
+
+  var q = new Amalgams(3, ["a", "b"]);
+  for (int i = 0; i < q.length; i++) {
+    print("$i\t->\t${q[i]}\t->\t${q.indexOf(q[i])}");
+  }
+
+  print("\nWe can also work with negative indices. Of course, the indices are");
+  print("restricted in the definitions of the inverse functions:\n");
+
+  for (int i = -q.length; i < 0; i++) {
+    print("$i\t->\t${q[i]}\t->\t${q.indexOf(q[i])}");
+  }
+
+  print("\n\nEnjoy!\n\n\n");
+
 
 }

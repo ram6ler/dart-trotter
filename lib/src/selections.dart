@@ -1,11 +1,12 @@
 part of trotter;
 
-/** An indexible pseudo-list of selections (combinations with repetition allowed).
- * 
- * A pseuso-list "containing" all the `r`-selections of objects taken from 
- * the list `elements`.
- * 
+/** A pseudo-list of selections (combinations with repetition).
+ *
+ * A pseudo-list "containing" all the [r]-selections of objects taken from
+ * the list [items].
+ *
  * _Example_
+ *
  * ```
  * var s = new Selections(3, "abcd".split(""));
  * print("There are ${s.length} 3-selections of the objects");
@@ -17,26 +18,24 @@ part of trotter;
 
 class Selections extends _Combinatorics {
   int _r;
-  
-  /// The number of items taken from [elements].
+
+  /// The number of items taken from [items].
   int get r => _r;
-  
 
-  Selections(int r, List elements) {
-    assert(r >= 0 && r <= elements.length);
-    _items = new List.from(elements);
+  Selections(int r, List items) {
+    if (r < 0) throw new Exception("Cannot take $r items from ${items.length}.");
+    if (!_itemsAreUnique(items)) throw new Exception("Items are not unique.");
+
+    _items = new List.from(items);
     _r = r;
-    _length = _nCr(elements.length + r - 1, r);
+    _length = _nCr(items.length + r - 1, r);
   }
-  
-  @override List operator [](int k) => _selection(
-    _adjustedIndex(k, length), 
-    r, 
-    elements
-  );
 
+  @override List operator [](int k) => _selection(_adjustedIndex(k, length), r, items);
+
+  /// Returns the index of [selection] in the list of arranged selections.
   int indexOf(List selection) => _inverseSelection(selection, _items);
 
   @override String toString() =>
-   "Pseudo-list containing all $length $r-selections of items from $elements.";
+      "Pseudo-list containing all $length $r-selections of items from $items.";
 }

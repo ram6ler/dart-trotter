@@ -1,7 +1,7 @@
 part of trotter;
 
-/// Splits a string into its characters.
+/// Splits string [x] into its characters.
 List characters(String x) => x.split("");
 
-/// Creates a string from split characters.
+/// Creates a string from the characters in [x].
 String string(List x) => x.join("");
