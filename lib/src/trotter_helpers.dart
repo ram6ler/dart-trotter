@@ -39,6 +39,7 @@ int _inversePermutationWorker(List perm, List items) {
 }
 
 List _combination(int k, int r, List items) {
+  if (r == 0) return [];
   int n = items.length, position = 0, d = _nCr(n - position - 1, r - 1);
 
   while (k >= d) {
@@ -48,12 +49,11 @@ List _combination(int k, int r, List items) {
   }
 
   // TODO: move to beginning?
-  if (r == 0)
-    return [];
-  else {
+
+  //else {
     List tail = items.sublist(position + 1);
     return [items[position]]..addAll(_combination(k, r - 1, tail));
-  }
+  //}
 }
 
 int _inverseCombination(List combination, List items) {

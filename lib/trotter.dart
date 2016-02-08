@@ -4,7 +4,7 @@
  * The `trotter` library contains class definitions for [Permutations], 
  * [Combinations], [Amalgams] (permutations with repetition), [Selections]
  * (combinations with repetition) and [Subsets] of objects taken 
- * from a list. These classes define instances that are moderately analagous 
+ * from a list. These classes define instances that are moderately analogous
  * to lists containing all possible respective arrangements.
  *
  */
