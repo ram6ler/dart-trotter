@@ -45,13 +45,11 @@ List _permutationWorker(int k, List items) {
 /// items taken from [items].
 int _inversePermutationWorker(List permutation, List items) {
   if (permutation.length == 1) return 0;
-
   int n = items.length,
       index = permutation.indexOf(items.last),
       group = _inversePermutationWorker(
           permutation.where((x) => x != items.last).toList(),
           items.sublist(0, items.length - 1));
-
   return n * group + (group % 2 == 0 ? n - index - 1 : index);
 }
 
@@ -60,13 +58,11 @@ int _inversePermutationWorker(List permutation, List items) {
 List _combination(int k, int r, List items) {
   if (r == 0) return [];
   int n = items.length, position = 0, d = _nCr(n - position - 1, r - 1);
-
   while (k >= d) {
     k -= d;
     ++position;
     d = _nCr(n - position - 1, r - 1);
   }
-
   List tail = items.sublist(position + 1);
   return [items[position]]..addAll(_combination(k, r - 1, tail));
 }
@@ -85,7 +81,6 @@ int _inverseCombination(List combination, List items) {
         _inverseCombination(
             combination.sublist(1), items.sublist(itemIndex + 1));
   }
-
   return helper(_sortedArrangement(combination, items), items);
 }
 
@@ -93,13 +88,11 @@ int _inverseCombination(List combination, List items) {
 /// [r] items taken from [items].
 List _selection(int k, int r, List items) {
   int n = items.length, position = 0, d = _nCr(n + r - position - 2, r - 1);
-
   while (k >= d) {
     k -= d;
     ++position;
     d = _nCr(n + r - position - 2, r - 1);
   }
-
   if (r == 0)
     return [];
   else {
@@ -113,9 +106,7 @@ List _selection(int k, int r, List items) {
 int _inverseSelection(List selection, List items) {
   int helper(List selection, List items) {
     if (selection.isEmpty) return 0;
-
     int k = 0, n = items.length, r = selection.length, itemIndex = 0;
-
     while (selection[0] != items[itemIndex]) {
       k += _nCr(n + r - itemIndex - 2, r - 1);
       itemIndex++;
@@ -130,9 +121,9 @@ int _inverseSelection(List selection, List items) {
 
 /// Gives [k]th permutation in the ordered list of permutations of
 /// [r] items taken from [items].
-List _permutation(int k, int r, List elements) {
+List _permutation(int k, int r, List items) {
   int f = _fact(r), group = k ~/ f, item = k % f;
-  List comb = _combination(group, r, elements);
+  List comb = _combination(group, r, items);
   return _permutationWorker(item, comb);
 }
 
@@ -140,6 +131,7 @@ List _permutation(int k, int r, List elements) {
 /// items taken from [items].
 int _inversePermutation(List permutation, List items) {
   int r = permutation.length;
+  if (r == 0) return 0;
   List sortedPermutation = _sortedArrangement(permutation, items);
   int group = _inverseCombination(sortedPermutation, items);
   return group * _fact(r) +
@@ -148,12 +140,11 @@ int _inversePermutation(List permutation, List items) {
 
 /// Gives [k]th amalgam in the ordered list of amalgams of
 /// [r] items taken from [items].
-List _amalgam(int k, int r, List elements) {
+List _amalgam(int k, int r, List items) {
   return new List.generate(r, (int i) {
-    int p = Math.pow(elements.length, r - i - 1).toInt(), index = k ~/ p;
-
+    int p = Math.pow(items.length, r - i - 1).toInt(), index = k ~/ p;
     k %= p;
-    return elements[index];
+    return items[index];
   });
 }
 
@@ -161,10 +152,8 @@ List _amalgam(int k, int r, List elements) {
 /// items taken from [items].
 int _inverseAmalgam(List amalgam, List items) {
   int r = amalgam.length, n = items.length;
-
   var powers = new List.filled(r, 1, growable: false);
   for (int i = 1; i < powers.length; i++) powers[i] = powers[i - 1] * n;
-
   return new List.generate(
           r,
           (position) =>
@@ -174,11 +163,10 @@ int _inverseAmalgam(List amalgam, List items) {
 
 /// Gives [k]th subset in the ordered list of subsets of
 /// items taken from [items].
-List _subset(int k, List elements) {
-  k = _adjustedIndex(k, 1 << elements.length);
+List _subset(int k, List items) {
+  k = _adjustedIndex(k, 1 << items.length);
   List r = [];
-  for (int i = 0; i < elements.length; i++)
-    if (k & (1 << i) != 0) r.add(elements[i]);
+  for (int i = 0; i < items.length; i++) if (k & (1 << i) != 0) r.add(items[i]);
   return r;
 }
 
@@ -194,6 +182,31 @@ int _inverseSubset(List subset, List items) {
     return k;
   }
   return helper(_sortedArrangement(subset.toSet().toList(), items), items);
+}
+
+/// Gives [k]th compound in the ordered list of compounds of
+/// items taken from [items].
+List _compound(int k, List items) {
+  int n = items.length, r;
+  for (r = 0; r < n; r++) {
+    int groupSize = _nPr(n, r);
+    if (k >= groupSize) {
+      k -= groupSize;
+    } else {
+      break;
+    }
+  }
+  return _permutation(k, r, items);
+}
+
+/// Gives the index of [compound] in the ordered list of compounds of
+/// items taken from [items].
+int _inverseCompound(List compound, List items) {
+  int k = (new List.generate(
+      compound.length,
+      (r) => _nPr(items.length, r))).fold(0, (a, b) => a + b);
+  k += _inversePermutation(compound, items);
+  return k;
 }
 
 /// Returns an index in the domain [0, n[.

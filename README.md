@@ -18,6 +18,7 @@ The pseudo-list classes available are:
 * Selections (combinations with replacement).
 * Amalgams (permutations with replacement).
 * Subsets (combinations of unspecified size).
+* Compounds (permutations of unspecified size).
 
 For example, the following programme creates a pseudo-list "containing"
 all the 3-combinations of the first five letters.

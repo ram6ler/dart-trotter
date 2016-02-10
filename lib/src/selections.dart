@@ -8,9 +8,9 @@ part of trotter;
  * _Example_
  *
  * ```
- * var s = new Selections(3, "abcd".split(""));
+ * var s = new Selections(3, characters("abcd"));
  * print("There are ${s.length} 3-selections of the objects");
- * print("in ${s.elements}.");
+ * print("in ${s.items}.");
  * print("The first selection is ${c[0]}.");
  * ```
  * 

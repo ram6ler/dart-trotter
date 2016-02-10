@@ -18,5 +18,6 @@ part 'src/combinations.dart';
 part 'src/amalgams.dart';
 part 'src/selections.dart';
 part 'src/subsets.dart';
+part 'src/compounds.dart';
 part 'src/misc.dart';
 

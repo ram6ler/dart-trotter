@@ -8,9 +8,9 @@ part of trotter;
  * _Example_
  *
  * ```
- * var p = new Permutations(3, "abcd".split(""));
+ * var p = new Permutations(3, characters("abcd"));
  * print("There are ${p.length} 3-permutations of the objects");
- * print("in ${p.elements}.");
+ * print("in ${p.items}.");
  * print("The first permutation is ${p[0]}.");
  * ```
  * 

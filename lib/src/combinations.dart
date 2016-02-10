@@ -8,9 +8,9 @@ part of trotter;
  * _Example_
  *
  * ```
- * var c = new Combinations(3, "abcd".split(""));
+ * var c = new Combinations(3, characters("abcd"));
  * print("There are ${c.length} 3-combinations of the objects");
- * print("in ${c.elements}.");
+ * print("in ${c.items}.");
  * print("The first combination is ${c[0]}.");
  * ```
  * 

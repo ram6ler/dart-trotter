@@ -8,9 +8,9 @@ part of trotter;
  * _Example_
  *
  * ```
- * var a = new Amalgams(3, "abcd".split(""));
+ * var a = new Amalgams(3, characters("abcd"));
  * print("There are ${a.length} 3-amalgams of the objects");
- * print("in ${a.elements}.");
+ * print("in ${a.items}.");
  * print("The first amalgam is ${a[0]}.");
  * ```
  * 

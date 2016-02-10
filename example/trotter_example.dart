@@ -1,6 +1,7 @@
 import "package:trotter/trotter.dart";
 
 void main() {
+/*
   print("\n" * 10);
   print("Welcome to trotter, a library for working with structures");
   print("commonly encoundered in combinatorics.\n\n");
@@ -94,10 +95,10 @@ void main() {
   for (int i = -q.length; i < 0; i++) {
     print("$i\t->\t${q[i]}\t->\t${q.indexOf(q[i])}");
   }
-
-  print("\n\nTests:\n\n");
-
-  print(q.indexOf(["a", "b", "c"]));
-
+*/
+  var comps = new Compounds(["a", "b", "c"]);
+  for (int i = 0; i < comps.length; i++) {
+    print("$i\t${comps[i]}\t->\t${comps.indexOf(comps[i])}");
+  }
   print("\n\nEnjoy!\n\n\n");
 }
