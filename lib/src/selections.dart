@@ -36,8 +36,8 @@ class Selections extends _Combinatorics {
       _selection(_adjustedIndex(k, length), r, items);
 
   /// Returns the index of [selection] in the list of arranged selections.
-  int indexOf(List selection) => 
-  contains(selection) ? _inverseSelection(selection, _items): -1;
+  int indexOf(List selection) =>
+      contains(selection) ? _inverseSelection(selection, _items) : -1;
 
   /// returns whether [x] is in the pseudo-list.
   bool contains(List x) => _itemsExistInUniversal(x, _items);

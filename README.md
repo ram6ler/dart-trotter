@@ -23,6 +23,7 @@ For example, the following programme creates a pseudo-list "containing"
 all the 3-combinations of the first five letters.
 
 ```dart
+
   print("Here is a bag of items:");
 
   var bagOfItems = characters("abcde");
@@ -40,6 +41,7 @@ all the 3-combinations of the first five letters.
 And here is the output:
 
 ```text
+
 Here is a bag of items:
 [a, b, c, d, e]
 
@@ -65,6 +67,7 @@ various item arrangements and vice versa, and so it is possible for them to
 Here is an example that shows how we can work with a *huge* pseudo-list:
 
 ```dart
+
 var largeBagOfItems = characters("abcdefghijklmnopqrstuvwxyz");
 var hugePseudoList = new Permutations(10, largeBagOfItems);
 

@@ -36,8 +36,8 @@ class Combinations extends _Combinatorics {
       _combination(_adjustedIndex(k, length), r, items);
 
   /// Returns the index of [combination] in the list of arranged combinations.
-  int indexOf(List combination) => 
-  contains(combination) ? _inverseCombination(combination, _items): -1;
+  int indexOf(List combination) =>
+      contains(combination) ? _inverseCombination(combination, _items) : -1;
 
   /// returns whether [x] is in the pseudo-list.
   bool contains(List x) =>
