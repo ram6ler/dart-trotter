@@ -36,8 +36,8 @@ class Amalgams extends _Combinatorics {
       _amalgam(_adjustedIndex(k, length), r, items);
 
   /// Returns the index of [amalgam] in the list of arranged amalgams.
-  int indexOf(amalgam) => 
-  contains(amalgam) ? _inverseAmalgam(amalgam, _items): -1;
+  int indexOf(amalgam) =>
+      contains(amalgam) ? _inverseAmalgam(amalgam, _items) : -1;
 
   /// returns whether [x] is in the pseudo-list.
   bool contains(List x) => _itemsExistInUniversal(x, _items);
