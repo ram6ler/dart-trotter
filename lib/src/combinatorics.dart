@@ -13,6 +13,9 @@ abstract class _Combinatorics {
   /// The kth arrangement.
   List operator [](int k);
 
+  /// Returns whether [x] is in the pseudo-list.
+  bool contains(List x);
+
   /// Iterator support.
   get iterator => new List.generate(_length, (i) => this[i]).iterator;
 

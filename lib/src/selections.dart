@@ -23,7 +23,8 @@ class Selections extends _Combinatorics {
   int get r => _r;
 
   Selections(int r, List items) {
-    if (r < 0) throw new Exception("Cannot take $r items from ${items.length}.");
+    if (r < 0)
+      throw new Exception("Cannot take $r items from ${items.length}.");
     if (!_itemsAreUnique(items)) throw new Exception("Items are not unique.");
 
     _items = new List.from(items);
@@ -31,10 +32,15 @@ class Selections extends _Combinatorics {
     _length = _nCr(items.length + r - 1, r);
   }
 
-  @override List operator [](int k) => _selection(_adjustedIndex(k, length), r, items);
+  @override List operator [](int k) =>
+      _selection(_adjustedIndex(k, length), r, items);
 
   /// Returns the index of [selection] in the list of arranged selections.
-  int indexOf(List selection) => _inverseSelection(selection, _items);
+  int indexOf(List selection) => 
+  contains(selection) ? _inverseSelection(selection, _items): -1;
+
+  /// returns whether [x] is in the pseudo-list.
+  bool contains(List x) => _itemsExistInUniversal(x, _items);
 
   @override String toString() =>
       "Pseudo-list containing all $length $r-selections of items from $items.";

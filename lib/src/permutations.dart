@@ -32,10 +32,16 @@ class Permutations extends _Combinatorics {
     _length = _nPr(items.length, r);
   }
 
-  @override List operator [](int k) => _permutation(_adjustedIndex(k, length), r, items);
+  @override List operator [](int k) =>
+      _permutation(_adjustedIndex(k, length), r, items);
 
   /// Returns the index of [permutation] in the list of arranged permutations.
-  int indexOf(List permutation) => _inversePermutation(permutation, _items);
+  int indexOf(List permutation) =>
+      contains(permutation) ? _inversePermutation(permutation, _items) : -1;
+
+  /// returns whether [x] is in the pseudo-list.
+  bool contains(List x) =>
+      _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 
   @override String toString() =>
       "Pseudo-list containing all $length $r-permutations of items from $items.";

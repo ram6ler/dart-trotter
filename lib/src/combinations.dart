@@ -32,10 +32,16 @@ class Combinations extends _Combinatorics {
     _length = _nCr(items.length, r);
   }
 
-  @override List operator [](int k) => _combination(_adjustedIndex(k, length), r, items);
+  @override List operator [](int k) =>
+      _combination(_adjustedIndex(k, length), r, items);
 
   /// Returns the index of [combination] in the list of arranged combinations.
-  int indexOf(List combination) => _inverseCombination(combination, _items);
+  int indexOf(List combination) => 
+  contains(combination) ? _inverseCombination(combination, _items): -1;
+
+  /// returns whether [x] is in the pseudo-list.
+  bool contains(List x) =>
+      _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 
   @override String toString() =>
       "Pseudo-list containing all $length $r-combinations of items from $items.";

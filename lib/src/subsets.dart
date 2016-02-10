@@ -27,7 +27,11 @@ class Subsets extends _Combinatorics {
   @override List operator [](int k) => _subset(_adjustedIndex(k, length), items);
 
   /// Returns the index of [subset] in the list of arranged subsets.
-  int indexOf(List subset) => _inverseSubset(subset, _items);
+  int indexOf(List subset) => 
+  contains(subset) ? _inverseSubset(subset, _items): -1;
 
+  /// returns whether [x] is in the pseudo-list.
+  bool contains(List x) => _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
+  
   @override String toString() => "Pseudo-list containing all $length subsets of items from $items.";
 }

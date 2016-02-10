@@ -23,7 +23,8 @@ class Amalgams extends _Combinatorics {
   int get r => _r;
 
   Amalgams(int r, List items) {
-    if (r < 0) throw new Exception("Cannot take $r items from ${items.length}.");
+    if (r < 0)
+      throw new Exception("Cannot take $r items from ${items.length}.");
     if (!_itemsAreUnique(items)) throw new Exception("Items are not unique.");
 
     _items = new List.from(items);
@@ -31,10 +32,15 @@ class Amalgams extends _Combinatorics {
     _length = Math.pow(items.length, r).toInt();
   }
 
-  @override List operator [](int k) => _amalgam(_adjustedIndex(k, length), r, items);
+  @override List operator [](int k) =>
+      _amalgam(_adjustedIndex(k, length), r, items);
 
   /// Returns the index of [amalgam] in the list of arranged amalgams.
-  int indexOf(amalgam) => _inverseAmalgam(amalgam, _items);
+  int indexOf(amalgam) => 
+  contains(amalgam) ? _inverseAmalgam(amalgam, _items): -1;
+
+  /// returns whether [x] is in the pseudo-list.
+  bool contains(List x) => _itemsExistInUniversal(x, _items);
 
   @override String toString() =>
       "Pseudo-list containing all $length $r-amalgams of items from $items.";
