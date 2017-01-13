@@ -1,7 +1,6 @@
 import "package:trotter/trotter.dart";
 
 void main() {
-/*
   print("\n" * 10);
   print("Welcome to trotter, a library for working with structures");
   print("commonly encoundered in combinatorics.\n\n");
@@ -54,7 +53,21 @@ void main() {
       "\n\nItems can be accessed using the 'in' keyword. Take care not to do this");
   print("when dealing with large pseudo-lists! There is only so much time and");
   print("memory in this universe!\n");
-  for (List x in new Selections(3, bagOfItems)) print(x);
+  for (List x in sels) print(x);
+
+  print("\n(We could have accomplished this using the 'forEach' method too...)\n");
+  sels.forEach(print);
+
+  print("Much of the funtionality associated with Dart 'iterables' work on these");
+  print("combinatorics structures too.\n");
+
+  print("sels.first: ${sels.first}");
+  print("sels.last: ${sels.last}");
+  print("sels.firstWhere((List x) => x. contains(\"d\")): ${
+    sels.firstWhere((List x) => x. contains("d"))}");
+  print("sels.any((List x) => x. contains(\"f\")): ${
+    sels.any((List x) => x. contains("f"))}");
+
 
   print("\n\nBetter to be more specific using the `range` method:\n");
 
@@ -71,6 +84,7 @@ void main() {
   for (List x in hugePseudoList.range(999999999, 1000000009)) print(x);
 
   print("\n\nWe can also find the index of a given permutation...\n");
+  print("The world 'ALGORITHMS'is a 10-permutation of letters: what is its position?");
 
   int algorithmsIndex = hugePseudoList
       .indexOf(["a", "l", "g", "o", "r", "i", "t", "h", "m", "s"]);
@@ -95,10 +109,5 @@ void main() {
   for (int i = -q.length; i < 0; i++) {
     print("$i\t->\t${q[i]}\t->\t${q.indexOf(q[i])}");
   }
-*/
-  var comps = new Compounds(["a", "b", "c"]);
-  for (int i = 0; i < comps.length; i++) {
-    print("$i\t${comps[i]}\t->\t${comps.indexOf(comps[i])}");
-  }
-  print("\n\nEnjoy!\n\n\n");
+
 }

@@ -20,6 +20,11 @@ Improved the documentation; minor bug fixes.
 
 ## 0.8.1
 
-* Added the `Coumpounds` class (permutations of unspecified size).
+* Added the `Compounds` class (permutations of unspecified size).
 * Added the contains method for all classes.
 * Corrected indexOf behaviour for when arrangements that don't exist are passed as arguments; returns -1 if the arrangement is not in the pseudo-list.
+
+## 0.8.5
+
+* Cleaned up the code so that the library may be used in strong mode.
+* Added subset of the functionality associated with `Iterables` (`first`, `last`, `any`, `every`, `forEach` etc.). Some functionality that would be redundant (e.g. `isEmpty`) or less meaningful/useful (e.g. `fold`) neglected. Since structures we can represent can "contain" a huge number of arrangements, we need to be careful about using methods that iterate over the structures (like `any`, `every`, `forEach`).

@@ -5,4 +5,5 @@ author: Richard Ambler <richthepanda@gmail.com>
 homepage: https://www.bitbucket.org/ram6ler/dart_trotter/wiki/Home
 environment:
   sdk: '>=1.0.0'
+strong-mode: true
 
