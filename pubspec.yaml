@@ -4,5 +4,5 @@ description: Class definitions for pseudo-lists that simplify working with struc
 author: Richard Ambler <rambler@ibwya.net.com>
 homepage: https://www.bitbucket.org/ram6ler/dart_trotter/wiki/Home
 environment:
-  sdk: '>=1.0.0'
+  sdk: '>=1.20.1 <2.0.0'
 strong-mode: true
