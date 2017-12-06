@@ -4,9 +4,8 @@ part of trotter;
 Map<int, int> _factCache = {};
 
 /// Calculates [n]!
-int _fact(int n) => _factCache.containsKey(n)
-    ? _factCache[n]
-    : (n < 2 ? 1 : _factCache[n] = n * _fact(n - 1));
+int _fact(int n) =>
+    _factCache.containsKey(n) ? _factCache[n] : (n < 2 ? 1 : _factCache[n] = n * _fact(n - 1));
 
 /// Calculates the number of permutations of [r] items taken from [n].
 int _nPr(int n, int r) => _fact(n) ~/ _fact(n - r);
@@ -14,10 +13,11 @@ int _nPr(int n, int r) => _fact(n) ~/ _fact(n - r);
 /// Calculates the number of combinations of [r] items taken from [n].
 int _nCr(int n, int r) => _nPr(n, r) ~/ _fact(r);
 
+int ncr(int n, int r) => _nCr(n, r);
+
 /// Returns the items in [arrangement] in the same order as they appear in [items].
 List _sortedArrangement(List arrangement, List items) =>
-    (new List.from(arrangement))
-      ..sort((x, y) => items.indexOf(x).compareTo(items.indexOf(y)));
+    (new List.from(arrangement))..sort((x, y) => items.indexOf(x).compareTo(items.indexOf(y)));
 
 /// Checks whether the items in [items] are unique.
 bool _itemsAreUnique(List items) => items.toSet().length == items.length;
@@ -33,11 +33,8 @@ List _permutationWorker(int k, List items) {
   if (n <= 1)
     return items;
   else {
-    int group = k ~/ n,
-        mod = k % n,
-        position = group % 2 == 0 ? n - mod - 1 : mod;
-    return _permutationWorker(group, items.sublist(0, n - 1))
-      ..insert(position, items[n - 1]);
+    int group = k ~/ n, mod = k % n, position = group % 2 == 0 ? n - mod - 1 : mod;
+    return _permutationWorker(group, items.sublist(0, n - 1))..insert(position, items[n - 1]);
   }
 }
 
@@ -48,8 +45,7 @@ int _inversePermutationWorker(List permutation, List items) {
   int n = items.length,
       index = permutation.indexOf(items.last),
       group = _inversePermutationWorker(
-          permutation.where((x) => x != items.last).toList(),
-          items.sublist(0, items.length - 1));
+          permutation.where((x) => x != items.last).toList(), items.sublist(0, items.length - 1));
   return n * group + (group % 2 == 0 ? n - index - 1 : index);
 }
 
@@ -77,10 +73,9 @@ int _inverseCombination(List combination, List items) {
       k += _nCr(n - itemIndex - 1, r - 1);
       itemIndex++;
     }
-    return k +
-        _inverseCombination(
-            combination.sublist(1), items.sublist(itemIndex + 1));
+    return k + _inverseCombination(combination.sublist(1), items.sublist(itemIndex + 1));
   }
+
   return helper(_sortedArrangement(combination, items), items);
 }
 
@@ -112,8 +107,7 @@ int _inverseSelection(List selection, List items) {
       itemIndex++;
     }
 
-    return k +
-        _inverseSelection(selection.sublist(1), items.sublist(itemIndex));
+    return k + _inverseSelection(selection.sublist(1), items.sublist(itemIndex));
   }
 
   return helper(_sortedArrangement(selection, items), items);
@@ -134,8 +128,7 @@ int _inversePermutation(List permutation, List items) {
   if (r == 0) return 0;
   List sortedPermutation = _sortedArrangement(permutation, items);
   int group = _inverseCombination(sortedPermutation, items);
-  return group * _fact(r) +
-      _inversePermutationWorker(permutation, sortedPermutation);
+  return group * _fact(r) + _inversePermutationWorker(permutation, sortedPermutation);
 }
 
 /// Gives [k]th amalgam in the ordered list of amalgams of
@@ -155,9 +148,7 @@ int _inverseAmalgam(List amalgam, List items) {
   var powers = new List.filled(r, 1, growable: false);
   for (int i = 1; i < powers.length; i++) powers[i] = powers[i - 1] * n;
   return new List.generate(
-          r,
-          (position) =>
-              items.indexOf(amalgam[position]) * powers[r - position - 1])
+          r, (position) => items.indexOf(amalgam[position]) * powers[r - position - 1])
       .fold(0, (a, b) => a + b);
 }
 
@@ -181,6 +172,7 @@ int _inverseSubset(List subset, List items) {
     }
     return k;
   }
+
   return helper(_sortedArrangement(subset.toSet().toList(), items), items);
 }
 
@@ -202,9 +194,8 @@ List _compound(int k, List items) {
 /// Gives the index of [compound] in the ordered list of compounds of
 /// items taken from [items].
 int _inverseCompound(List compound, List items) {
-  int k = (new List.generate(
-      compound.length,
-      (r) => _nPr(items.length, r))).fold(0, (a, b) => a + b);
+  int k =
+      (new List.generate(compound.length, (r) => _nPr(items.length, r))).fold(0, (a, b) => a + b);
   k += _inversePermutation(compound, items);
   return k;
 }
