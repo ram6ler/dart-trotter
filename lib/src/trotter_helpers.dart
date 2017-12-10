@@ -135,7 +135,7 @@ int _inversePermutation(List permutation, List items) {
 /// [r] items taken from [items].
 List _amalgam(int k, int r, List items) {
   return new List.generate(r, (int i) {
-    int p = Math.pow(items.length, r - i - 1).toInt(), index = k ~/ p;
+    int p = math.pow(items.length, r - i - 1).toInt(), index = k ~/ p;
     k %= p;
     return items[index];
   });

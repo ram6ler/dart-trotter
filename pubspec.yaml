@@ -1,5 +1,5 @@
 name: trotter
-version: 0.9.0
+version: 0.9.1
 description: Class definitions for pseudo-lists that simplify working with structures commonly encountered in combinatorics such as permutations, combinations and subsets.
 author: Richard Ambler <rambler@ibwya.net.com>
 homepage: https://www.bitbucket.org/ram6ler/dart_trotter/wiki/Home

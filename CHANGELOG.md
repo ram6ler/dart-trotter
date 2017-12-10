@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.1
+
+* Fixed an error introduced during the changes made for 0.9.0.
+
 ## 0.9.0
 
 * Cleaned up and simplified the code so that the structures extend `List`s more naturally. (Structures extend `ListBase` now instead of `Iterable`.)
