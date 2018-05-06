@@ -19,29 +19,31 @@ class Compounds extends _Combinatorics {
 
     _items = new List.from(items);
     _length = (new List.generate(items.length + 1, (r) => _nPr(items.length, r))
-        .fold(0, (a, b) => a + b));
+        .fold(BigInt.zero, (a, b) => a + b));
   }
 
   @override
-  List operator [](int k) => _compound(_adjustedIndex(k, length), items);
+  List operator [](dynamic k) {
+    BigInt biK = _indexFromIntOrBigInt(k);
+    return _compound(_adjustedIndex(biK, length), items);
+  }
 
   /// Returns the index of [subset] in the list of arranged subsets.
-  @override
-  int indexOf(compound, [start = 0]) {
+  BigInt indexOf(List compound, [BigInt start]) {
+    start = start ?? BigInt.zero;
     if (contains(compound)) {
-      int result = _inverseCompound(compound, _items);
+      BigInt result = _inverseCompound(compound, _items);
       if (result >= start) {
         return result;
       } else {
-        return -1;
+        return new BigInt.from(-1);
       }
     } else {
-      return -1;
+      return new BigInt.from(-1);
     }
   }
 
   /// returns whether [x] is in the pseudo-list.
-  @override
   bool contains(Object x) => _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 
   @override

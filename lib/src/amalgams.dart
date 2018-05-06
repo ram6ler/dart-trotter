@@ -20,7 +20,7 @@ class Amalgams extends _Combinatorics {
 
     _items = new List.from(items);
     _r = r;
-    _length = math.pow(items.length, r).toInt();
+    _length = new BigInt.from(items.length).pow(r); //math.pow(items.length, r).toInt();
   }
 
   int _r;
@@ -29,25 +29,27 @@ class Amalgams extends _Combinatorics {
   int get r => _r;
 
   @override
-  List operator [](int k) => _amalgam(_adjustedIndex(k, length), r, items);
+  List operator [](dynamic k) {
+    BigInt biK = _indexFromIntOrBigInt(k);
+    return _amalgam(_adjustedIndex(biK, length), r, items);
+  }
 
   /// Returns the index of [amalgam] in the list of arranged amalgams.
-  @override
-  int indexOf(amalgam, [start = 0]) {
+  BigInt indexOf(List amalgam, [BigInt start]) {
+    start = start ?? BigInt.zero;
     if (contains(amalgam)) {
-      int result = _inverseAmalgam(amalgam, _items);
+      BigInt result = _inverseAmalgam(amalgam, _items);
       if (result >= start) {
         return result;
       } else {
-        return -1;
+        return new BigInt.from(-1);
       }
     } else {
-      return -1;
+      return new BigInt.from(-1);
     }
   }
 
   /// returns whether [x] is in the pseudo-list.
-  @override
   bool contains(Object x) => _itemsExistInUniversal(x, _items);
 
   @override

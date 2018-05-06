@@ -5,22 +5,19 @@
 ///
 /// The `trotter` library contains class definitions for [Permutations],
 /// [Combinations], [Amalgams] (permutations with repetition), [Selections]
-/// (combinations with repetition) and [Subsets] of objects taken
-/// from a list. These classes define instances that are moderately analogous
-/// to lists containing all possible respective arrangements.
+/// (combinations with repetition), [Subsets] and [Compounds] (permutations of
+/// unspecified length) of objects taken from a list. These classes define objects
+/// that are moderately analogous to lists containing all possible respective arrangements.
 ///
 
 library trotter;
-
-import "dart:math" as math;
-import 'dart:collection' show ListBase;
 
 part 'src/trotter_helpers.dart';
 part 'src/combinatorics.dart';
 part 'src/permutations.dart';
 part 'src/combinations.dart';
 part 'src/amalgams.dart';
-part 'src/selections.dart';
+part 'src/compositions.dart';
 part 'src/subsets.dart';
 part 'src/compounds.dart';
 part 'src/misc.dart';

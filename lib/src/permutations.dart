@@ -15,9 +15,12 @@ part of trotter;
 
 class Permutations extends _Combinatorics {
   Permutations(int r, List items) {
-    if (r < 0 || r > items.length)
+    if (r < 0 || r > items.length) {
       throw new Exception("Cannot take $r items from ${items.length}.");
-    if (!_itemsAreUnique(items)) throw new Exception("Items are not unique.");
+    }
+    if (!_itemsAreUnique(items)) {
+      throw new Exception("Items are not unique.");
+    }
 
     _items = new List.from(items, growable: false);
     _r = r;
@@ -30,25 +33,27 @@ class Permutations extends _Combinatorics {
   int get r => _r;
 
   @override
-  List operator [](int k) => _permutation(_adjustedIndex(k, length), r, items);
+  List operator [](dynamic k) {
+    BigInt biK = _indexFromIntOrBigInt(k);
+    return _permutation(_adjustedIndex(biK, length), r, items);
+  }
 
   /// Returns the index of [permutation] in the list of arranged permutations.
-  @override
-  int indexOf(permutation, [start = 0]) {
+  BigInt indexOf(List permutation, [BigInt start]) {
+    start = start ?? BigInt.zero;
     if (contains(permutation)) {
-      int result = _inversePermutation(permutation, _items);
+      BigInt result = _inversePermutation(permutation, _items);
       if (result >= start) {
         return result;
       } else {
-        return -1;
+        return new BigInt.from(-1);
       }
     } else {
-      return -1;
+      return new BigInt.from(-1);
     }
   }
 
   /// returns whether [x] is in the pseudo-list.
-  @override
   bool contains(Object x) => _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 
   @override

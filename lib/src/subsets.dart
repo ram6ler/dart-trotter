@@ -18,29 +18,31 @@ class Subsets extends _Combinatorics {
     if (!_itemsAreUnique(items)) throw new Exception("Items are not unique.");
 
     _items = new List.from(items);
-    _length = 1 << items.length;
+    _length = BigInt.one << items.length;
   }
 
   @override
-  List operator [](int k) => _subset(_adjustedIndex(k, length), items);
+  List operator [](dynamic k) {
+    BigInt biK = _indexFromIntOrBigInt(k);
+    return _subset(_adjustedIndex(biK, length), items);
+  }
 
   /// Returns the index of [subset] in the list of arranged subsets.
-  @override
-  int indexOf(subset, [start = 0]) {
+  BigInt indexOf(List subset, [BigInt start]) {
+    start = start ?? BigInt.zero;
     if (contains(subset)) {
-      int result = _inverseSubset(subset, _items);
+      BigInt result = _inverseSubset(subset, _items);
       if (result >= start) {
         return result;
       } else {
-        return -1;
+        return new BigInt.from(-1);
       }
     } else {
-      return -1;
+      return new BigInt.from(-1);
     }
   }
 
   /// returns whether [x] is in the pseudo-list.
-  @override
   bool contains(Object x) => _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 
   @override

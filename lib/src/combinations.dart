@@ -30,25 +30,27 @@ class Combinations extends _Combinatorics {
   int get r => _r;
 
   @override
-  List operator [](int k) => _combination(_adjustedIndex(k, length), r, items);
+  List operator [](dynamic k) {
+    BigInt biK = _indexFromIntOrBigInt(k);
+    return _combination(_adjustedIndex(biK, length), r, items);
+  }
 
   /// Returns the index of [combination] in the list of arranged combinations.
-  @override
-  int indexOf(combination, [start = 0]) {
+  BigInt indexOf(List combination, [BigInt start]) {
+    start = start ?? BigInt.zero;
     if (contains(combination)) {
-      int result = _inverseCombination(combination, _items);
+      BigInt result = _inverseCombination(combination, _items);
       if (result >= start) {
         return result;
       } else {
-        return -1;
+        return new BigInt.from(-1);
       }
     } else {
-      return -1;
+      return new BigInt.from(-1);
     }
   }
 
   /// returns whether [x] is in the pseudo-list.
-  @override
   bool contains(Object x) => _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 
   @override
