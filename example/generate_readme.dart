@@ -1,7 +1,7 @@
 import 'dart:io';
 import "package:trotter/trotter.dart";
 
-main() async {
+dynamic main() async {
   var script = await new File("generate_readme.dart").readAsLines();
 
   var functions = new List<void Function()>();
