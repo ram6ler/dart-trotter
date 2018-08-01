@@ -43,8 +43,10 @@ class Subsets extends _Combinatorics {
   }
 
   /// returns whether [x] is in the pseudo-list.
-  bool contains(Object x) => _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
+  bool contains(Object x) =>
+      _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 
   @override
-  String toString() => "Pseudo-list containing all $length subsets of items from $items.";
+  String toString() =>
+      "Pseudo-list containing all $length subsets of items from $items.";
 }

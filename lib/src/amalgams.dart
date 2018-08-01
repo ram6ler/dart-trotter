@@ -20,7 +20,8 @@ class Amalgams extends _Combinatorics {
 
     _items = List.from(items);
     _r = r;
-    _length = BigInt.from(items.length).pow(r); //math.pow(items.length, r).toInt();
+    _length =
+        BigInt.from(items.length).pow(r); //math.pow(items.length, r).toInt();
   }
 
   int _r;
@@ -53,5 +54,6 @@ class Amalgams extends _Combinatorics {
   bool contains(Object x) => _itemsExistInUniversal(x, _items);
 
   @override
-  String toString() => "Pseudo-list containing all $length $r-amalgams of items from $items.";
+  String toString() =>
+      "Pseudo-list containing all $length $r-amalgams of items from $items.";
 }

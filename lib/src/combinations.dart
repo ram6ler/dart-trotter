@@ -15,7 +15,8 @@ part of trotter;
 
 class Combinations extends _Combinatorics {
   Combinations(int r, List items) {
-    if (r < 0 || r > items.length) throw Exception("Cannot take $r items from ${items.length}.");
+    if (r < 0 || r > items.length)
+      throw Exception("Cannot take $r items from ${items.length}.");
     if (!_itemsAreUnique(items)) throw Exception("Items are not unique.");
 
     _items = List.from(items, growable: false);
@@ -50,8 +51,10 @@ class Combinations extends _Combinatorics {
   }
 
   /// returns whether [x] is in the pseudo-list.
-  bool contains(Object x) => _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
+  bool contains(Object x) =>
+      _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 
   @override
-  String toString() => "Pseudo-list containing all $length $r-combinations of items from $items.";
+  String toString() =>
+      "Pseudo-list containing all $length $r-combinations of items from $items.";
 }

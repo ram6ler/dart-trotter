@@ -301,7 +301,8 @@ main() async {
     if (line.trim()[0] == "/") {
       print(line.replaceAll("///", "").trimLeft());
     } else {
-      if (line.trimLeft().length > 13 && line.trimLeft().substring(0, 13) == "functions.add") {
+      if (line.trimLeft().length > 13 &&
+          line.trimLeft().substring(0, 13) == "functions.add") {
         print("\n**Example:**\n\n```dart");
         write = true;
       } else if (line.trimLeft() == "});") {

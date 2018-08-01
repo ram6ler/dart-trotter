@@ -53,5 +53,6 @@ class Compositions extends _Combinatorics {
   bool contains(Object x) => _itemsExistInUniversal(x, _items);
 
   @override
-  String toString() => "Pseudo-list containing all $length $r-Compositions of items from $items.";
+  String toString() =>
+      "Pseudo-list containing all $length $r-Compositions of items from $items.";
 }

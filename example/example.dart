@@ -84,7 +84,8 @@ int playGame(bool display) {
 
     potentials.removeWhere((potentialGuess) {
       var potentialClues = getClues(guess, potentialGuess);
-      if (potentialClues.first != clues.first || potentialClues.last != clues.last) {
+      if (potentialClues.first != clues.first ||
+          potentialClues.last != clues.last) {
         return true;
       } else
         return false;

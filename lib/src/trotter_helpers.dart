@@ -16,7 +16,8 @@ BigInt _nCr(int n, int r) => _nPr(n, r) ~/ _fact(r);
 
 /// Returns the items in [arrangement] in the same order as they appear in [items].
 List _sortedArrangement(List arrangement, List items) =>
-    (List.from(arrangement))..sort((x, y) => items.indexOf(x).compareTo(items.indexOf(y)));
+    (List.from(arrangement))
+      ..sort((x, y) => items.indexOf(x).compareTo(items.indexOf(y)));
 
 /// Checks whether the items in [items] are unique.
 bool _itemsAreUnique(List items) => items.toSet().length == items.length;
@@ -35,7 +36,8 @@ List _permutationWorker(BigInt k, List items) {
     BigInt biN = BigInt.from(n),
         group = k ~/ biN,
         mod = k % biN,
-        position = group % BigInt.two == BigInt.zero ? biN - mod - BigInt.one : mod;
+        position =
+            group % BigInt.two == BigInt.zero ? biN - mod - BigInt.one : mod;
 
     return _permutationWorker(group, items.sublist(0, n - 1))
       ..insert(position.toInt(), items[n - 1]);
@@ -51,8 +53,10 @@ BigInt _inversePermutationWorker(List permutation, List items) {
   BigInt biN = BigInt.from(n),
       index = BigInt.from(permutation.indexOf(items.last)),
       group = _inversePermutationWorker(
-          permutation.where((x) => x != items.last).toList(), items.sublist(0, items.length - 1));
-  return biN * group + (group % BigInt.two == BigInt.zero ? biN - index - BigInt.one : index);
+          permutation.where((x) => x != items.last).toList(),
+          items.sublist(0, items.length - 1));
+  return biN * group +
+      (group % BigInt.two == BigInt.zero ? biN - index - BigInt.one : index);
 }
 
 /// Gives [k]th combination in the ordered list of combinations of
@@ -82,7 +86,9 @@ BigInt _inverseCombination(List combination, List items) {
       k += _nCr(n - itemIndex - 1, r - 1);
       itemIndex += 1;
     }
-    return k + _inverseCombination(combination.sublist(1), items.sublist((itemIndex + 1).toInt()));
+    return k +
+        _inverseCombination(
+            combination.sublist(1), items.sublist((itemIndex + 1).toInt()));
   }
 
   return helper(_sortedArrangement(combination, items), items);
@@ -118,7 +124,9 @@ BigInt _inverseSelection(List selection, List items) {
       itemIndex += 1;
     }
 
-    return k + _inverseSelection(selection.sublist(1), items.sublist(itemIndex.toInt()));
+    return k +
+        _inverseSelection(
+            selection.sublist(1), items.sublist(itemIndex.toInt()));
   }
 
   return helper(_sortedArrangement(selection, items), items);
@@ -139,7 +147,8 @@ BigInt _inversePermutation(List permutation, List items) {
   if (r == 0) return BigInt.zero;
   List sortedPermutation = _sortedArrangement(permutation, items);
   BigInt group = _inverseCombination(sortedPermutation, items);
-  return group * _fact(r) + _inversePermutationWorker(permutation, sortedPermutation);
+  return group * _fact(r) +
+      _inversePermutationWorker(permutation, sortedPermutation);
 }
 
 /// Gives [k]th amalgam in the ordered list of amalgams of
@@ -160,8 +169,10 @@ BigInt _inverseAmalgam(List amalgam, List items) {
   var powers = List<BigInt>.filled(r, BigInt.one, growable: false);
   for (int i = 1; i < powers.length; i++) powers[i] = powers[i - 1] * n;
   return List.generate(
-          r, (position) => BigInt.from(items.indexOf(amalgam[position])) * powers[r - position - 1])
-      .fold(BigInt.zero, (a, b) => a + b);
+      r,
+      (position) =>
+          BigInt.from(items.indexOf(amalgam[position])) *
+          powers[r - position - 1]).fold(BigInt.zero, (a, b) => a + b);
 }
 
 /// Gives [k]th subset in the ordered list of subsets of
