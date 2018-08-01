@@ -80,7 +80,7 @@ int playGame(bool display) {
     guesses++;
     var guess = potentials[rand.nextInt(potentials.length)];
     clues = getClues(code, guess);
-    if (display) print("|$guesses|${string(guess)}|${showClues(clues)}");
+    if (display) print("|$guesses|${string(guess)}|${showClues(clues)}|");
 
     potentials.removeWhere((potentialGuess) {
       var potentialClues = getClues(guess, potentialGuess);

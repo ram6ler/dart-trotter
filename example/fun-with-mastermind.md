@@ -24,144 +24,142 @@ Here goes:
 
 ### Game 1
 
-The secret code: AFEB
+The secret code: DFCB
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|DAAE|`  oo `
-|2|EDEB|` **  `
-|3|ADCB|` **  `
-|4|EDCF|`  oo `
-|5|AFEB|` ****  `
+|1|DAAB|` **  `|
+|2|DAFC|` * oo `|
+|3|DFAD|` **  `|
+|4|DFCB|` ****  `|
 
-Solved in 5 guesses.
+Solved in 4 guesses.
 
 ### Game 2
 
-The secret code: DADF
+The secret code: BFEB
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|CADD|` ** o `
-|2|DAAD|` ** o `
-|3|AACD|` * o `
-|4|DADF|` ****  `
+|1|AEFD|`  oo `|
+|2|ECEA|` *  `|
+|3|BDDA|` *  `|
+|4|CCDF|`  o `|
+|5|FAAA|`  o `|
+|6|BFEB|` ****  `|
 
-Solved in 4 guesses.
+Solved in 6 guesses.
 
 ### Game 3
 
-The secret code: EFDD
+The secret code: EFDC
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|BEEF|`  oo `
-|2|FAAE|`  oo `
-|3|ACFB|`  o `
-|4|EFDD|` ****  `
-
-Solved in 4 guesses.
-
-### Game 4
-
-The secret code: DAFB
-
-|Guess number|Guess|Clues|
-|:--:|:--|:--|
-|1|ACCB|` * o `
-|2|BBCF|`  oo `
-|3|ECBD|`  oo `
-|4|FAEB|` ** o `
-|5|DAFB|` ****  `
+|1|AACA|`  o `|
+|2|BEAD|`  oo `|
+|3|CBDF|` * oo `|
+|4|CFEB|` * oo `|
+|5|EFDC|` ****  `|
 
 Solved in 5 guesses.
 
-### Game 5
+### Game 4
 
-The secret code: ACEE
+The secret code: BBCB
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|BEBF|`  o `
-|2|AAED|` **  `
-|3|ABDD|` *  `
-|4|ACEE|` ****  `
+|1|AFBE|`  o `|
+|2|FCCD|` *  `|
+|3|DEDD|`   `|
+|4|BBCB|` ****  `|
+
+Solved in 4 guesses.
+
+### Game 5
+
+The secret code: AEEC
+
+|Guess number|Guess|Clues|
+|:--:|:--|:--|
+|1|CCDE|`  oo `|
+|2|EDFF|`  o `|
+|3|ABEC|` ***  `|
+|4|AEEC|` ****  `|
 
 Solved in 4 guesses.
 
 ### Game 996
 
-The secret code: ECAA
+The secret code: BBBA
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|DEEA|` * o `
-|2|BFEE|`  o `
-|3|AECC|`  ooo `
-|4|ECAA|` ****  `
+|1|CDCE|`   `|
+|2|BAAF|` * o `|
+|3|BFBB|` ** o `|
+|4|BBBA|` ****  `|
 
 Solved in 4 guesses.
 
 ### Game 997
 
-The secret code: EBBA
+The secret code: FDBB
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|EAAF|` * o `
-|2|ABAC|` * o `
-|3|CDAE|`  oo `
-|4|FAFC|`  o `
-|5|EBEA|` ***  `
-|6|EBBA|` ****  `
+|1|FCBC|` **  `|
+|2|ADBC|` **  `|
+|3|FDBF|` ***  `|
+|4|FDBD|` ***  `|
+|5|FDBB|` ****  `|
 
-Solved in 6 guesses.
+Solved in 5 guesses.
 
 ### Game 998
 
-The secret code: EABA
+The secret code: FDCF
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|ABFC|`  oo `
-|2|FFBE|` * o `
-|3|BDBF|` *  `
-|4|FAAF|` * o `
-|5|EABA|` ****  `
+|1|BDEE|` *  `|
+|2|CAEA|`  o `|
+|3|BFCF|` ** o `|
+|4|BCBF|` * o `|
+|5|FDCF|` ****  `|
 
 Solved in 5 guesses.
 
 ### Game 999
 
-The secret code: DACF
+The secret code: CFAF
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|ADDC|`  ooo `
-|2|DACA|` ***  `
-|3|DACB|` ***  `
-|4|DACE|` ***  `
-|5|DACF|` ****  `
+|1|CCCC|` *  `|
+|2|ECAE|` * o `|
+|3|ACDB|`  oo `|
+|4|CAAA|` **  `|
+|5|CFAF|` ****  `|
 
 Solved in 5 guesses.
 
 ### Game 1000
 
-The secret code: DCCC
+The secret code: BAFA
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|BAAD|`  o `
-|2|CBEC|` * o `
-|3|CEDF|`  oo `
-|4|FBBE|`   `
-|5|DDCC|` ***  `
-|6|DCCC|` ****  `
+|1|EDBE|`  o `|
+|2|AEFA|` ** o `|
+|3|AEAC|`  oo `|
+|4|BAFA|` ****  `|
 
-Solved in 6 guesses.
+Solved in 4 guesses.
 ## Summary
 
-In 1000 games, the computer found the code in at least 2 guesses, at most 7 guesses, and on average 4.650 guesses.
+In 1000 games, the computer found the code in at least 2 guesses, at most 7 guesses, and on average 4.673 guesses.
 ## trotter
 
 This was just a little demonstration of a real-world application using the trotter library.
