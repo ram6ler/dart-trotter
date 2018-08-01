@@ -1,10 +1,15 @@
 # Change log
 
+## 1.0.0
+
+* Cleaned up code to be more in line with Dart 2.
+* Added `example.dart` (and an example output, `fun-with-mastermind.md`) to `example/`. 
+
 ## 0.9.5
 
-* As of Dart 2, `int` instances represent 64 bit, as opposed to arbitrary precision, integers. Since *trotter* often works with very large integers, it needed an overhaul so as to incorporate the `BigInt` class. This resulted in several breaking changes, most notably that the base `_Combinatoric` class no longer extends `ListBase`. I have made the class instances callable, however, to address this: code that needs an instance of one of the classes to behave like an iterable just need to call the instance. For example, if `perms` is an instance of `Permutations`, we would now use something like `for (var p in perms())` instead of `for (var p in perms)`, which worked in previous versions in Dart 1. The instances can still be thought of as pseudo-lists in that they can be indexed and have several properties and methods that might be expected in a list, such as `length` and `indexOf`.
+* As of Dart 2, `int` instances represent 64 bit, as opposed to arbitrary length, integers. Since *trotter* often works with very large integers, it needed an overhaul so as to incorporate the `BigInt` class. This resulted in several breaking changes, most notably that the base `_Combinatoric` class no longer extends `ListBase`. I have made the class instances callable, however, to address this: code that needs an instance of one of the classes to behave like an iterable just need to call the instance. For example, if `perms` is an instance of `Permutations`, we would now use something like `for (var p in perms())` (as opposed to `for (var p in perms)`, which worked in previous versions). The instances can still be thought of as pseudo-lists in that they can be indexed and have several properties and methods that might be expected in a list, such as `length` and `indexOf`.
 
-* I took advantage of the necessity of making breaking changes mentioned above to make one more: I have renamed the `Selections` class `Compositions`. In combinatorics literature, the term *selection* is often use as a generic word to mean either combination or permutation. This might have caused confusion in the way I had used the term in previous versions of the library. I think that *composition* is more appropriate to mean a selection in which order is not important (if a body is composed of materials A, B and C then it is also composed of materials C, B and A) and items are "replaced" (it makes sense to say that a body is composed of two parts A to one part B).
+* I took advantage of the necessity of making breaking changes mentioned above to make one more: I have renamed the `Selections` class `Compositions`. In combinatorics literature, the term *selection* is often use as a generic word to mean either combination or permutation. This might have caused confusion in the way I had used the term in previous versions of the library. I think that *composition* is more appropriate to mean a selection in which order is not important (if a body is composed of materials A, B and C then it is also composed of materials C, B and A) and items are "replaced" (it makes sense to say that a body is composed of two parts A to one part B, for example).
 
 ## 0.9.1
 
@@ -44,10 +49,3 @@ First Dart release: support for classes:
 * Amalgams (permutations with replacement during arranging)
 * Selections (combinations with replacement during arranging)
 * Subsets
-
-
-
-
-
-
-

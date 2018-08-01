@@ -7,7 +7,7 @@ part of trotter;
 ///
 /// _Example_
 ///
-///     var sub = new Subsets(characters("abcd"));
+///     var sub = Subsets(characters("abcd"));
 ///     print("There are ${sub.length} subsets of the objects");
 ///     print("in ${sub.items}.");
 ///     print("The first subset is ${sub[0]}.");
@@ -15,9 +15,9 @@ part of trotter;
 
 class Subsets extends _Combinatorics {
   Subsets(List items) {
-    if (!_itemsAreUnique(items)) throw new Exception("Items are not unique.");
+    if (!_itemsAreUnique(items)) throw Exception("Items are not unique.");
 
-    _items = new List.from(items);
+    _items = List.from(items);
     _length = BigInt.one << items.length;
   }
 
@@ -35,10 +35,10 @@ class Subsets extends _Combinatorics {
       if (result >= start) {
         return result;
       } else {
-        return new BigInt.from(-1);
+        return BigInt.from(-1);
       }
     } else {
-      return new BigInt.from(-1);
+      return BigInt.from(-1);
     }
   }
 

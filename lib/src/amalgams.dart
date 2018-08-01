@@ -7,7 +7,7 @@ part of trotter;
 ///
 /// _Example_
 ///
-///     var a = new Amalgams(3, characters("abcd"));
+///     var a = Amalgams(3, characters("abcd"));
 ///     print("There are ${a.length} 3-amalgams of the objects");
 ///     print("in ${a.items}.");
 ///     print("The first amalgam is ${a[0]}.");
@@ -15,12 +15,12 @@ part of trotter;
 
 class Amalgams extends _Combinatorics {
   Amalgams(int r, List items) {
-    if (r < 0) throw new Exception("Cannot take $r items from ${items.length}.");
-    if (!_itemsAreUnique(items)) throw new Exception("Items are not unique.");
+    if (r < 0) throw Exception("Cannot take $r items from ${items.length}.");
+    if (!_itemsAreUnique(items)) throw Exception("Items are not unique.");
 
-    _items = new List.from(items);
+    _items = List.from(items);
     _r = r;
-    _length = new BigInt.from(items.length).pow(r); //math.pow(items.length, r).toInt();
+    _length = BigInt.from(items.length).pow(r); //math.pow(items.length, r).toInt();
   }
 
   int _r;
@@ -42,10 +42,10 @@ class Amalgams extends _Combinatorics {
       if (result >= start) {
         return result;
       } else {
-        return new BigInt.from(-1);
+        return BigInt.from(-1);
       }
     } else {
-      return new BigInt.from(-1);
+      return BigInt.from(-1);
     }
   }
 

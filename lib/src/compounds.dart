@@ -7,7 +7,7 @@ part of trotter;
 ///
 /// _Example_
 ///
-///     var com = new Compounds(letters("abcd"));
+///     var com = Compounds(letters("abcd"));
 ///     print("There are ${com.length} subsets of the objects");
 ///     print("in ${com.items}.");
 ///     print("The first subset is ${com[0]}.");
@@ -15,10 +15,10 @@ part of trotter;
 
 class Compounds extends _Combinatorics {
   Compounds(List items) {
-    if (!_itemsAreUnique(items)) throw new Exception("Items are not unique.");
+    if (!_itemsAreUnique(items)) throw Exception("Items are not unique.");
 
-    _items = new List.from(items);
-    _length = (new List.generate(items.length + 1, (r) => _nPr(items.length, r))
+    _items = List.from(items);
+    _length = (List.generate(items.length + 1, (r) => _nPr(items.length, r))
         .fold(BigInt.zero, (a, b) => a + b));
   }
 
@@ -36,10 +36,10 @@ class Compounds extends _Combinatorics {
       if (result >= start) {
         return result;
       } else {
-        return new BigInt.from(-1);
+        return BigInt.from(-1);
       }
     } else {
-      return new BigInt.from(-1);
+      return BigInt.from(-1);
     }
   }
 

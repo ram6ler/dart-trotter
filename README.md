@@ -40,7 +40,7 @@ yet, include the following:
 
 ```text
 trotter:
-  git: https://ram6ler@bitbucket.org/ram6ler/dart_trotter.git
+git: https://ram6ler@bitbucket.org/ram6ler/dart_trotter.git
 ```
 
 Then, to import the library:
@@ -64,7 +64,7 @@ arrangement of all combinations of a set of items.
 
 ```dart
     List bagOfItems = characters("abcde");
-    var combos = new Combinations(3, bagOfItems);
+    var combos = Combinations(3, bagOfItems);
     for (var combo in combos()) {
       print(combo);
     }
@@ -102,7 +102,7 @@ arrangement of all permutations of a set of items.
 
 ```dart
     List bagOfItems = characters("abcde");
-    var perms = new Permutations(3, bagOfItems);
+    var perms = Permutations(3, bagOfItems);
     for (var perm in perms()) {
       print(perm);
     }
@@ -180,7 +180,7 @@ arrangement of all permutations of a set of items.
 (Notice that this library arranges permutations similarly to the way the
 [Steinhaus-Johnson-Trotter](https://en.wikipedia.org/wiki/Steinhaus%E2%80%93Johnson%E2%80%93Trotter_algorithm)
 algorithm arranges permutations. In fact, if we get the permutations of
-*all* the specified items, e.g. `var perms = new Permutations(5, bagOfItems);`
+*all* the specified items, e.g. `var perms = Permutations(5, bagOfItems);`
 in the above code, the arrangement of permutations is exactly what would
 have resulted from applying the S-J-T algorithm. The algorithms in this library
 have an advantage in that they do not iterate through all k - 1 permutations in
@@ -201,7 +201,7 @@ Here are all the compositions of three items taken from a bag of five items:
 
 ```dart
     List bagOfItems = characters("abcde");
-    var comps = new Compositions(3, bagOfItems);
+    var comps = Compositions(3, bagOfItems);
     for (var comp in comps()) {
       print(comp);
     }
@@ -264,7 +264,7 @@ of all amalgams of a set of items.
 
 ```dart
     List bagOfItems = characters("abcde");
-    var amals = new Amalgams(3, bagOfItems);
+    var amals = Amalgams(3, bagOfItems);
     for (var amal in amals()) {
       print(amal);
     }
@@ -418,7 +418,7 @@ of all subsets of a set of items.
 
 ```dart
     List bagOfItems = characters("abcde");
-    var subs = new Subsets(bagOfItems);
+    var subs = Subsets(bagOfItems);
     for (var sub in subs()) {
       print(sub);
     }
@@ -479,7 +479,7 @@ of all compounds of a set of items.
 
 ```dart
     List bagOfItems = characters("abcde");
-    var comps = new Compounds(bagOfItems);
+    var comps = Compounds(bagOfItems);
     for (var comp in comps()) {
       print(comp);
     }
@@ -830,7 +830,7 @@ of 10-permutations of the letters of the alphabet:
 
 ```dart
     List largeBagOfItems = characters("abcdefghijklmnopqrstuvwxyz");
-    var perms = new Permutations(10, largeBagOfItems);
+    var perms = Permutations(10, largeBagOfItems);
     print(perms);
 ```
 
@@ -856,7 +856,7 @@ in our list of permutations?
 
 ```dart
     List largeBagOfItems = characters("abcdefghijklmnopqrstuvwxyz");
-    var perms = new Permutations(10, largeBagOfItems);
+    var perms = Permutations(10, largeBagOfItems);
     List permutationOfInterest = characters("algorithms");
     BigInt index = perms.indexOf(permutationOfInterest);
     print("The index of $permutationOfInterest is $index.");
@@ -886,7 +886,7 @@ which case we need to use `BigInt` objects.
 
 ```dart
     var largeBagOfItems = characters("abcdefghijklmnopqrstuvwxyz");
-    var comps = new Compounds(largeBagOfItems);
+    var comps = Compounds(largeBagOfItems);
     print("There are ${comps.length} compounds of these letters!");
     BigInt lastCompoundIndex = comps.length - BigInt.one;
     print("The last compound is ${comps[lastCompoundIndex]}.");
@@ -932,7 +932,7 @@ the `iterable` property, however.
 **trotter < 0.9.5**
 
 ```dart
-var combos = new Combinations(3, characters("abcde"));
+var combos = Combinations(3, characters("abcde"));
 for (var combo in combos) { // combos is iterable
 ...
 }
@@ -941,7 +941,7 @@ for (var combo in combos) { // combos is iterable
 **trotter >= 0.9.5**
 
 ```dart
-var combos = new Combinations(3, characters("abcde"));
+var combos = Combinations(3, characters("abcde"));
 for (var combo in combos()) { // combos is callable, returns an iterable
 ...
 }
@@ -957,7 +957,7 @@ method or the `iterable` property.
 
 ```dart
     var items = characters("abc");
-    var subsets = new Subsets(items);
+    var subsets = Subsets(items);
     print(subsets().where((subset) => subset.length == 2).join(" "));
 ```
 

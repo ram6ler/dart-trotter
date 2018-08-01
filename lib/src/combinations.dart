@@ -7,7 +7,7 @@ part of trotter;
 ///
 /// _Example_
 ///
-///     var c = new Combinations(3, characters("abcd"));
+///     var c = Combinations(3, characters("abcd"));
 ///     print("There are ${c.length} 3-combinations of the objects");
 ///     print("in ${c.items}.");
 ///     print("The first combination is ${c[0]}.");
@@ -15,11 +15,10 @@ part of trotter;
 
 class Combinations extends _Combinatorics {
   Combinations(int r, List items) {
-    if (r < 0 || r > items.length)
-      throw new Exception("Cannot take $r items from ${items.length}.");
-    if (!_itemsAreUnique(items)) throw new Exception("Items are not unique.");
+    if (r < 0 || r > items.length) throw Exception("Cannot take $r items from ${items.length}.");
+    if (!_itemsAreUnique(items)) throw Exception("Items are not unique.");
 
-    _items = new List.from(items, growable: false);
+    _items = List.from(items, growable: false);
     _r = r;
     _length = _nCr(items.length, r);
   }
@@ -43,10 +42,10 @@ class Combinations extends _Combinatorics {
       if (result >= start) {
         return result;
       } else {
-        return new BigInt.from(-1);
+        return BigInt.from(-1);
       }
     } else {
-      return new BigInt.from(-1);
+      return BigInt.from(-1);
     }
   }
 

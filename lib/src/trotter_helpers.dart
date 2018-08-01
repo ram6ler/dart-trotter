@@ -6,7 +6,7 @@ Map<int, BigInt> _factCache = {};
 /// Calculates [n]!
 BigInt _fact(int n) => _factCache.containsKey(n)
     ? _factCache[n]
-    : (n < 2 ? BigInt.one : _factCache[n] = new BigInt.from(n) * _fact(n - 1));
+    : (n < 2 ? BigInt.one : _factCache[n] = BigInt.from(n) * _fact(n - 1));
 
 /// Calculates the number of permutations of [r] items taken from [n].
 BigInt _nPr(int n, int r) => _fact(n) ~/ _fact(n - r);
@@ -16,7 +16,7 @@ BigInt _nCr(int n, int r) => _nPr(n, r) ~/ _fact(r);
 
 /// Returns the items in [arrangement] in the same order as they appear in [items].
 List _sortedArrangement(List arrangement, List items) =>
-    (new List.from(arrangement))..sort((x, y) => items.indexOf(x).compareTo(items.indexOf(y)));
+    (List.from(arrangement))..sort((x, y) => items.indexOf(x).compareTo(items.indexOf(y)));
 
 /// Checks whether the items in [items] are unique.
 bool _itemsAreUnique(List items) => items.toSet().length == items.length;
@@ -32,7 +32,7 @@ List _permutationWorker(BigInt k, List items) {
   if (n <= 1) {
     return items;
   } else {
-    BigInt biN = new BigInt.from(n),
+    BigInt biN = BigInt.from(n),
         group = k ~/ biN,
         mod = k % biN,
         position = group % BigInt.two == BigInt.zero ? biN - mod - BigInt.one : mod;
@@ -48,8 +48,8 @@ BigInt _inversePermutationWorker(List permutation, List items) {
   if (permutation.length == 1) return BigInt.zero;
   int n = items.length;
 
-  BigInt biN = new BigInt.from(n),
-      index = new BigInt.from(permutation.indexOf(items.last)),
+  BigInt biN = BigInt.from(n),
+      index = BigInt.from(permutation.indexOf(items.last)),
       group = _inversePermutationWorker(
           permutation.where((x) => x != items.last).toList(), items.sublist(0, items.length - 1));
   return biN * group + (group % BigInt.two == BigInt.zero ? biN - index - BigInt.one : index);
@@ -145,8 +145,8 @@ BigInt _inversePermutation(List permutation, List items) {
 /// Gives [k]th amalgam in the ordered list of amalgams of
 /// [r] items taken from [items].
 List _amalgam(BigInt k, int r, List items) {
-  return new List.generate(r.toInt(), (i) {
-    BigInt p = new BigInt.from(items.length).pow(r - i - 1), index = k ~/ p;
+  return List.generate(r.toInt(), (i) {
+    BigInt p = BigInt.from(items.length).pow(r - i - 1), index = k ~/ p;
     k %= p;
     return items[index.toInt()];
   });
@@ -156,13 +156,11 @@ List _amalgam(BigInt k, int r, List items) {
 /// items taken from [items].
 BigInt _inverseAmalgam(List amalgam, List items) {
   int r = amalgam.length;
-  var n = new BigInt.from(items.length);
-  var powers = new List<BigInt>.filled(r, BigInt.one, growable: false);
+  var n = BigInt.from(items.length);
+  var powers = List<BigInt>.filled(r, BigInt.one, growable: false);
   for (int i = 1; i < powers.length; i++) powers[i] = powers[i - 1] * n;
-  return new List.generate(
-          r,
-          (position) =>
-              new BigInt.from(items.indexOf(amalgam[position])) * powers[r - position - 1])
+  return List.generate(
+          r, (position) => BigInt.from(items.indexOf(amalgam[position])) * powers[r - position - 1])
       .fold(BigInt.zero, (a, b) => a + b);
 }
 
@@ -212,7 +210,7 @@ List _compound(BigInt k, List items) {
 /// Gives the index of [compound] in the ordered list of compounds of
 /// items taken from [items].
 BigInt _inverseCompound(List compound, List items) {
-  BigInt k = (new List.generate(compound.length, (r) => _nPr(items.length, r)))
+  BigInt k = (List.generate(compound.length, (r) => _nPr(items.length, r)))
       .fold(BigInt.zero, (a, b) => a + b);
   k += _inversePermutation(compound, items);
   return k;
@@ -224,11 +222,11 @@ BigInt _adjustedIndex(BigInt k, BigInt n) => k % n;
 BigInt _indexFromIntOrBigInt(dynamic k) {
   BigInt biK;
   if (k is int) {
-    biK = new BigInt.from(k);
+    biK = BigInt.from(k);
   } else if (k is BigInt) {
     biK = k;
   } else {
-    throw new Exception("Index must be an int or BigInt.");
+    throw Exception("Index must be an int or BigInt.");
   }
   return biK;
 }

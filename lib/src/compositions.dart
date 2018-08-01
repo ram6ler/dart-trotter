@@ -7,7 +7,7 @@ part of trotter;
 ///
 /// _Example_
 ///
-///     var s = new Compositions(3, characters("abcd"));
+///     var s = Compositions(3, characters("abcd"));
 ///     print("There are ${s.length} 3-Compositions of the objects");
 ///     print("in ${s.items}.");
 ///     print("The first selection is ${c[0]}.");
@@ -15,10 +15,10 @@ part of trotter;
 
 class Compositions extends _Combinatorics {
   Compositions(int r, List items) {
-    if (r < 0) throw new Exception("Cannot take $r items from ${items.length}.");
-    if (!_itemsAreUnique(items)) throw new Exception("Items are not unique.");
+    if (r < 0) throw Exception("Cannot take $r items from ${items.length}.");
+    if (!_itemsAreUnique(items)) throw Exception("Items are not unique.");
 
-    _items = new List.from(items);
+    _items = List.from(items);
     _r = r;
     _length = _nCr(items.length + r - 1, r);
   }
@@ -42,10 +42,10 @@ class Compositions extends _Combinatorics {
       if (result >= start) {
         return result;
       } else {
-        return new BigInt.from(-1);
+        return BigInt.from(-1);
       }
     } else {
-      return new BigInt.from(-1);
+      return BigInt.from(-1);
     }
   }
 

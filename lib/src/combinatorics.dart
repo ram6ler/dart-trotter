@@ -5,7 +5,7 @@ abstract class _Combinatorics {
   BigInt _length;
 
   /// The list from which the objects are selected
-  List get items => new List.from(_items, growable: false);
+  List get items => List.from(_items, growable: false);
 
   Iterable _range(BigInt from, BigInt to) sync* {
     do {
@@ -30,7 +30,7 @@ abstract class _Combinatorics {
     }
 
     if (biFrom == biTo) {
-      return new Iterable.empty();
+      return Iterable.empty();
     }
 
     return _range(biFrom, biTo);
@@ -43,22 +43,22 @@ abstract class _Combinatorics {
       biTo = length;
     } else {
       if (fromTo is int) {
-        biFrom = new BigInt.from(fromTo);
+        biFrom = BigInt.from(fromTo);
       } else if (fromTo is BigInt) {
         biFrom = fromTo;
       } else {
-        throw new Exception("Expecting int or BigInt in range.");
+        throw Exception("Expecting int or BigInt in range.");
       }
       if (to == null) {
         biTo = biFrom;
         biFrom = BigInt.zero;
       } else {
         if (to is int) {
-          biTo = new BigInt.from(to);
+          biTo = BigInt.from(to);
         } else if (to is BigInt) {
           biTo = to;
         } else {
-          throw new Exception("Expecting int or BigInt in range.");
+          throw Exception("Expecting int or BigInt in range.");
         }
       }
     }
@@ -70,7 +70,7 @@ abstract class _Combinatorics {
   ///
   /// Example:
   ///
-  ///     var permutations = new Permutations(3, characters("abcd"));
+  ///     var permutations = Permutations(3, characters("abcd"));
   ///     for (var permutation in permutations.iterable) {
   ///       print(permutation);
   ///     }
@@ -78,7 +78,7 @@ abstract class _Combinatorics {
   /// The [iterable] property can also be obtained by simply calling the
   /// combinatoric object. For example, the above code is equivalent to:
   ///
-  ///     var permutations = new Permutations(3, characters("abcd"));
+  ///     var permutations = Permutations(3, characters("abcd"));
   ///     for (var permutation in permutations()) {
   ///       print(permutation);
   ///     }
