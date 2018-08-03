@@ -14,7 +14,7 @@ We are investigating the version of the game that has six colors (which we arbit
 
 Clues are represented by the characters `*` (for black, which means that a color is in the correct position) and `o` (for white, which means a color not already accounted for is in an incorrect position).
 
-We will let the computer play 1000 games; we will only display the first and last 5 games.
+We will let the computer play 10000 games; we will only display the first and last 5 games.
   
 Here goes:
 
@@ -24,143 +24,144 @@ Here goes:
 
 ### Game 1
 
-The secret code: FFBA
+The secret code: CFBF
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|ACDE|`  o `|
-|2|BDBD|` *  `|
-|3|BFFC|` * oo `|
-|4|FFBA|` ****  `|
+|1|FBCB|`  ooo `|
+|2|BAFC|`  ooo `|
+|3|CFBF|` ****  `|
 
-Solved in 4 guesses.
+Solved in 3 guesses.
 
 ### Game 2
 
-The secret code: CCFE
+The secret code: BCDA
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|AFEB|`  oo `|
-|2|CEDA|` * o `|
-|3|DEFF|` * o `|
-|4|FCFA|` **  `|
-|5|CCFE|` ****  `|
+|1|DFCB|`  ooo `|
+|2|BDFE|` * o `|
+|3|CBFA|` * oo `|
+|4|ACFD|` * oo `|
+|5|BCDA|` ****  `|
 
 Solved in 5 guesses.
 
 ### Game 3
 
-The secret code: AEBC
+The secret code: EDCC
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|FECA|` * oo `|
-|2|EFDA|`  oo `|
-|3|ABCE|` * ooo `|
-|4|AEBC|` ****  `|
+|1|ACCE|` * oo `|
+|2|AEBC|` * o `|
+|3|ECDC|` ** oo `|
+|4|EDCC|` ****  `|
 
 Solved in 4 guesses.
 
 ### Game 4
 
-The secret code: DBBB
+The secret code: BADF
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|ECEC|`   `|
-|2|BDBD|` * oo `|
-|3|BFDB|` * oo `|
-|4|DBBB|` ****  `|
+|1|DDCD|`  o `|
+|2|ACEA|`  o `|
+|3|FBFC|`  oo `|
+|4|EFDF|` **  `|
+|5|BADF|` ****  `|
 
-Solved in 4 guesses.
+Solved in 5 guesses.
 
 ### Game 5
 
-The secret code: CBAA
+The secret code: ECCF
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|ABBE|` * o `|
-|2|BFDE|`  o `|
-|3|AACB|`  oooo `|
-|4|CBAA|` ****  `|
-
-Solved in 4 guesses.
-
-### Game 996
-
-The secret code: BABF
-
-|Guess number|Guess|Clues|
-|:--:|:--|:--|
-|1|EBAE|`  oo `|
-|2|FEFB|`  oo `|
-|3|DABF|` ***  `|
-|4|CABF|` ***  `|
-|5|BABF|` ****  `|
+|1|ADAD|`   `|
+|2|CECE|` * oo `|
+|3|ECCB|` ***  `|
+|4|ECCC|` ***  `|
+|5|ECCF|` ****  `|
 
 Solved in 5 guesses.
 
-### Game 997
+### Game 9996
 
-The secret code: EDCF
-
-|Guess number|Guess|Clues|
-|:--:|:--|:--|
-|1|EEBF|` **  `|
-|2|BEBB|`  o `|
-|3|ECFF|` ** o `|
-|4|EDCF|` ****  `|
-
-Solved in 4 guesses.
-
-### Game 998
-
-The secret code: FDCE
+The secret code: CABC
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|FBBA|` *  `|
-|2|AAEA|`  o `|
-|3|FECC|` ** o `|
-|4|FFCE|` ***  `|
-|5|FDCE|` ****  `|
+|1|DACF|` * o `|
+|2|EAED|` *  `|
+|3|CAAC|` ***  `|
+|4|AAAC|` **  `|
+|5|CABC|` ****  `|
 
 Solved in 5 guesses.
 
-### Game 999
+### Game 9997
 
-The secret code: FECA
-
-|Guess number|Guess|Clues|
-|:--:|:--|:--|
-|1|FDDD|` *  `|
-|2|FBCB|` **  `|
-|3|EDCB|` * o `|
-|4|FEFB|` **  `|
-|5|FECE|` ***  `|
-|6|FECA|` ****  `|
-
-Solved in 6 guesses.
-
-### Game 1000
-
-The secret code: DDBA
+The secret code: CACD
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|DEEE|` *  `|
-|2|FFCE|`   `|
-|3|DBBB|` **  `|
-|4|DDDB|` ** o `|
-|5|DBDA|` ** oo `|
-|6|DDBA|` ****  `|
+|1|FFEF|`   `|
+|2|DCAD|` * oo `|
+|3|BDAC|`  ooo `|
+|4|CCDA|` * ooo `|
+|5|CACD|` ****  `|
+
+Solved in 5 guesses.
+
+### Game 9998
+
+The secret code: BBDB
+
+|Guess number|Guess|Clues|
+|:--:|:--|:--|
+|1|DBCA|` * o `|
+|2|EDEA|`  o `|
+|3|BFCE|` *  `|
+|4|ACCC|`   `|
+|5|BBDD|` ***  `|
+|6|BBDB|` ****  `|
 
 Solved in 6 guesses.
+
+### Game 9999
+
+The secret code: DFCD
+
+|Guess number|Guess|Clues|
+|:--:|:--|:--|
+|1|AEAE|`   `|
+|2|FBDF|`  oo `|
+|3|DCBB|` * o `|
+|4|CFBC|` * o `|
+|5|DFCD|` ****  `|
+
+Solved in 5 guesses.
+
+### Game 10000
+
+The secret code: AEEA
+
+|Guess number|Guess|Clues|
+|:--:|:--|:--|
+|1|ADBC|` *  `|
+|2|EEBF|` * o `|
+|3|FFBB|`   `|
+|4|CEEC|` **  `|
+|5|AEEA|` ****  `|
+
+Solved in 5 guesses.
 ## Summary
 
-In 1000 games, the computer found the code in at least 2 guesses, at most 7 guesses, and on average 4.599 guesses.
+In 10000 games, the computer found the code in at least 1 guesses, at most 8 guesses, and on average 4.643 guesses.
 ## trotter
 
 This was just a little demonstration of a real-world application using the trotter library.

@@ -2,7 +2,7 @@ import 'dart:math' as math;
 import 'package:trotter/trotter.dart';
 
 void main() {
-  final games = 1000, gamesToDisplay = 5;
+  final games = 10000, gamesToDisplay = 5;
 
   print("""
 
