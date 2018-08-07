@@ -13,7 +13,7 @@ part of trotter;
 ///     print("The first subset is ${sub[0]}.");
 ///
 
-class Subsets extends _Combinatorics {
+class Subsets extends Combinatorics {
   Subsets(List items) {
     if (!_itemsAreUnique(items)) throw Exception("Items are not unique.");
 

@@ -13,7 +13,7 @@ part of trotter;
 ///     print("The first selection is ${c[0]}.");
 ///
 
-class Compositions extends _Combinatorics {
+class Compositions extends Combinatorics {
   Compositions(int r, List items) {
     if (r < 0) throw Exception("Cannot take $r items from ${items.length}.");
     if (!_itemsAreUnique(items)) throw Exception("Items are not unique.");

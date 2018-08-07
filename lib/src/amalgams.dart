@@ -13,7 +13,7 @@ part of trotter;
 ///     print("The first amalgam is ${a[0]}.");
 ///
 
-class Amalgams extends _Combinatorics {
+class Amalgams extends Combinatorics {
   Amalgams(int r, List items) {
     if (r < 0) throw Exception("Cannot take $r items from ${items.length}.");
     if (!_itemsAreUnique(items)) throw Exception("Items are not unique.");

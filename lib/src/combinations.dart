@@ -13,7 +13,7 @@ part of trotter;
 ///     print("The first combination is ${c[0]}.");
 ///
 
-class Combinations extends _Combinatorics {
+class Combinations extends Combinatorics {
   Combinations(int r, List items) {
     if (r < 0 || r > items.length)
       throw Exception("Cannot take $r items from ${items.length}.");

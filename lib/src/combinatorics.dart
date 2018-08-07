@@ -1,6 +1,7 @@
 part of trotter;
 
-abstract class _Combinatorics {
+/// The abstract parent to the other classes defined in this library.
+abstract class Combinatorics {
   List _items;
   BigInt _length;
 

@@ -13,7 +13,7 @@ part of trotter;
 ///     print("The first permutation is ${p[0]}.");
 ///
 
-class Permutations extends _Combinatorics {
+class Permutations extends Combinatorics {
   Permutations(int r, List items) {
     if (r < 0 || r > items.length) {
       throw Exception("Cannot take $r items from ${items.length}.");
