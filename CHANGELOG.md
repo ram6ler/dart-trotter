@@ -1,5 +1,9 @@
 # Change log
 
+## 1.0.1
+
+Made the abstract, parent class `Combinatorics` visible to the user for those cases in which the combinatorics type is not known at the time of instantiation.
+
 ## 1.0.0
 
 * Cleaned up code to be more in line with Dart 2.
