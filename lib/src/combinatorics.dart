@@ -8,7 +8,7 @@ abstract class Combinatorics {
   /// The list from which the objects are selected
   List get items => List.from(_items, growable: false);
 
-  Iterable _range(BigInt from, BigInt to) sync* {
+  Iterable<List<Object>> _range(BigInt from, BigInt to) sync* {
     do {
       yield this[_adjustedIndex(from, length)];
       from += BigInt.one;
