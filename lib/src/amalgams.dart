@@ -30,7 +30,7 @@ class Amalgams extends Combinatorics {
   int get r => _r;
 
   @override
-  List operator [](dynamic k) {
+  List operator [](Object k) {
     BigInt biK = _indexFromIntOrBigInt(k);
     return _amalgam(_adjustedIndex(biK, length), r, items);
   }

@@ -23,7 +23,7 @@ class Compounds extends Combinatorics {
   }
 
   @override
-  List operator [](dynamic k) {
+  List operator [](Object k) {
     BigInt biK = _indexFromIntOrBigInt(k);
     return _compound(_adjustedIndex(biK, length), items);
   }

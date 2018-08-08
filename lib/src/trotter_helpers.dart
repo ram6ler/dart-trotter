@@ -230,7 +230,7 @@ BigInt _inverseCompound(List compound, List items) {
 /// Returns an index in the domain [0, n[.
 BigInt _adjustedIndex(BigInt k, BigInt n) => k % n;
 
-BigInt _indexFromIntOrBigInt(dynamic k) {
+BigInt _indexFromIntOrBigInt(Object k) {
   BigInt biK;
   if (k is int) {
     biK = BigInt.from(k);

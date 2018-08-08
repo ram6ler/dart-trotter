@@ -20,7 +20,7 @@ abstract class Combinatorics {
   /// The arrangements "stored" in this pseudo-list from index [from]
   /// up to but not including [to].
   ///
-  Iterable range(dynamic fromTo, [dynamic to]) {
+  Iterable range(Object fromTo, [Object to]) {
     BigInt biFrom = _indexFromIntOrBigInt(fromTo), biTo;
 
     if (to == null) {
@@ -37,7 +37,7 @@ abstract class Combinatorics {
     return _range(biFrom, biTo);
   }
 
-  Iterable call([dynamic fromTo, dynamic to]) {
+  Iterable call([Object fromTo, Object to]) {
     BigInt biFrom, biTo;
     if (fromTo == null && to == null) {
       biFrom = BigInt.zero;
@@ -90,5 +90,5 @@ abstract class Combinatorics {
   BigInt get length => _length;
 
   /// The [k]th arrangement.
-  List operator [](dynamic k);
+  List operator [](Object k);
 }
