@@ -9,7 +9,7 @@ all arrangements (combinations, permutations, etc.) of objects taken from a spec
 items.
 
 The order of arrangements is based on the the order produced by the  [Steinhaus–Johnson–Trotter algorithm](https://en.wikipedia.org/wiki/Steinhaus%E2%80%93Johnson%E2%80%93Trotter_algorithm)
-for ordering permutations, which has been generalized to combinations and arrangements
+for ordering permutations, which has been generalized in this library to combinations and arrangements
 that allow for replacement after item selection.
 
 The pseudo-list classes available are:
@@ -20,34 +20,7 @@ The pseudo-list classes available are:
 * Subsets (combinations of unspecified size).
 * Compounds (permutations of unspecified size).
 
-## Using `trotter`
 
-For Dart 1, include the following line in your pubspec's dependencies:
-
-```text
-trotter: 0.9.1
-```
-
-For Dart 2, include the following line instead:
-
-```text
-trotter: ^0.9.5
-```
-
-If you would like to use the most recent version of the library that
-possibly has not been uploaded to [Dart Pub](https://pub.dartlang.org/)
-yet, include the following:
-
-```text
-trotter:
-git: https://ram6ler@bitbucket.org/ram6ler/dart_trotter.git
-```
-
-Then, to import the library:
-
-```dart
-import "package:trotter/trotter.dart";
-```
 
 ## The basic classes
 
@@ -72,7 +45,7 @@ arrangement of all combinations of a set of items.
 
 **Output:**
 
----
+
 ```
 
 [a, b, c]
@@ -86,7 +59,7 @@ arrangement of all combinations of a set of items.
 [b, d, e]
 [c, d, e]
 ```
----
+
 
 
 ### Permutations
@@ -110,7 +83,7 @@ arrangement of all permutations of a set of items.
 
 **Output:**
 
----
+
 ```
 
 [a, b, c]
@@ -174,7 +147,7 @@ arrangement of all permutations of a set of items.
 [d, e, c]
 [d, c, e]
 ```
----
+
 
 
 (Notice that this library arranges permutations similarly to the way the
@@ -209,7 +182,7 @@ Here are all the compositions of three items taken from a bag of five items:
 
 **Output:**
 
----
+
 ```
 
 [a, a, a]
@@ -248,7 +221,7 @@ Here are all the compositions of three items taken from a bag of five items:
 [d, e, e]
 [e, e, e]
 ```
----
+
 
 
 ### Amalgams
@@ -272,7 +245,7 @@ of all amalgams of a set of items.
 
 **Output:**
 
----
+
 ```
 
 [a, a, a]
@@ -401,7 +374,7 @@ of all amalgams of a set of items.
 [e, e, d]
 [e, e, e]
 ```
----
+
 
 
 ### Subsets
@@ -426,7 +399,6 @@ of all subsets of a set of items.
 
 **Output:**
 
----
 ```
 
 []
@@ -462,7 +434,7 @@ of all subsets of a set of items.
 [b, c, d, e]
 [a, b, c, d, e]
 ```
----
+
 
 
 ### Compounds
@@ -487,7 +459,7 @@ of all compounds of a set of items.
 
 **Output:**
 
----
+
 ```
 
 []
@@ -817,7 +789,7 @@ of all compounds of a set of items.
 [b, a, c, e, d]
 [b, a, c, d, e]
 ```
----
+
 
 
 ## Large indices
@@ -836,12 +808,12 @@ of 10-permutations of the letters of the alphabet:
 
 **Output:**
 
----
+
 ```
 
 Pseudo-list containing all 19275223968000 10-permutations of items from [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z].
 ```
----
+
 
 
 Wow! That's a lot of permutations! It's most likely a bad idea
@@ -865,13 +837,13 @@ in our list of permutations?
 
 **Output:**
 
----
+
 ```
 
 The index of [a, l, g, o, r, i, t, h, m, s] is 6831894769563.
 perms[6831894769563]: [a, l, g, o, r, i, t, h, m, s]
 ```
----
+
 
 
 Wow! That's almost seven trillion! Luckily we didn't need to
@@ -894,13 +866,13 @@ which case we need to use `BigInt` objects.
 
 **Output:**
 
----
+
 ```
 
 There are 1096259850353149530222034277 compounds of these letters!
 The last compound is [b, a, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z].
 ```
----
+
 
 
 Unless you're immortal, don't try to use `comps().last` to
@@ -963,12 +935,12 @@ method or the `iterable` property.
 
 **Output:**
 
----
+
 ```
 
 [a, b] [a, c] [b, c]
 ```
----
+
 
 
 ### The `Selections` class has been renamed
@@ -983,7 +955,7 @@ C, B and A, so *composition* suggests that order is not important. Further
 a body can be *composed* of two parts of A to one part of B, which
 suggests that items are replaced after being selected.
 
----
+
 
 `trotter` was written by [Richard Ambler](mailto:rambler@ibwya.net).
 

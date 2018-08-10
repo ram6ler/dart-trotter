@@ -1,5 +1,10 @@
 # Change log
 
+## 1.0.2
+
+* Cleaned up the type declaration for the iterables.
+* Link to Falco-shapes demo.
+
 ## 1.0.1
 
 Made the abstract, parent class `Combinatorics` visible to the user for those cases in which the combinatorics type is not known at the time of declaration.
