@@ -20,7 +20,9 @@ The pseudo-list classes available are:
 * Subsets (combinations of unspecified size).
 * Compounds (permutations of unspecified size).
 
+## Demo
 
+Take a look at [Falco Shapes](https://falco-shapes.netlify.com/), a trotter demo based on [Marsha Falco's combinatorics game *Set*](https://en.wikipedia.org/wiki/Set_(card_game)), that uses trotter to search through items for combinations with certain characteristics.
 
 ## The basic classes
 
