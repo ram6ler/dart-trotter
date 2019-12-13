@@ -28,6 +28,9 @@ dynamic main() async {
   /// * Subsets (combinations of unspecified size).
   /// * Compounds (permutations of unspecified size).
   ///
+  /// To see `trotter` in action, play [Falco Shapes](https://falco-shapes.netlify.com/),
+  /// a little puzzle based on Marsha Falco's game of *Set*.
+  ///
   /// # Using `trotter`
   ///
   /// Include the following dependency in pubspec.yaml:
