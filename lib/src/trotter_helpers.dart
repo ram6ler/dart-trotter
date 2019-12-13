@@ -47,7 +47,9 @@ List<T> _permutationWorker<T>(BigInt k, List<T> items) {
 /// Gives the index of `permutation` in the ordered list of permutations of
 /// items taken from `items`.
 BigInt _inversePermutationWorker<T>(List<T> permutation, List<T> items) {
-  if (permutation.length == 1) return BigInt.zero;
+  if (permutation.length == 1) {
+    return BigInt.zero;
+  }
   int n = items.length;
 
   BigInt biN = BigInt.from(n),
@@ -62,7 +64,9 @@ BigInt _inversePermutationWorker<T>(List<T> permutation, List<T> items) {
 /// Gives `k`th combination in the ordered list of combinations of
 /// `r` items taken from `items`.
 List<T> _combination<T>(BigInt k, int r, List<T> items) {
-  if (r == 0) return [];
+  if (r == 0) {
+    return [];
+  }
   int n = items.length, position = 0;
   BigInt d = _nCr(n - position - 1, r - 1);
 
@@ -79,7 +83,9 @@ List<T> _combination<T>(BigInt k, int r, List<T> items) {
 /// items taken from `items`.
 BigInt _inverseCombination<T>(List<T> combination, List<T> items) {
   BigInt helper<T>(List<T> combination, List<T> items) {
-    if (combination.isEmpty) return BigInt.zero;
+    if (combination.isEmpty) {
+      return BigInt.zero;
+    }
     int r = combination.length, n = items.length, itemIndex = 0;
     BigInt k = BigInt.zero;
     while (combination[0] != items[itemIndex.toInt()]) {
@@ -146,7 +152,9 @@ List<T> _permutation<T>(BigInt k, int r, List<T> items) {
 /// items taken from `items`.
 BigInt _inversePermutation<T>(List<T> permutation, List<T> items) {
   int r = permutation.length;
-  if (r == 0) return BigInt.zero;
+  if (r == 0) {
+    return BigInt.zero;
+  }
   var sortedPermutation = _sortedArrangement<T>(permutation, items);
   BigInt group = _inverseCombination<T>(sortedPermutation, items);
   return group * _fact(r) +
@@ -198,7 +206,9 @@ BigInt _inverseSubset<T>(List<T> subset, List<T> items) {
   BigInt helper<T>(List<T> subset, List<T> items) {
     BigInt k = BigInt.zero, power = BigInt.one;
     for (int index = 0; index < items.length; index++) {
-      if (subset.contains(items[index])) k += power;
+      if (subset.contains(items[index])) {
+        k += power;
+      }
       power *= BigInt.two;
     }
     return k;
