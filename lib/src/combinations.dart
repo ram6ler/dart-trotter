@@ -2,22 +2,23 @@ part of trotter;
 
 /// A pseudo-list of combinations.
 ///
-/// A pseudo-list "containing" all the [r]-combinations of objects taken from
-/// the list [items].
+/// A pseudo-list 'containing' all the `r`-combinations of objects taken from
+/// the list `items`.
 ///
 /// _Example_
 ///
-///     var c = Combinations(3, characters("abcd"));
-///     print("There are ${c.length} 3-combinations of the objects");
-///     print("in ${c.items}.");
-///     print("The first combination is ${c[0]}.");
+///     var c = Combinations(3, characters('abcd'));
+///     print('There are ${c.length} 3-combinations of the objects');
+///     print('in ${c.items}.');
+///     print('The first combination is ${c[0]}.');
 ///
 
 class Combinations extends Combinatorics {
   Combinations(int r, List items) {
-    if (r < 0 || r > items.length)
-      throw Exception("Cannot take $r items from ${items.length}.");
-    if (!_itemsAreUnique(items)) throw Exception("Items are not unique.");
+    if (r < 0 || r > items.length) {
+      throw Exception('Cannot take $r items from ${items.length}.');
+    }
+    if (!_itemsAreUnique(items)) throw Exception('Items are not unique.');
 
     _items = List.from(items, growable: false);
     _r = r;
@@ -26,7 +27,7 @@ class Combinations extends Combinatorics {
 
   int _r;
 
-  /// The number of items taken from [items].
+  /// The number of items taken from `items`.
   int get r => _r;
 
   @override
@@ -35,7 +36,7 @@ class Combinations extends Combinatorics {
     return _combination(_adjustedIndex(biK, length), r, items);
   }
 
-  /// Returns the index of [combination] in the list of arranged combinations.
+  /// Returns the index of `combination` in the list of arranged combinations.
   BigInt indexOf(List combination, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(combination)) {
@@ -50,11 +51,11 @@ class Combinations extends Combinatorics {
     }
   }
 
-  /// returns whether [x] is in the pseudo-list.
+  /// Returns whether `x` is in the pseudo-list.
   bool contains(Object x) =>
       _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 
   @override
   String toString() =>
-      "Pseudo-list containing all $length $r-combinations of items from $items.";
+      'Pseudo-list containing all $length $r-combinations of items from $items.';
 }

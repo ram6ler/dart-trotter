@@ -2,21 +2,21 @@ part of trotter;
 
 /// A pseudo-list of Compositions (combinations with repetition).
 ///
-/// A pseudo-list "containing" all the [r]-Compositions of objects taken from
-/// the list [items].
+/// A pseudo-list 'containing' all the `r`-Compositions of objects taken from
+/// the list `items`.
 ///
 /// _Example_
 ///
-///     var s = Compositions(3, characters("abcd"));
-///     print("There are ${s.length} 3-Compositions of the objects");
-///     print("in ${s.items}.");
-///     print("The first selection is ${c[0]}.");
+///     var s = Compositions(3, characters('abcd'));
+///     print('There are ${s.length} 3-Compositions of the objects');
+///     print('in ${s.items}.');
+///     print('The first selection is ${c[0]}.');
 ///
 
 class Compositions extends Combinatorics {
   Compositions(int r, List items) {
-    if (r < 0) throw Exception("Cannot take $r items from ${items.length}.");
-    if (!_itemsAreUnique(items)) throw Exception("Items are not unique.");
+    if (r < 0) throw Exception('Cannot take $r items from ${items.length}.');
+    if (!_itemsAreUnique(items)) throw Exception('Items are not unique.');
 
     _items = List.from(items);
     _r = r;
@@ -25,7 +25,7 @@ class Compositions extends Combinatorics {
 
   int _r;
 
-  /// The number of items taken from [items].
+  /// The number of items taken from `items`.
   int get r => _r;
 
   @override
@@ -34,7 +34,7 @@ class Compositions extends Combinatorics {
     return _selection(_adjustedIndex(biK, length), r, items);
   }
 
-  /// Returns the index of [selection] in the list of arranged Compositions.
+  /// Returns the index of `selection` in the list of arranged Compositions.
   BigInt indexOf(List selection, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(selection)) {
@@ -49,10 +49,10 @@ class Compositions extends Combinatorics {
     }
   }
 
-  /// returns whether [x] is in the pseudo-list.
+  /// Returns whether `x` is in the pseudo-list.
   bool contains(Object x) => _itemsExistInUniversal(x, _items);
 
   @override
   String toString() =>
-      "Pseudo-list containing all $length $r-Compositions of items from $items.";
+      'Pseudo-list containing all $length $r-Compositions of items from $items.';
 }

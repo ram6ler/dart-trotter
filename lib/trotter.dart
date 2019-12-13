@@ -3,14 +3,16 @@
 
 /// Classes for representing _structures_ commonly encountered in combinatorics.
 ///
-/// The `trotter` library contains class definitions for [Permutations],
-/// [Combinations], [Amalgams] (permutations with repetition), [Selections]
-/// (combinations with repetition), [Subsets] and [Compounds] (permutations of
+/// The `trotter` library contains class definitions for `Permutations`,
+/// `Combinations`, `Amalgams` (permutations with repetition), `Selections`
+/// (combinations with repetition), `Subsets` and `Compounds` (permutations of
 /// unspecified length) of objects taken from a list. These classes define objects
 /// that are moderately analogous to lists containing all possible respective arrangements.
 ///
 
 library trotter;
+
+import 'dart:math' show Random;
 
 part 'src/trotter_helpers.dart';
 part 'src/combinatorics.dart';

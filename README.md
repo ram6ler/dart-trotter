@@ -1,15 +1,15 @@
 
 ![](https://bitbucket.org/ram6ler/dart_trotter/wiki/dart_trotter_banner.png)
 
-Welcome to `trotter`, a Dart library that simplifies working with meta-arrangements commonly
+Welcome to `trotter`, a library that simplifies working with meta-arrangements commonly
 encountered in combinatorics such as arrangements of combinations and permutations.
 
-`trotter` gives the developer access to pseudo-lists that "contain" an arrangement of
-all arrangements (combinations, permutations, etc.) of objects taken from a specified list of
+`trotter` gives the developer access to pseudo-lists that 'contain'
+all selections (combinations, permutations, etc.) of objects taken from a specified list of
 items.
 
 The order of arrangements is based on the the order produced by the  [Steinhaus–Johnson–Trotter algorithm](https://en.wikipedia.org/wiki/Steinhaus%E2%80%93Johnson%E2%80%93Trotter_algorithm)
-for ordering permutations, which has been generalized in this library to combinations and arrangements
+for ordering permutations, which I have generalized to combinations and arrangements
 that allow for replacement after item selection.
 
 The pseudo-list classes available are:
@@ -20,9 +20,19 @@ The pseudo-list classes available are:
 * Subsets (combinations of unspecified size).
 * Compounds (permutations of unspecified size).
 
-## Demo
+# Using `trotter`
 
-Take a look at [Falco Shapes](https://falco-shapes.netlify.com/), a trotter demo based on [Marsha Falco's combinatorics game *Set*](https://en.wikipedia.org/wiki/Set_(card_game)), that uses trotter to search through items for combinations with certain characteristics.
+Include the following dependency in pubspec.yaml:
+
+```text
+trotter: ^1.1.0
+```
+
+Then, to import the library:
+
+```dart
+import 'package:trotter/trotter.dart';
+```
 
 ## The basic classes
 
@@ -31,23 +41,22 @@ Take a look at [Falco Shapes](https://falco-shapes.netlify.com/), a trotter demo
 A *combination* is a selection of items for which order is *not*
 important and items are *not* replaced after being selected.
 
-The `Combinations` class defines a pseudo-list that "contains" an
-arrangement of all combinations of a set of items.
+The `Combinations` class 'contains' all combinations of a set of items.
 
 
 **Example:**
 
 ```dart
-    List bagOfItems = characters("abcde");
-    var combos = Combinations(3, bagOfItems);
-    for (var combo in combos()) {
+    final bagOfItems = characters('abcde'),
+        combos = Combinations(3, bagOfItems);
+    for (final combo in combos()) {
       print(combo);
     }
 ```
 
 **Output:**
 
-
+---
 ```
 
 [a, b, c]
@@ -61,7 +70,7 @@ arrangement of all combinations of a set of items.
 [b, d, e]
 [c, d, e]
 ```
-
+---
 
 
 ### Permutations
@@ -69,23 +78,21 @@ arrangement of all combinations of a set of items.
 A *permutation* is a selection of items for which order *is* important
 and items are *not* replaced after being selected.
 
-The `Permutations` class defines a pseudo-list that "contains" an
-arrangement of all permutations of a set of items.
+The `Permutations` class 'contains' all permutations of a set of items.
 
 
 **Example:**
 
 ```dart
-    List bagOfItems = characters("abcde");
-    var perms = Permutations(3, bagOfItems);
-    for (var perm in perms()) {
+    final bagOfItems = characters('abcde'), perms = Permutations(3, bagOfItems);
+    for (final perm in perms()) {
       print(perm);
     }
 ```
 
 **Output:**
 
-
+---
 ```
 
 [a, b, c]
@@ -149,13 +156,13 @@ arrangement of all permutations of a set of items.
 [d, e, c]
 [d, c, e]
 ```
-
+---
 
 
 (Notice that this library arranges permutations similarly to the way the
 [Steinhaus-Johnson-Trotter](https://en.wikipedia.org/wiki/Steinhaus%E2%80%93Johnson%E2%80%93Trotter_algorithm)
 algorithm arranges permutations. In fact, if we get the permutations of
-*all* the specified items, e.g. `var perms = Permutations(5, bagOfItems);`
+*all* the specified items, e.g. `var perms = Permutations(bagOfItems.length, bagOfItems);`
 in the above code, the arrangement of permutations is exactly what would
 have resulted from applying the S-J-T algorithm. The algorithms in this library
 have an advantage in that they do not iterate through all k - 1 permutations in
@@ -166,8 +173,7 @@ order to determint the kth permutation, however.)
 A *composition* (or combination with replacement) is a selection of items for
 which order is *not* important and items *are* replaced after being selected.
 
-The `Compositions` class defines a pseudo-list that "contains" an arrangement
-of all compositions of a set of items.
+The `Compositions` class 'contains' all compositions of a set of items.
 
 Here are all the compositions of three items taken from a bag of five items:
 
@@ -175,16 +181,15 @@ Here are all the compositions of three items taken from a bag of five items:
 **Example:**
 
 ```dart
-    List bagOfItems = characters("abcde");
-    var comps = Compositions(3, bagOfItems);
-    for (var comp in comps()) {
+    final bagOfItems = characters('abcde'), comps = Compositions(3, bagOfItems);
+    for (final comp in comps()) {
       print(comp);
     }
 ```
 
 **Output:**
 
-
+---
 ```
 
 [a, a, a]
@@ -223,7 +228,7 @@ Here are all the compositions of three items taken from a bag of five items:
 [d, e, e]
 [e, e, e]
 ```
-
+---
 
 
 ### Amalgams
@@ -231,23 +236,21 @@ Here are all the compositions of three items taken from a bag of five items:
 An *amalgam* (or permutation with replacement) is a selection of items for
 which order *is* important and items *are* replaced after being selected.
 
-The `Amalgams` class defines a pseudo-list that "contains" an arrangement
-of all amalgams of a set of items.
+The `Amalgams` class 'contains' all amalgams of a set of items.
 
 
 **Example:**
 
 ```dart
-    List bagOfItems = characters("abcde");
-    var amals = Amalgams(3, bagOfItems);
-    for (var amal in amals()) {
+    final bagOfItems = characters('abcde'), amals = Amalgams(3, bagOfItems);
+    for (final amal in amals()) {
       print(amal);
     }
 ```
 
 **Output:**
 
-
+---
 ```
 
 [a, a, a]
@@ -376,7 +379,7 @@ of all amalgams of a set of items.
 [e, e, d]
 [e, e, e]
 ```
-
+---
 
 
 ### Subsets
@@ -385,22 +388,21 @@ A *subset* (or combination of unspecified length) is a selection of items for
 which order is *not* important, items are *not* replaced and the number of
 items is not specified.
 
-The `Subsets` class defines a pseudo-list that "contains" an arrangement
-of all subsets of a set of items.
+The `Subsets` class 'contains' all subsets of a set of items.
 
 
 **Example:**
 
 ```dart
-    List bagOfItems = characters("abcde");
-    var subs = Subsets(bagOfItems);
-    for (var sub in subs()) {
+    final bagOfItems = characters('abcde'), subs = Subsets(bagOfItems);
+    for (final sub in subs()) {
       print(sub);
     }
 ```
 
 **Output:**
 
+---
 ```
 
 []
@@ -436,7 +438,7 @@ of all subsets of a set of items.
 [b, c, d, e]
 [a, b, c, d, e]
 ```
-
+---
 
 
 ### Compounds
@@ -445,23 +447,21 @@ A *compound* (or permutation of unspecified length) is a selection of items for
 which order *is* important, items are *not* replaced and the number of
 items is not specified.
 
-The `Compounds` class defines a pseudo-list that "contains" an arrangement
-of all compounds of a set of items.
+The `Compounds` class 'contains' all compounds of a set of items.
 
 
 **Example:**
 
 ```dart
-    List bagOfItems = characters("abcde");
-    var comps = Compounds(bagOfItems);
-    for (var comp in comps()) {
+    final bagOfItems = characters('abcde'), comps = Compounds(bagOfItems);
+    for (final comp in comps()) {
       print(comp);
     }
 ```
 
 **Output:**
 
-
+---
 ```
 
 []
@@ -791,7 +791,7 @@ of all compounds of a set of items.
 [b, a, c, e, d]
 [b, a, c, d, e]
 ```
-
+---
 
 
 ## Large indices
@@ -803,23 +803,22 @@ of 10-permutations of the letters of the alphabet:
 **Example:**
 
 ```dart
-    List largeBagOfItems = characters("abcdefghijklmnopqrstuvwxyz");
-    var perms = Permutations(10, largeBagOfItems);
+    final largeBagOfItems = characters('abcdefghijklmnopqrstuvwxyz'),
+        perms = Permutations(10, largeBagOfItems);
     print(perms);
 ```
 
 **Output:**
 
-
+---
 ```
 
 Pseudo-list containing all 19275223968000 10-permutations of items from [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z].
 ```
+---
 
 
-
-Wow! That's a lot of permutations! It's most likely a bad idea
-to iterate over them all!
+Wow! That's a lot of permutations! Don't iterate over them all!
 
 Notice that the word `algorithms` is a 10-permutation of the
 letters of the alphabet. What is the index of this permutation
@@ -829,137 +828,171 @@ in our list of permutations?
 **Example:**
 
 ```dart
-    List largeBagOfItems = characters("abcdefghijklmnopqrstuvwxyz");
-    var perms = Permutations(10, largeBagOfItems);
-    List permutationOfInterest = characters("algorithms");
-    BigInt index = perms.indexOf(permutationOfInterest);
-    print("The index of $permutationOfInterest is $index.");
-    print("perms[$index]: ${perms[index]}");
+    final largeBagOfItems = characters('abcdefghijklmnopqrstuvwxyz'),
+        perms = Permutations(10, largeBagOfItems),
+        permutationOfInterest = characters('algorithms'),
+        index = perms.indexOf(permutationOfInterest);
+    print('The index of $permutationOfInterest is $index.');
+    print('perms[$index]: ${perms[index]}');
 ```
 
 **Output:**
 
-
+---
 ```
 
 The index of [a, l, g, o, r, i, t, h, m, s] is 6831894769563.
 perms[6831894769563]: [a, l, g, o, r, i, t, h, m, s]
 ```
-
+---
 
 
 Wow! That's almost seven trillion! Luckily we didn't need to
-perform that search using brute force!
+perform that search using brute force! (Take that, Mathematica!)
 
-Be aware that we sometimes can be working with indexes so large
-that they cannot be represented using Dart's 64 bit `int`, in
-which case we need to use `BigInt` objects.
+Since we sometimes can be working with indexes so large
+they cannot be represented using a 64 bit `int`, indexing and length
+arem implemented using `BigInt`.
 
 
 **Example:**
 
 ```dart
-    var largeBagOfItems = characters("abcdefghijklmnopqrstuvwxyz");
-    var comps = Compounds(largeBagOfItems);
-    print("There are ${comps.length} compounds of these letters!");
+    final largeBagOfItems = characters('abcdefghijklmnopqrstuvwxyz'),
+        comps = Compounds(largeBagOfItems);
+    print('There are ${comps.length} compounds of these letters!');
     BigInt lastCompoundIndex = comps.length - BigInt.one;
-    print("The last compound is ${comps[lastCompoundIndex]}.");
+    print('The last compound is ${comps[lastCompoundIndex]}.');
 ```
 
 **Output:**
 
-
+---
 ```
 
 There are 1096259850353149530222034277 compounds of these letters!
 The last compound is [b, a, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z].
 ```
+---
 
 
-
-Unless you're immortal, don't try to use `comps().last` to
+Unless you're immortal, don't use `comps().last` to
 access the last compound in the previous example!
 
-## `trotter` in Dart 2
+## Syntactic sugar
 
-In Dart 1, at least on the Dart VM, `int` instances could be used to
-represent arbitrary precision integers, and the classes above could
-conveniently extend `ListBase`, which made the analogy with a list of
-arrangements very strong. As of Dart 2, `int` instances can
-only be used to represent up to 64 bit integers. Although Dart 2 does
-provide the `BigInt` class for dealing with very large integers, `BigInt`
-instances cannot be used to index `List` instances, and the classes
-above had to drop the extension.
+### Lists
 
-The first version of `trotter` that can be used for large structures
-in Dart 2 is *trotter 0.9.5*. In general, only slight modifications
-need be made to code written for previous versions. Here are some
-examples.
-
-### Instances are no longer iterable
-
-Instances are no longer iterable, list-like structures. An
-`Iterable` "containing" all the arrangements is available through
-directly calling the instance, calling the `range` method or accessing
-the `iterable` property, however.
-
-**trotter < 0.9.5**
-
-```dart
-var combos = Combinations(3, characters("abcde"));
-for (var combo in combos) { // combos is iterable
-...
-}
-```
-
-**trotter >= 0.9.5**
-
-```dart
-var combos = Combinations(3, characters("abcde"));
-for (var combo in combos()) { // combos is callable, returns an iterable
-...
-}
-```
-
-Filters, mappings and other tasks associated with `Iterable` instances can
-no longer be applied directly to instances of the classes above, but can, of
-course be applied to the `Iterable` returned by direct calling, the `range`
-method or the `iterable` property.
-
+`trotter` provides extensions that allow us to generate combinatoric
+arrangements directly from lists...
 
 **Example:**
 
 ```dart
-    var items = characters("abc");
-    var subsets = Subsets(items);
-    print(subsets().where((subset) => subset.length == 2).join(" "));
+    final subsets = [1, 2, 3, 4, 5].subsets();
+    for (final subset in subsets()) {
+      print(subset);
+    }
 ```
 
 **Output:**
 
-
+---
 ```
 
-[a, b] [a, c] [b, c]
+[]
+[1]
+[2]
+[1, 2]
+[3]
+[1, 3]
+[2, 3]
+[1, 2, 3]
+[4]
+[1, 4]
+[2, 4]
+[1, 2, 4]
+[3, 4]
+[1, 3, 4]
+[2, 3, 4]
+[1, 2, 3, 4]
+[5]
+[1, 5]
+[2, 5]
+[1, 2, 5]
+[3, 5]
+[1, 3, 5]
+[2, 3, 5]
+[1, 2, 3, 5]
+[4, 5]
+[1, 4, 5]
+[2, 4, 5]
+[1, 2, 4, 5]
+[3, 4, 5]
+[1, 3, 4, 5]
+[2, 3, 4, 5]
+[1, 2, 3, 4, 5]
+```
+---
+
+
+### Strings
+
+... and strings, in which case it assumes we mean arrangements of the
+characters in the string.
+
+**Example:**
+
+```dart
+    final subsets = 'abcde'.subsets();
+    for (final subset in subsets()) {
+      print(subset);
+    }
 ```
 
+**Output:**
+
+---
+```
+
+[]
+[a]
+[b]
+[a, b]
+[c]
+[a, c]
+[b, c]
+[a, b, c]
+[d]
+[a, d]
+[b, d]
+[a, b, d]
+[c, d]
+[a, c, d]
+[b, c, d]
+[a, b, c, d]
+[e]
+[a, e]
+[b, e]
+[a, b, e]
+[c, e]
+[a, c, e]
+[b, c, e]
+[a, b, c, e]
+[d, e]
+[a, d, e]
+[b, d, e]
+[a, b, d, e]
+[c, d, e]
+[a, c, d, e]
+[b, c, d, e]
+[a, b, c, d, e]
+```
+---
 
 
-### The `Selections` class has been renamed
 
-In combinatorics literature the term *selection* is often used as a
-generic word that can refer to permutations or combinations in different
-contexts. The use of the term for combinations with replacement could
-thus be confusing. As of trotter 0.9.5, the class `Compositions` is used
-to represent combinations. I feel that *composition* is a fitting word:
-if a body is *composed* of items A, B and C then it is also composed of
-C, B and A, so *composition* suggests that order is not important. Further
-a body can be *composed* of two parts of A to one part of B, which
-suggests that items are replaced after being selected.
-
-
-
-`trotter` was written by [Richard Ambler](mailto:rambler@ibwya.net).
+`trotter` was written by [Richard Ambler](mailto:rambler@wya.top).
 
 Thanks for your interest in this library. Please file any bugs, issues
 and suggestions [here](https://bitbucket.org/ram6ler/dart_trotter/issues).

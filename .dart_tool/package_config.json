@@ -1,0 +1,14 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "trotter",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    }
+  ],
+  "generated": "2019-12-12T08:20:42.480052Z",
+  "generator": "pub",
+  "generatorVersion": "2.7.0"
+}

@@ -2,24 +2,24 @@ part of trotter;
 
 /// A pseudo-list of permutations.
 ///
-/// A pseudo-list "containing" all the [r]-permutations of objects taken from
-/// the list [items].
+/// A pseudo-list 'containing' all the `r`-permutations of objects taken from
+/// the list `items`.
 ///
 /// _Example_
 ///
-///     var p = Permutations(3, characters("abcd"));
-///     print("There are ${p.length} 3-permutations of the objects");
-///     print("in ${p.items}.");
-///     print("The first permutation is ${p[0]}.");
+///     var p = Permutations(3, characters('abcd'));
+///     print('There are ${p.length} 3-permutations of the objects');
+///     print('in ${p.items}.');
+///     print('The first permutation is ${p[0]}.');
 ///
 
 class Permutations extends Combinatorics {
   Permutations(int r, List items) {
     if (r < 0 || r > items.length) {
-      throw Exception("Cannot take $r items from ${items.length}.");
+      throw Exception('Cannot take $r items from ${items.length}.');
     }
     if (!_itemsAreUnique(items)) {
-      throw Exception("Items are not unique.");
+      throw Exception('Items are not unique.');
     }
 
     _items = List.from(items, growable: false);
@@ -29,7 +29,7 @@ class Permutations extends Combinatorics {
 
   int _r;
 
-  /// The number of items taken from [items].
+  /// The number of items taken from `items`.
   int get r => _r;
 
   @override
@@ -38,7 +38,7 @@ class Permutations extends Combinatorics {
     return _permutation(_adjustedIndex(biK, length), r, items);
   }
 
-  /// Returns the index of [permutation] in the list of arranged permutations.
+  /// Returns the index of `permutation` in the list of arranged permutations.
   BigInt indexOf(List permutation, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(permutation)) {
@@ -53,11 +53,11 @@ class Permutations extends Combinatorics {
     }
   }
 
-  /// returns whether [x] is in the pseudo-list.
+  /// Returns whether `x` is in the pseudo-list.
   bool contains(Object x) =>
       _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 
   @override
   String toString() =>
-      "Pseudo-list containing all $length $r-permutations of items from $items.";
+      'Pseudo-list containing all $length $r-permutations of items from $items.';
 }

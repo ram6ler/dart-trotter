@@ -2,21 +2,21 @@ part of trotter;
 
 /// A pseudo-list of amalgams (permutations with repetition).
 ///
-/// A pseudo-list "containing" all the [r]-amalgams of objects taken from
-/// the list [items].
+/// A pseudo-list 'containing' all the `r`-amalgams (order important,
+/// repitition allowed) of objects taken from the list `items`.
 ///
-/// _Example_
+/// *Example*
 ///
-///     var a = Amalgams(3, characters("abcd"));
-///     print("There are ${a.length} 3-amalgams of the objects");
-///     print("in ${a.items}.");
-///     print("The first amalgam is ${a[0]}.");
+///     final a = Amalgams(3, characters('abcd'));
+///     print('There are ${a.length} 3-amalgams of the objects');
+///     print('in ${a.items}.');
+///     print('The first amalgam is ${a[0]}.');
 ///
 
 class Amalgams extends Combinatorics {
   Amalgams(int r, List items) {
-    if (r < 0) throw Exception("Cannot take $r items from ${items.length}.");
-    if (!_itemsAreUnique(items)) throw Exception("Items are not unique.");
+    if (r < 0) throw Exception('Cannot take $r items from ${items.length}.');
+    if (!_itemsAreUnique(items)) throw Exception('Items are not unique.');
 
     _items = List.from(items);
     _r = r;
@@ -26,7 +26,7 @@ class Amalgams extends Combinatorics {
 
   int _r;
 
-  /// The number of items taken from [items].
+  /// The number of items taken from `items`.
   int get r => _r;
 
   @override
@@ -35,7 +35,7 @@ class Amalgams extends Combinatorics {
     return _amalgam(_adjustedIndex(biK, length), r, items);
   }
 
-  /// Returns the index of [amalgam] in the list of arranged amalgams.
+  /// Returns the index of `amalgam` in the list of arranged amalgams.
   BigInt indexOf(List amalgam, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(amalgam)) {
@@ -50,10 +50,10 @@ class Amalgams extends Combinatorics {
     }
   }
 
-  /// returns whether [x] is in the pseudo-list.
+  /// Returns whether `x` is in the pseudo-list.
   bool contains(Object x) => _itemsExistInUniversal(x, _items);
 
   @override
   String toString() =>
-      "Pseudo-list containing all $length $r-amalgams of items from $items.";
+      'Pseudo-list containing all $length $r-amalgams of items from $items.';
 }

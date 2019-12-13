@@ -1,5 +1,10 @@
 # Change log
 
+## 1.1.0
+
+* Added `extension`s to `List`s and `String`s. (Nice Dart 2.7.0 feature!)
+* Provided functionality for random sampling from the pseudo-lists.
+
 ## 1.0.2
 
 * Cleaned up the type declaration for the iterables.

@@ -17,8 +17,8 @@ abstract class Combinatorics {
 
   /// Returns a range of arrangements.
   ///
-  /// The arrangements "stored" in this pseudo-list from index [from]
-  /// up to but not including [to].
+  /// The arrangements 'stored' in this pseudo-list from index `from`
+  /// up to but not including `to`.
   ///
   Iterable<List<Object>> range(Object fromTo, [Object to]) {
     BigInt biFrom = _indexFromIntOrBigInt(fromTo), biTo;
@@ -48,7 +48,7 @@ abstract class Combinatorics {
       } else if (fromTo is BigInt) {
         biFrom = fromTo;
       } else {
-        throw Exception("Expecting int or BigInt in range.");
+        throw Exception('Expecting int or BigInt in range.');
       }
       if (to == null) {
         biTo = biFrom;
@@ -59,7 +59,7 @@ abstract class Combinatorics {
         } else if (to is BigInt) {
           biTo = to;
         } else {
-          throw Exception("Expecting int or BigInt in range.");
+          throw Exception('Expecting int or BigInt in range.');
         }
       }
     }
@@ -67,28 +67,61 @@ abstract class Combinatorics {
     return _range(biFrom, biTo);
   }
 
-  /// An [Iterable] object that "contains" all the arrangements.
+  /// An `Iterable` object that 'contains' all the arrangements.
   ///
   /// Example:
   ///
-  ///     var permutations = Permutations(3, characters("abcd"));
+  ///     var permutations = Permutations(3, characters('abcd'));
   ///     for (var permutation in permutations.iterable) {
   ///       print(permutation);
   ///     }
   ///
-  /// The [iterable] property can also be obtained by simply calling the
+  /// The `iterable` property can also be obtained by simply calling the
   /// combinatoric object. For example, the above code is equivalent to:
   ///
-  ///     var permutations = Permutations(3, characters("abcd"));
+  ///     var permutations = Permutations(3, characters('abcd'));
   ///     for (var permutation in permutations()) {
   ///       print(permutation);
   ///     }
   ///
   Iterable get iterable => this();
 
-  /// The number of arrangements "contained" in this pseudo-list.
+  /// The number of arrangements 'contained' in this pseudo-list.
   BigInt get length => _length;
 
-  /// The [k]th arrangement.
+  /// Generates a random sample of arrangements from this pseudo-list.
+  Iterable sample(int n, {int seed, bool withReplacement: false}) {
+    BigInt indexGenerator() {
+      final rand = seed == null ? Random() : Random(seed);
+      var index = BigInt.zero, bits = _length.bitLength + 1;
+      for (var i = 0; i < bits; i++) {
+        index += rand.nextBool() ? BigInt.one : BigInt.zero;
+        if (i < bits - 1) {
+          index <<= 1;
+        }
+        if (index > _length - BigInt.one) {
+          index = BigInt.zero;
+          i = 0;
+        }
+      }
+      return index;
+    }
+
+    if (withReplacement) {
+      return List<BigInt>.generate(n, (_) => indexGenerator())
+          .map((i) => this[i]);
+    } else {
+      if (BigInt.from(n) > _length) {
+        throw Exception("Cannot take more than $_length without replacement.");
+      }
+      var indices = <BigInt>{};
+      while (indices.length < n) {
+        indices.add(indexGenerator());
+      }
+      return indices.map((i) => this[i]);
+    }
+  }
+
+  /// The `k`th arrangement.
   List operator [](Object k);
 }
