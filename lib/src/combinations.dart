@@ -13,14 +13,14 @@ part of trotter;
 ///     print('The first combination is ${c[0]}.');
 ///
 
-class Combinations extends Combinatorics {
-  Combinations(int r, List items) {
+class Combinations<T> extends Combinatorics<T> {
+  Combinations(int r, List<T> items) {
     if (r < 0 || r > items.length) {
       throw Exception('Cannot take $r items from ${items.length}.');
     }
     if (!_itemsAreUnique(items)) throw Exception('Items are not unique.');
 
-    _items = List.from(items, growable: false);
+    _items = List<T>.from(items, growable: false);
     _r = r;
     _length = _nCr(items.length, r);
   }
@@ -31,13 +31,13 @@ class Combinations extends Combinatorics {
   int get r => _r;
 
   @override
-  List operator [](Object k) {
+  List<T> operator [](Object k) {
     BigInt biK = _indexFromIntOrBigInt(k);
     return _combination(_adjustedIndex(biK, length), r, items);
   }
 
   /// Returns the index of `combination` in the list of arranged combinations.
-  BigInt indexOf(List combination, [BigInt start]) {
+  BigInt indexOf(List<T> combination, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(combination)) {
       BigInt result = _inverseCombination(combination, _items);

@@ -13,23 +13,24 @@ part of trotter;
 ///     print('The first subset is ${com[0]}.');
 ///
 
-class Compounds extends Combinatorics {
-  Compounds(List items) {
+class Compounds<T> extends Combinatorics<T> {
+  Compounds(List<T> items) {
     if (!_itemsAreUnique(items)) throw Exception('Items are not unique.');
 
-    _items = List.from(items);
-    _length = (List.generate(items.length + 1, (r) => _nPr(items.length, r))
-        .fold(BigInt.zero, (a, b) => a + b));
+    _items = List<T>.from(items);
+    _length =
+        (List<BigInt>.generate(items.length + 1, (r) => _nPr(items.length, r))
+            .fold<BigInt>(BigInt.zero, (a, b) => a + b));
   }
 
   @override
-  List operator [](Object k) {
+  List<T> operator [](Object k) {
     BigInt biK = _indexFromIntOrBigInt(k);
     return _compound(_adjustedIndex(biK, length), items);
   }
 
   /// Returns the index of `subset` in the list of arranged subsets.
-  BigInt indexOf(List compound, [BigInt start]) {
+  BigInt indexOf(List<T> compound, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(compound)) {
       BigInt result = _inverseCompound(compound, _items);

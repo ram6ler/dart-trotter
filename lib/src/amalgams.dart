@@ -13,12 +13,12 @@ part of trotter;
 ///     print('The first amalgam is ${a[0]}.');
 ///
 
-class Amalgams extends Combinatorics {
-  Amalgams(int r, List items) {
+class Amalgams<T> extends Combinatorics<T> {
+  Amalgams(int r, List<T> items) {
     if (r < 0) throw Exception('Cannot take $r items from ${items.length}.');
     if (!_itemsAreUnique(items)) throw Exception('Items are not unique.');
 
-    _items = List.from(items);
+    _items = List<T>.from(items);
     _r = r;
     _length =
         BigInt.from(items.length).pow(r); //math.pow(items.length, r).toInt();
@@ -30,13 +30,13 @@ class Amalgams extends Combinatorics {
   int get r => _r;
 
   @override
-  List operator [](Object k) {
+  List<T> operator [](Object k) {
     BigInt biK = _indexFromIntOrBigInt(k);
     return _amalgam(_adjustedIndex(biK, length), r, items);
   }
 
   /// Returns the index of `amalgam` in the list of arranged amalgams.
-  BigInt indexOf(List amalgam, [BigInt start]) {
+  BigInt indexOf(List<T> amalgam, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(amalgam)) {
       BigInt result = _inverseAmalgam(amalgam, _items);
@@ -51,7 +51,7 @@ class Amalgams extends Combinatorics {
   }
 
   /// Returns whether `x` is in the pseudo-list.
-  bool contains(Object x) => _itemsExistInUniversal(x, _items);
+  bool contains(List<T> x) => _itemsExistInUniversal(x, _items);
 
   @override
   String toString() =>

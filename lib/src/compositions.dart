@@ -13,12 +13,12 @@ part of trotter;
 ///     print('The first selection is ${c[0]}.');
 ///
 
-class Compositions extends Combinatorics {
-  Compositions(int r, List items) {
+class Compositions<T> extends Combinatorics<T> {
+  Compositions(int r, List<T> items) {
     if (r < 0) throw Exception('Cannot take $r items from ${items.length}.');
     if (!_itemsAreUnique(items)) throw Exception('Items are not unique.');
 
-    _items = List.from(items);
+    _items = List<T>.from(items);
     _r = r;
     _length = _nCr(items.length + r - 1, r);
   }
@@ -29,13 +29,13 @@ class Compositions extends Combinatorics {
   int get r => _r;
 
   @override
-  List operator [](Object k) {
+  List<T> operator [](Object k) {
     BigInt biK = _indexFromIntOrBigInt(k);
     return _selection(_adjustedIndex(biK, length), r, items);
   }
 
   /// Returns the index of `selection` in the list of arranged Compositions.
-  BigInt indexOf(List selection, [BigInt start]) {
+  BigInt indexOf(List<T> selection, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(selection)) {
       BigInt result = _inverseSelection(selection, _items);

@@ -13,22 +13,22 @@ part of trotter;
 ///     print('The first subset is ${sub[0]}.');
 ///
 
-class Subsets extends Combinatorics {
-  Subsets(List items) {
+class Subsets<T> extends Combinatorics<T> {
+  Subsets(List<T> items) {
     if (!_itemsAreUnique(items)) throw Exception('Items are not unique.');
 
-    _items = List.from(items);
+    _items = List<T>.from(items);
     _length = BigInt.one << items.length;
   }
 
   @override
-  List operator [](Object k) {
+  List<T> operator [](Object k) {
     BigInt biK = _indexFromIntOrBigInt(k);
     return _subset(_adjustedIndex(biK, length), items);
   }
 
   /// Returns the index of `subset` in the list of arranged subsets.
-  BigInt indexOf(List subset, [BigInt start]) {
+  BigInt indexOf(List<T> subset, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(subset)) {
       BigInt result = _inverseSubset(subset, _items);

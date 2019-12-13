@@ -13,8 +13,8 @@ part of trotter;
 ///     print('The first permutation is ${p[0]}.');
 ///
 
-class Permutations extends Combinatorics {
-  Permutations(int r, List items) {
+class Permutations<T> extends Combinatorics<T> {
+  Permutations(int r, List<T> items) {
     if (r < 0 || r > items.length) {
       throw Exception('Cannot take $r items from ${items.length}.');
     }
@@ -22,7 +22,7 @@ class Permutations extends Combinatorics {
       throw Exception('Items are not unique.');
     }
 
-    _items = List.from(items, growable: false);
+    _items = List<T>.from(items, growable: false);
     _r = r;
     _length = _nPr(items.length, r);
   }
@@ -33,13 +33,13 @@ class Permutations extends Combinatorics {
   int get r => _r;
 
   @override
-  List operator [](Object k) {
+  List<T> operator [](Object k) {
     BigInt biK = _indexFromIntOrBigInt(k);
     return _permutation(_adjustedIndex(biK, length), r, items);
   }
 
   /// Returns the index of `permutation` in the list of arranged permutations.
-  BigInt indexOf(List permutation, [BigInt start]) {
+  BigInt indexOf(List<T> permutation, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(permutation)) {
       BigInt result = _inversePermutation(permutation, _items);
