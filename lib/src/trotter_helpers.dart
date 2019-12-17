@@ -82,7 +82,7 @@ List<T> _combination<T>(BigInt k, int r, List<T> items) {
 /// Gives the index of `combination` in the ordered list of combinations of
 /// items taken from `items`.
 BigInt _inverseCombination<T>(List<T> combination, List<T> items) {
-  BigInt helper<T>(List<T> combination, List<T> items) {
+  BigInt helper(List<T> combination, List<T> items) {
     if (combination.isEmpty) {
       return BigInt.zero;
     }
@@ -97,7 +97,7 @@ BigInt _inverseCombination<T>(List<T> combination, List<T> items) {
             combination.sublist(1), items.sublist((itemIndex + 1).toInt()));
   }
 
-  return helper<T>(_sortedArrangement<T>(combination, items), items);
+  return helper(_sortedArrangement<T>(combination, items), items);
 }
 
 /// Gives `k`th selection in the ordered list of selections of
@@ -121,7 +121,7 @@ List<T> _selection<T>(BigInt k, int r, List<T> items) {
 /// Gives the index of `selection` in the ordered list of selections of
 /// items taken from `items`.
 BigInt _inverseSelection<T>(List<T> selection, List<T> items) {
-  BigInt helper<T>(List<T> selection, List<T> items) {
+  BigInt helper(List<T> selection, List<T> items) {
     if (selection.isEmpty) {
       return BigInt.zero;
     }
@@ -137,7 +137,7 @@ BigInt _inverseSelection<T>(List<T> selection, List<T> items) {
             selection.sublist(1), items.sublist(itemIndex.toInt()));
   }
 
-  return helper<T>(_sortedArrangement<T>(selection, items), items);
+  return helper(_sortedArrangement<T>(selection, items), items);
 }
 
 /// Gives `k`th permutation in the ordered list of permutations of
@@ -203,7 +203,7 @@ List<T> _subset<T>(BigInt k, List<T> items) {
 /// Gives the index of `subset` in the ordered list of subsets of
 /// items taken from `items`.
 BigInt _inverseSubset<T>(List<T> subset, List<T> items) {
-  BigInt helper<T>(List<T> subset, List<T> items) {
+  BigInt helper(List<T> subset, List<T> items) {
     BigInt k = BigInt.zero, power = BigInt.one;
     for (int index = 0; index < items.length; index++) {
       if (subset.contains(items[index])) {
@@ -214,8 +214,7 @@ BigInt _inverseSubset<T>(List<T> subset, List<T> items) {
     return k;
   }
 
-  return helper<T>(
-      _sortedArrangement<T>(subset.toSet().toList(), items), items);
+  return helper(_sortedArrangement<T>(subset.toSet().toList(), items), items);
 }
 
 /// Gives `k`th compound in the ordered list of compounds of

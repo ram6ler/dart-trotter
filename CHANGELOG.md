@@ -1,5 +1,11 @@
 # Change log
 
+## 1.1.1
+
+* Followed some of the pub.dev health suggestions.
+* Added link to *Permutation Products* demo.
+* Corrected environment requirements (Dart 2.7.0 to support extensions).
+
 ## 1.1.0
 
 * Added `extension`s to `List`s and `String`s. (Nice Dart 2.7.0 feature!)

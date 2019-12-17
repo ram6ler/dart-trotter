@@ -1,8 +1,8 @@
 name: trotter
-version: 1.1.0
+version: 1.1.1
 description: Class definitions for pseudo-lists that simplify working with structures commonly encountered in combinatorics such as permutations, combinations and subsets.
 homepage: https://www.bitbucket.org/ram6ler/dart_trotter/wiki/Home
 issue_tracker: https://bitbucket.org/ram6ler/dart_trotter/issues
 environment:
-  sdk: '>=2.6.0 <3.0.0'
+  sdk: '>=2.7.0 <3.0.0'
 strong-mode: true

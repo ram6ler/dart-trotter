@@ -20,8 +20,14 @@ The pseudo-list classes available are:
 * Subsets (combinations of unspecified size).
 * Compounds (permutations of unspecified size).
 
-To see `trotter` in action, play [Falco Shapes](https://falco-shapes.netlify.com/),
+# Demos
+
+To see `trotter` in action:
+
+* Play [Falco Shapes](https://falco-shapes.netlify.com/),
 a little puzzle based on Marsha Falco's game of *Set*.
+
+* Explore the *huge* number of permutations of letters of the alphabet with [Permutation Products](https://permutation-products.netlify.com/).
 
 # Using `trotter`
 

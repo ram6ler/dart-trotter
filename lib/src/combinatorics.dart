@@ -90,7 +90,7 @@ abstract class Combinatorics<T> {
   BigInt get length => _length;
 
   /// Generates a random sample of arrangements from this pseudo-list.
-  Iterable sample(int n, {int seed, bool withReplacement: false}) {
+  Iterable sample(int n, {int seed, bool withReplacement = false}) {
     BigInt indexGenerator() {
       final rand = seed == null ? Random() : Random(seed);
       var index = BigInt.zero, bits = _length.bitLength + 1;
