@@ -2,7 +2,6 @@ import 'dart:math' show Random;
 import 'package:trotter/trotter.dart';
 
 void main() {
-  print([1, 2, 3].runtimeType);
   final rand = Random(),
       perms = ['Steinhaus', 'Johnson', 'Trotter'].permutations(),
       dissent = [
