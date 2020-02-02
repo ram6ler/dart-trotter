@@ -1004,5 +1004,5 @@ characters in the string.
 `trotter` was written by [Richard Ambler](mailto:rambler@wya.top).
 
 Thanks for your interest in this library. Please file any bugs, issues
-and suggestions [here](https://bitbucket.org/ram6ler/dart_trotter/issues).
+and suggestions [here](https://github.com/ram6ler/dart-trotter/issues).
 
