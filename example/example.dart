@@ -7,7 +7,7 @@ void main() {
       dissent = [
     'No, no, no!',
     'I disagree.',
-    'That\'s absurd!',
+    "That's absurd",
     'Preposterous!'
   ],
       exclaim = () => dissent[rand.nextInt(dissent.length)],

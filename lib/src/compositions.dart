@@ -31,14 +31,14 @@ class Compositions<T> extends Combinatorics<T> {
   @override
   List<T> operator [](Object k) {
     BigInt biK = _indexFromIntOrBigInt(k);
-    return _selection(_adjustedIndex(biK, length), r, items);
+    return _composition(_adjustedIndex(biK, length), r, items);
   }
 
   /// Returns the index of `selection` in the list of arranged Compositions.
   BigInt indexOf(List<T> selection, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(selection)) {
-      BigInt result = _inverseSelection(selection, _items);
+      BigInt result = _inverseComposition(selection, _items);
       if (result >= start) {
         return result;
       } else {

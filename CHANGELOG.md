@@ -1,5 +1,9 @@
 # Change log
 
+## 1.1.2
+
+* Fixed some minor mistakes in the code.
+
 ## 1.1.1
 
 * Followed some of the pub.dev health suggestions.

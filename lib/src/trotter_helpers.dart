@@ -75,8 +75,8 @@ List<T> _combination<T>(BigInt k, int r, List<T> items) {
     position += 1;
     d = _nCr(n - position - 1, r - 1);
   }
-  var tail = items.sublist(position.toInt() + 1);
-  return [items[position.toInt()]]..addAll(_combination<T>(k, r - 1, tail));
+  var tail = items.sublist(position + 1);
+  return [items[position]]..addAll(_combination<T>(k, r - 1, tail));
 }
 
 /// Gives the index of `combination` in the ordered list of combinations of
@@ -88,21 +88,19 @@ BigInt _inverseCombination<T>(List<T> combination, List<T> items) {
     }
     int r = combination.length, n = items.length, itemIndex = 0;
     BigInt k = BigInt.zero;
-    while (combination[0] != items[itemIndex.toInt()]) {
+    while (combination[0] != items[itemIndex]) {
       k += _nCr(n - itemIndex - 1, r - 1);
       itemIndex += 1;
     }
-    return k +
-        _inverseCombination<T>(
-            combination.sublist(1), items.sublist((itemIndex + 1).toInt()));
+    return k + helper(combination.sublist(1), items.sublist(itemIndex + 1));
   }
 
   return helper(_sortedArrangement<T>(combination, items), items);
 }
 
-/// Gives `k`th selection in the ordered list of selections of
+/// Gives `k`th composition in the ordered list of compositions of
 /// `r` items taken from `items`.
-List<T> _selection<T>(BigInt k, int r, List<T> items) {
+List<T> _composition<T>(BigInt k, int r, List<T> items) {
   int n = items.length, position = 0;
   BigInt d = _nCr(n + r - position - 2, r - 1);
   while (k >= d) {
@@ -113,31 +111,29 @@ List<T> _selection<T>(BigInt k, int r, List<T> items) {
   if (r == 0) {
     return [];
   } else {
-    var tail = items.sublist(position.toInt());
-    return [items[position.toInt()]]..addAll(_selection<T>(k, r - 1, tail));
+    var tail = items.sublist(position);
+    return [items[position]]..addAll(_composition<T>(k, r - 1, tail));
   }
 }
 
-/// Gives the index of `selection` in the ordered list of selections of
+/// Gives the index of `composition` in the ordered list of compositions of
 /// items taken from `items`.
-BigInt _inverseSelection<T>(List<T> selection, List<T> items) {
-  BigInt helper(List<T> selection, List<T> items) {
-    if (selection.isEmpty) {
+BigInt _inverseComposition<T>(List<T> composition, List<T> items) {
+  BigInt helper(List<T> composition, List<T> items) {
+    if (composition.isEmpty) {
       return BigInt.zero;
     }
-    int n = items.length, r = selection.length, itemIndex = 0;
+    int n = items.length, r = composition.length, itemIndex = 0;
     BigInt k = BigInt.zero;
-    while (selection[0] != items[itemIndex]) {
+    while (composition[0] != items[itemIndex]) {
       k += _nCr(n + r - itemIndex - 2, r - 1);
       itemIndex += 1;
     }
 
-    return k +
-        _inverseSelection<T>(
-            selection.sublist(1), items.sublist(itemIndex.toInt()));
+    return k + helper(composition.sublist(1), items.sublist(itemIndex));
   }
 
-  return helper(_sortedArrangement<T>(selection, items), items);
+  return helper(_sortedArrangement<T>(composition, items), items);
 }
 
 /// Gives `k`th permutation in the ordered list of permutations of
@@ -164,7 +160,7 @@ BigInt _inversePermutation<T>(List<T> permutation, List<T> items) {
 /// Gives `k`th amalgam in the ordered list of amalgams of
 /// `r` items taken from `items`.
 List<T> _amalgam<T>(BigInt k, int r, List<T> items) {
-  return List<T>.generate(r.toInt(), (i) {
+  return List<T>.generate(r, (i) {
     BigInt p = BigInt.from(items.length).pow(r - i - 1), index = k ~/ p;
     k %= p;
     return items[index.toInt()];
