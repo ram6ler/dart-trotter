@@ -1,0 +1,35 @@
+
+
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: gray;
+  padding: 10pt;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 16pt;
+}
+
+h2 {
+  font-size: 14pt;
+  border-bottom: 1pt solid gray;
+}
+
+.cell {
+  width: 90%;
+  width: auto;
+  padding: 10pt;
+  border: 1pt solid #ccc;
+  border-radius: 10pt;
+  margin-bottom: 50pt;
+}
+
+
+
+.illustration {
+  padding: 10pt;
+  text-align: center;
+}
