@@ -1,6 +1,3 @@
-// Copyright (c) 2017, Richard Ambler. All rights reserved. Use of this source code
-// is governed by a BSD-style license that can be found in the LICENSE file.
-
 /// Classes for representing _structures_ commonly encountered in combinatorics.
 ///
 /// The `trotter` library contains class definitions for `Permutations`,
@@ -13,6 +10,7 @@
 library trotter;
 
 import 'dart:math' show Random;
+import 'dart:typed_data' show ByteData;
 
 part 'src/trotter_helpers.dart';
 part 'src/combinatorics.dart';
@@ -22,4 +20,5 @@ part 'src/amalgams.dart';
 part 'src/compositions.dart';
 part 'src/subsets.dart';
 part 'src/compounds.dart';
+part 'src/storage.dart';
 part 'src/misc.dart';

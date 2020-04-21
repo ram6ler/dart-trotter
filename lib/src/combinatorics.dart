@@ -124,4 +124,10 @@ abstract class Combinatorics<T> {
 
   /// The `k`th arrangement.
   List<T> operator [](Object k);
+
+  /// The index of  `arrangement`.
+  BigInt indexOf(List<T> arrangement, [BigInt start]);
+
+  /// Whether the structure contains `arrangement`.
+  bool contains(List<T> arrangement);
 }

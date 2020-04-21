@@ -35,6 +35,7 @@ class Compositions<T> extends Combinatorics<T> {
   }
 
   /// Returns the index of `selection` in the list of arranged Compositions.
+  @override
   BigInt indexOf(List<T> selection, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(selection)) {
@@ -50,6 +51,7 @@ class Compositions<T> extends Combinatorics<T> {
   }
 
   /// Returns whether `x` is in the pseudo-list.
+  @override
   bool contains(Object x) => _itemsExistInUniversal(x, _items);
 
   @override

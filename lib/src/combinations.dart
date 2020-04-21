@@ -36,7 +36,9 @@ class Combinations<T> extends Combinatorics<T> {
     return _combination(_adjustedIndex(biK, length), r, items);
   }
 
-  /// Returns the index of `combination` in the list of arranged combinations.
+  /// Returns the index of `combination` in the list of
+  /// arranged combinations.
+  @override
   BigInt indexOf(List<T> combination, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(combination)) {
@@ -52,6 +54,7 @@ class Combinations<T> extends Combinatorics<T> {
   }
 
   /// Returns whether `x` is in the pseudo-list.
+  @override
   bool contains(Object x) =>
       _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 

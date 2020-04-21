@@ -39,6 +39,7 @@ class Permutations<T> extends Combinatorics<T> {
   }
 
   /// Returns the index of `permutation` in the list of arranged permutations.
+  @override
   BigInt indexOf(List<T> permutation, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(permutation)) {
@@ -54,6 +55,7 @@ class Permutations<T> extends Combinatorics<T> {
   }
 
   /// Returns whether `x` is in the pseudo-list.
+  @override
   bool contains(Object x) =>
       _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 

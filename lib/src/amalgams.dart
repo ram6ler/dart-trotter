@@ -36,6 +36,7 @@ class Amalgams<T> extends Combinatorics<T> {
   }
 
   /// Returns the index of `amalgam` in the list of arranged amalgams.
+  @override
   BigInt indexOf(List<T> amalgam, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(amalgam)) {
@@ -51,6 +52,7 @@ class Amalgams<T> extends Combinatorics<T> {
   }
 
   /// Returns whether `x` is in the pseudo-list.
+  @override
   bool contains(List<T> x) => _itemsExistInUniversal(x, _items);
 
   @override

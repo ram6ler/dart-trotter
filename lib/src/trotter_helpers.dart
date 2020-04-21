@@ -241,6 +241,7 @@ BigInt _inverseCompound<T>(List<T> compound, List<T> items) {
 /// Returns an index in the domain [0, n[.
 BigInt _adjustedIndex(BigInt k, BigInt n) => k % n;
 
+/// Ensures an index is of type BigInt.
 BigInt _indexFromIntOrBigInt(Object k) {
   BigInt biK;
   if (k is int) {

@@ -28,6 +28,7 @@ class Subsets<T> extends Combinatorics<T> {
   }
 
   /// Returns the index of `subset` in the list of arranged subsets.
+  @override
   BigInt indexOf(List<T> subset, [BigInt start]) {
     start = start ?? BigInt.zero;
     if (contains(subset)) {
@@ -43,6 +44,7 @@ class Subsets<T> extends Combinatorics<T> {
   }
 
   /// Returns whether `x` is in the pseudo-list.
+  @override
   bool contains(Object x) =>
       _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 
