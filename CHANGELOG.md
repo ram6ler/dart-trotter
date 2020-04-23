@@ -1,8 +1,14 @@
 # Change log
 
+## 1.2.0
+
+* Added a `Storage` class to wrap other classes; this allows us to add, remove and keep track of arrangements in a memory efficient (one bit per arrangement) way. Can only be used for moderately sized structures.
+* Updated the fun-with-mastermind example to make use of the storage class.
+
 ## 1.1.2
 
 * Fixed some minor mistakes in the code.
+* Added fun-with-trotter-sprites example.
 
 ## 1.1.1
 
@@ -54,7 +60,7 @@ Made the abstract, parent class `Combinatorics` visible to the user for those ca
 
 * Added the `Compounds` class (permutations of unspecified size).
 * Added the contains method for all classes.
-* Corrected `indexOf` behaviour for when arrangements that don't exist are passed as arguments; returns -1 if the arrangement is not in the pseudo-list.
+* Corrected `indexOf` behavior for when arrangements that don't exist are passed as arguments; returns -1 if the arrangement is not in the pseudo-list.
 
 ## 0.8.0
 
