@@ -1,5 +1,8 @@
 # Change log
 
+## 2.0.0-dev.1
+
+* Null-safety migration.
 ## 1.2.0
 
 * Added a `Storage` class to wrap other classes; this allows us to add, remove and keep track of arrangements in a memory efficient (one bit per arrangement) way. Can only be used for moderately sized structures.

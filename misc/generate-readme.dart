@@ -4,7 +4,7 @@ import 'package:trotter/trotter.dart';
 dynamic main() async {
   final script = await File('generate-readme.dart').readAsLines();
 
-  var functions = List<void Function()>();
+  List<void Function()> functions = [];
 
   ///
   /// ![](https://bitbucket.org/ram6ler/dart_trotter/wiki/dart_trotter_banner.png)

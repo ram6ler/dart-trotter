@@ -24,143 +24,144 @@ Here goes:
 
 ### Game 1
 
-The secret code: ACDC
+The secret code: BCFC
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|DDEA|`  oo `|
-|2|ECDC|` ***  `|
-|3|ACDC|` ****  `|
+|1|FFDA|`  o `|
+|2|EDBB|`  o `|
+|3|AAAE|`   `|
+|4|BCCF|` ** oo `|
+|5|BCFC|` ****  `|
 
-Solved in 3 guesses.
+Solved in 5 guesses.
 
 ### Game 2
 
-The secret code: DEFC
+The secret code: CCCA
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|ECCC|` * o `|
-|2|AACE|`  oo `|
-|3|DEBC|` ***  `|
-|4|BEBC|` **  `|
-|5|DEDC|` ***  `|
-|6|DEEC|` ***  `|
-|7|DEFC|` ****  `|
+|1|CBFB|` *  `|
+|2|AAAB|`  o `|
+|3|CCCA|` ****  `|
 
-Solved in 7 guesses.
+Solved in 3 guesses.
 
 ### Game 3
 
-The secret code: BCEB
+The secret code: AECC
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|AABF|`  o `|
-|2|EBED|` * o `|
-|3|FEEE|` *  `|
-|4|BBCE|` * ooo `|
-|5|BCEB|` ****  `|
-
-Solved in 5 guesses.
-
-### Game 4
-
-The secret code: ADEA
-
-|Guess number|Guess|Clues|
-|:--:|:--|:--|
-|1|BEAE|`  oo `|
-|2|AABA|` **  `|
-|3|AAEC|` ** o `|
-|4|ADEA|` ****  `|
+|1|FEDE|` *  `|
+|2|AAAE|` * o `|
+|3|ABDA|` *  `|
+|4|AECC|` ****  `|
 
 Solved in 4 guesses.
 
-### Game 5
+### Game 4
 
-The secret code: CADB
+The secret code: FEEF
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|EDFD|`  o `|
-|2|AFCF|`  oo `|
-|3|BADC|` ** oo `|
-|4|BCDA|` * ooo `|
-|5|CADB|` ****  `|
+|1|BAFA|`  o `|
+|2|ACCC|`   `|
+|3|DBBB|`   `|
+|4|EEEF|` ***  `|
+|5|EFEF|` ** oo `|
+|6|FEEF|` ****  `|
 
-Solved in 5 guesses.
+Solved in 6 guesses.
+
+### Game 5
+
+The secret code: FFDF
+
+|Guess number|Guess|Clues|
+|:--:|:--|:--|
+|1|EBEA|`   `|
+|2|CCCC|`   `|
+|3|DDDD|` *  `|
+|4|DFFF|` ** oo `|
+|5|FDFF|` ** oo `|
+|6|FFDF|` ****  `|
+
+Solved in 6 guesses.
 
 ### Game 496
 
-The secret code: CFCB
+The secret code: BFFA
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|ACEF|`  oo `|
-|2|BAAC|`  oo `|
-|3|CBBE|` * o `|
-|4|CDFB|` ** o `|
-|5|CFCB|` ****  `|
+|1|BDCE|` *  `|
+|2|AAAE|`  o `|
+|3|BBBA|` **  `|
+|4|BFFA|` ****  `|
 
-Solved in 5 guesses.
+Solved in 4 guesses.
 
 ### Game 497
 
-The secret code: FCBC
+The secret code: EDBD
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|FDED|` *  `|
-|2|AAAD|`   `|
-|3|BBEB|`  o `|
-|4|FCBC|` ****  `|
+|1|BEDC|`  ooo `|
+|2|DBFE|`  ooo `|
+|3|ADEB|` * oo `|
+|4|EDBD|` ****  `|
 
 Solved in 4 guesses.
 
 ### Game 498
 
-The secret code: FBAD
+The secret code: FAAA
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|DAFE|`  ooo `|
-|2|FBAD|` ****  `|
-
-Solved in 2 guesses.
-
-### Game 499
-
-The secret code: FAAF
-
-|Guess number|Guess|Clues|
-|:--:|:--|:--|
-|1|BCBB|`   `|
-|2|AAAA|` **  `|
-|3|AADD|` * o `|
-|4|AEAE|` * o `|
-|5|AFFA|`  oooo `|
-|6|FAAF|` ****  `|
+|1|AABD|` * o `|
+|2|ABCB|`  o `|
+|3|BDDD|`   `|
+|4|EAAA|` ***  `|
+|5|EAAE|` **  `|
+|6|FAAA|` ****  `|
 
 Solved in 6 guesses.
 
-### Game 500
+### Game 499
 
-The secret code: FBED
+The secret code: AAAE
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|ADCE|`  oo `|
-|2|CABF|`  oo `|
-|3|BBAD|` **  `|
-|4|BBEC|` **  `|
-|5|BFED|` ** oo `|
-|6|FBED|` ****  `|
+|1|FDCF|`   `|
+|2|AEBA|` * oo `|
+|3|AAAB|` ***  `|
+|4|AAAE|` ****  `|
+
+Solved in 4 guesses.
+
+### Game 500
+
+The secret code: CBBC
+
+|Guess number|Guess|Clues|
+|:--:|:--|:--|
+|1|FECF|`  o `|
+|2|CADD|` *  `|
+|3|AAAE|`   `|
+|4|BBFD|` * o `|
+|5|CBBB|` ***  `|
+|6|CBBC|` ****  `|
 
 Solved in 6 guesses.
 ## Summary
 
-In 500 games, the computer found the code in at least 2 guesses, at most 8 guesses, and on average 4.810 guesses.');
+In 500 games, the computer found the code in at least 1 guesses, at most 8 guesses, and on average 4.890 guesses.
 
 Thanks for your interest! Please let me know if you find any interesting use cases for this library!
 

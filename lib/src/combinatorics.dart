@@ -2,8 +2,8 @@ part of trotter;
 
 /// The abstract parent to the other classes defined in this library.
 abstract class Combinatorics<T> {
-  List<T> _items;
-  BigInt _length;
+  late List<T> _items;
+  late BigInt _length;
 
   /// The list from which the objects are selected
   List<T> get items => List<T>.from(_items, growable: false);
@@ -20,7 +20,7 @@ abstract class Combinatorics<T> {
   /// The arrangements 'stored' in this pseudo-list from index `from`
   /// up to but not including `to`.
   ///
-  Iterable<List<T>> range(Object fromTo, [Object to]) {
+  Iterable<List<T>> range(Object fromTo, [Object? to]) {
     BigInt biFrom = _indexFromIntOrBigInt(fromTo), biTo;
 
     if (to == null) {
@@ -37,7 +37,7 @@ abstract class Combinatorics<T> {
     return _range(biFrom, biTo);
   }
 
-  Iterable<List<T>> call([Object fromTo, Object to]) {
+  Iterable<List<T>> call([Object? fromTo, Object? to]) {
     BigInt biFrom, biTo;
     if (fromTo == null && to == null) {
       biFrom = BigInt.zero;
@@ -90,7 +90,7 @@ abstract class Combinatorics<T> {
   BigInt get length => _length;
 
   /// Generates a random sample of arrangements from this pseudo-list.
-  Iterable sample(int n, {int seed, bool withReplacement = false}) {
+  Iterable sample(int n, {int? seed, bool withReplacement = false}) {
     BigInt indexGenerator() {
       final rand = seed == null ? Random() : Random(seed);
       var index = BigInt.zero, bits = _length.bitLength + 1;

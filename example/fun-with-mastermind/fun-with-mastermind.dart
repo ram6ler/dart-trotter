@@ -44,11 +44,11 @@ Here goes:
   });
 
   print('## Summary\n');
-  final mean = scores.fold(0, (a, b) => a + b) / games,
+  final mean = scores.fold<num>(0, (a, b) => a + b) / games,
       min = scores.reduce(math.min),
       max = scores.reduce(math.max);
   print('''
-In $games games, the computer found the code in at least $min guesses, at most $max guesses, and on average ${mean.toStringAsFixed(3)} guesses.');
+In $games games, the computer found the code in at least $min guesses, at most $max guesses, and on average ${mean.toStringAsFixed(3)} guesses.
 
 Thanks for your interest! Please let me know if you find any interesting use cases for this library!
 
@@ -116,20 +116,20 @@ int playGame(bool display) {
 Clue getClues(List<String> code, List<String> guess) {
   var codeCopy = List<String>.from(code), guessCopy = List<String>.from(guess);
   final blacks = List.generate(4, (i) {
-    if (codeCopy[i] == guessCopy[i]) {
-      codeCopy[i] = 'x';
-      guessCopy[i] = 'x';
-      return 1;
-    }
-    return 0;
-  }).fold(0, (a, b) => a + b),
+        if (codeCopy[i] == guessCopy[i]) {
+          codeCopy[i] = 'x';
+          guessCopy[i] = 'x';
+          return 1;
+        }
+        return 0;
+      }).fold<int>(0, (a, b) => a + b),
       whites = List.generate(4, (i) {
-    if (guessCopy[i] == 'x') return 0;
-    int index = codeCopy.indexOf(guess[i]);
-    if (index == -1) return 0;
-    codeCopy[index] = 'x';
-    return 1;
-  }).fold(0, (a, b) => a + b);
+        if (guessCopy[i] == 'x') return 0;
+        int index = codeCopy.indexOf(guess[i]);
+        if (index == -1) return 0;
+        codeCopy[index] = 'x';
+        return 1;
+      }).fold<int>(0, (a, b) => a + b);
 
   return Clue(blacks, whites);
 }

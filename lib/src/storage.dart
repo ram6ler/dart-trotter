@@ -17,10 +17,10 @@ class Storage<T> {
   }
 
   /// The combinatorics object being wrapped.
-  Combinatorics<T> combinatorics;
+  late Combinatorics<T> combinatorics;
 
   /// The data storing whether each selection is contained.
-  ByteData _data;
+  late ByteData _data;
 
   void _checkselection(List<T> selection) {
     if (!combinatorics.contains(selection)) {

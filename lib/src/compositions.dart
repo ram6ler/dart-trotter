@@ -23,7 +23,7 @@ class Compositions<T> extends Combinatorics<T> {
     _length = _nCr(items.length + r - 1, r);
   }
 
-  int _r;
+  late int _r;
 
   /// The number of items taken from `items`.
   int get r => _r;
@@ -36,7 +36,7 @@ class Compositions<T> extends Combinatorics<T> {
 
   /// Returns the index of `selection` in the list of arranged Compositions.
   @override
-  BigInt indexOf(List<T> selection, [BigInt start]) {
+  BigInt indexOf(List<T> selection, [BigInt? start]) {
     start = start ?? BigInt.zero;
     if (contains(selection)) {
       BigInt result = _inverseComposition(selection, _items);
@@ -52,7 +52,7 @@ class Compositions<T> extends Combinatorics<T> {
 
   /// Returns whether `x` is in the pseudo-list.
   @override
-  bool contains(Object x) => _itemsExistInUniversal(x, _items);
+  bool contains(List<T> x) => _itemsExistInUniversal(x, _items);
 
   @override
   String toString() =>

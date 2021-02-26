@@ -41,7 +41,7 @@ void main() {
       return pPic;
     }
 
-    document.body.children.add(DivElement()
+    document.body!.children.add(DivElement()
       ..classes.add('cell')
       ..children.addAll([
         DivElement()

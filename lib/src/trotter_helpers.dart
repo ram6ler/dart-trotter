@@ -5,7 +5,7 @@ Map<int, BigInt> _factCache = {};
 
 /// Calculates `n`!
 BigInt _fact(int n) => _factCache.containsKey(n)
-    ? _factCache[n]
+    ? _factCache[n]!
     : (n < 2 ? BigInt.one : _factCache[n] = BigInt.from(n) * _fact(n - 1));
 
 /// Calculates the number of permutations of `r` items taken from `n`.

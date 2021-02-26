@@ -11,7 +11,7 @@ void main() {
       "\nHere are the first, middle and last ten in the Johnson-Trotter ordering:\n");
 
   print(row("Index", "Permutation", "Cyclic Notation", 10, 35));
-  void table(BigInt start, BigInt end, [BigInt mark]) {
+  void table(BigInt start, BigInt end, [BigInt? mark]) {
     for (BigInt i = start; i < end; i += BigInt.one) {
       print("  " +
           row("$i", permutations[i].toString(),
@@ -57,8 +57,9 @@ String row(String col1, String col2, String col3, int w1, int w2) =>
 
 List<int> interpret() {
   var permutation = stdin.readLineSync();
-  final split =
-      permutation.split(RegExp(r'[^0-9]')).where((string) => string.isNotEmpty);
+  final split = permutation!
+      .split(RegExp(r'[^0-9]'))
+      .where((string) => string.isNotEmpty);
   var result = List<int>.from(indices);
   if (split.isNotEmpty) {
     for (final string in split) {

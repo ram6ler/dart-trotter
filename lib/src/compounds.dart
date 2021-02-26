@@ -31,7 +31,7 @@ class Compounds<T> extends Combinatorics<T> {
 
   /// Returns the index of `subset` in the list of arranged subsets.
   @override
-  BigInt indexOf(List<T> compound, [BigInt start]) {
+  BigInt indexOf(List<T> compound, [BigInt? start]) {
     start = start ?? BigInt.zero;
     if (contains(compound)) {
       BigInt result = _inverseCompound(compound, _items);
@@ -47,7 +47,7 @@ class Compounds<T> extends Combinatorics<T> {
 
   /// Returns whether `x` is in the pseudo-list.
   @override
-  bool contains(Object x) =>
+  bool contains(List<T> x) =>
       _itemsExistInUniversal(x, _items) && _itemsAreUnique(x);
 
   @override

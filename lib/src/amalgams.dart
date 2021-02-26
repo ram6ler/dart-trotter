@@ -24,7 +24,7 @@ class Amalgams<T> extends Combinatorics<T> {
         BigInt.from(items.length).pow(r); //math.pow(items.length, r).toInt();
   }
 
-  int _r;
+  late int _r;
 
   /// The number of items taken from `items`.
   int get r => _r;
@@ -37,7 +37,7 @@ class Amalgams<T> extends Combinatorics<T> {
 
   /// Returns the index of `amalgam` in the list of arranged amalgams.
   @override
-  BigInt indexOf(List<T> amalgam, [BigInt start]) {
+  BigInt indexOf(List<T> amalgam, [BigInt? start]) {
     start = start ?? BigInt.zero;
     if (contains(amalgam)) {
       BigInt result = _inverseAmalgam(amalgam, _items);
