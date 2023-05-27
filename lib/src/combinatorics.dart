@@ -2,8 +2,8 @@ part of trotter;
 
 /// The abstract parent to the other classes defined in this library.
 abstract class Combinatorics<T> {
-  late List<T> _items;
-  late BigInt _length;
+  late final List<T> _items;
+  late final BigInt _length;
 
   /// The list from which the objects are selected
   List<T> get items => List<T>.from(_items, growable: false);
@@ -71,16 +71,16 @@ abstract class Combinatorics<T> {
   ///
   /// Example:
   ///
-  ///     var permutations = Permutations(3, characters('abcd'));
-  ///     for (var permutation in permutations.iterable) {
+  ///     final permutations = Permutations(3, characters('abcd'));
+  ///     for (final permutation in permutations.iterable) {
   ///       print(permutation);
   ///     }
   ///
   /// The `iterable` property can also be obtained by simply calling the
   /// combinatoric object. For example, the above code is equivalent to:
   ///
-  ///     var permutations = Permutations(3, characters('abcd'));
-  ///     for (var permutation in permutations()) {
+  ///     final permutations = Permutations(3, characters('abcd'));
+  ///     for (final permutation in permutations()) {
   ///       print(permutation);
   ///     }
   ///
@@ -114,7 +114,7 @@ abstract class Combinatorics<T> {
       if (BigInt.from(n) > _length) {
         throw Exception("Cannot take more than $_length without replacement.");
       }
-      var indices = <BigInt>{};
+      final indices = <BigInt>{};
       while (indices.length < n) {
         indices.add(indexGenerator());
       }

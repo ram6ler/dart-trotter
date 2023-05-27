@@ -7,7 +7,7 @@ part of trotter;
 ///
 /// _Example_
 ///
-///     var sub = Subsets(characters('abcd'));
+///     final sub = Subsets(characters('abcd'));
 ///     print('There are ${sub.length} subsets of the objects');
 ///     print('in ${sub.items}.');
 ///     print('The first subset is ${sub[0]}.');

@@ -3,7 +3,7 @@ part of trotter;
 /// A pseudo-list of amalgams (permutations with repetition).
 ///
 /// A pseudo-list 'containing' all the `r`-amalgams (order important,
-/// repitition allowed) of objects taken from the list `items`.
+/// repetition allowed) of objects taken from the list `items`.
 ///
 /// *Example*
 ///
@@ -14,20 +14,15 @@ part of trotter;
 ///
 
 class Amalgams<T> extends Combinatorics<T> {
-  Amalgams(int r, List<T> items) {
+  Amalgams(this.r, List<T> items) {
     if (r < 0) throw Exception('Cannot take $r items from ${items.length}.');
     if (!_itemsAreUnique(items)) throw Exception('Items are not unique.');
-
     _items = List<T>.from(items);
-    _r = r;
-    _length =
-        BigInt.from(items.length).pow(r); //math.pow(items.length, r).toInt();
+    _length = BigInt.from(items.length).pow(r);
   }
 
-  late int _r;
-
   /// The number of items taken from `items`.
-  int get r => _r;
+  final int r;
 
   @override
   List<T> operator [](Object k) {

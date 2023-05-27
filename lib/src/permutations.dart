@@ -7,14 +7,14 @@ part of trotter;
 ///
 /// _Example_
 ///
-///     var p = Permutations(3, characters('abcd'));
+///     final p = Permutations(3, characters('abcd'));
 ///     print('There are ${p.length} 3-permutations of the objects');
 ///     print('in ${p.items}.');
 ///     print('The first permutation is ${p[0]}.');
 ///
 
 class Permutations<T> extends Combinatorics<T> {
-  Permutations(int r, List<T> items) {
+  Permutations(this.r, List<T> items) {
     if (r < 0 || r > items.length) {
       throw Exception('Cannot take $r items from ${items.length}.');
     }
@@ -23,14 +23,11 @@ class Permutations<T> extends Combinatorics<T> {
     }
 
     _items = List<T>.from(items, growable: false);
-    _r = r;
     _length = _nPr(items.length, r);
   }
 
-  late int _r;
-
   /// The number of items taken from `items`.
-  int get r => _r;
+  final int r;
 
   @override
   List<T> operator [](Object k) {

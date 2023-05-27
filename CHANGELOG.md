@@ -1,5 +1,8 @@
 # Change log
 
+## 2.1.0
+
+* Update for Dart 3.
 ## 2.0.0-dev.1
 
 * Null-safety migration.

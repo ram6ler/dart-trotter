@@ -7,26 +7,24 @@ part of trotter;
 ///
 /// _Example_
 ///
-///     var s = Compositions(3, characters('abcd'));
+///     final s = Compositions(3, characters('abcd'));
 ///     print('There are ${s.length} 3-Compositions of the objects');
 ///     print('in ${s.items}.');
 ///     print('The first selection is ${c[0]}.');
 ///
 
 class Compositions<T> extends Combinatorics<T> {
-  Compositions(int r, List<T> items) {
+  Compositions(this.r, List<T> items) {
     if (r < 0) throw Exception('Cannot take $r items from ${items.length}.');
     if (!_itemsAreUnique(items)) throw Exception('Items are not unique.');
 
     _items = List<T>.from(items);
-    _r = r;
+
     _length = _nCr(items.length + r - 1, r);
   }
 
-  late int _r;
-
   /// The number of items taken from `items`.
-  int get r => _r;
+  final int r;
 
   @override
   List<T> operator [](Object k) {

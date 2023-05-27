@@ -62,4 +62,12 @@ void main() {
       print('$comp (${comps.indexOf(comp)})');
     }
   }
+
+  {
+    print("\nCandy...");
+    final combos = "abcde".combinations(3);
+    for (final x in combos()) {
+      print(x);
+    }
+  }
 }

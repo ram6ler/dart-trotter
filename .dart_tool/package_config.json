@@ -5,10 +5,10 @@
       "name": "trotter",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     }
   ],
-  "generated": "2021-02-26T04:54:26.358993Z",
+  "generated": "2023-05-27T13:44:09.781097Z",
   "generator": "pub",
-  "generatorVersion": "2.12.0-259.16.beta"
+  "generatorVersion": "3.0.2"
 }

@@ -7,7 +7,7 @@ part of trotter;
 ///
 /// _Example_
 ///
-///     var com = Compounds(letters('abcd'));
+///     final com = Compounds(letters('abcd'));
 ///     print('There are ${com.length} subsets of the objects');
 ///     print('in ${com.items}.');
 ///     print('The first subset is ${com[0]}.');

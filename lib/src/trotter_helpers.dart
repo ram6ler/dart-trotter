@@ -75,7 +75,7 @@ List<T> _combination<T>(BigInt k, int r, List<T> items) {
     position += 1;
     d = _nCr(n - position - 1, r - 1);
   }
-  var tail = items.sublist(position + 1);
+  final tail = items.sublist(position + 1);
   return [items[position]]..addAll(_combination<T>(k, r - 1, tail));
 }
 
@@ -111,7 +111,7 @@ List<T> _composition<T>(BigInt k, int r, List<T> items) {
   if (r == 0) {
     return [];
   } else {
-    var tail = items.sublist(position);
+    final tail = items.sublist(position);
     return [items[position]]..addAll(_composition<T>(k, r - 1, tail));
   }
 }
@@ -151,7 +151,7 @@ BigInt _inversePermutation<T>(List<T> permutation, List<T> items) {
   if (r == 0) {
     return BigInt.zero;
   }
-  var sortedPermutation = _sortedArrangement<T>(permutation, items);
+  final sortedPermutation = _sortedArrangement<T>(permutation, items);
   BigInt group = _inverseCombination<T>(sortedPermutation, items);
   return group * _fact(r) +
       _inversePermutationWorker<T>(permutation, sortedPermutation);
@@ -171,8 +171,8 @@ List<T> _amalgam<T>(BigInt k, int r, List<T> items) {
 /// items taken from `items`.
 BigInt _inverseAmalgam<T>(List<T> amalgam, List<T> items) {
   int r = amalgam.length;
-  var n = BigInt.from(items.length);
-  var powers = List<BigInt>.filled(r, BigInt.one, growable: false);
+  final n = BigInt.from(items.length);
+  final powers = List<BigInt>.filled(r, BigInt.one, growable: false);
   for (int i = 1; i < powers.length; i++) {
     powers[i] = powers[i - 1] * n;
   }

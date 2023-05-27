@@ -7,28 +7,25 @@ part of trotter;
 ///
 /// _Example_
 ///
-///     var c = Combinations(3, characters('abcd'));
+///     final c = Combinations(3, characters('abcd'));
 ///     print('There are ${c.length} 3-combinations of the objects');
 ///     print('in ${c.items}.');
 ///     print('The first combination is ${c[0]}.');
 ///
 
 class Combinations<T> extends Combinatorics<T> {
-  Combinations(int r, List<T> items) {
+  Combinations(this.r, List<T> items) {
     if (r < 0 || r > items.length) {
       throw Exception('Cannot take $r items from ${items.length}.');
     }
     if (!_itemsAreUnique(items)) throw Exception('Items are not unique.');
 
     _items = List<T>.from(items, growable: false);
-    _r = r;
     _length = _nCr(items.length, r);
   }
 
-  late int _r;
-
   /// The number of items taken from `items`.
-  int get r => _r;
+  final int r;
 
   @override
   List<T> operator [](Object k) {

@@ -20,9 +20,9 @@ class Storage<T> {
   late Combinatorics<T> combinatorics;
 
   /// The data storing whether each selection is contained.
-  late ByteData _data;
+  late final ByteData _data;
 
-  void _checkselection(List<T> selection) {
+  void _checkSelection(List<T> selection) {
     if (!combinatorics.contains(selection)) {
       throw Exception('''
 Combinatorics structure:
@@ -35,7 +35,7 @@ does not contain:
 
   /// Whether a selection is still in the storage structure.
   bool contains(List<T> selection) {
-    _checkselection(selection);
+    _checkSelection(selection);
     final index = combinatorics.indexOf(selection).toInt(),
         byte = index ~/ 8,
         bit = index % 8,
@@ -46,7 +46,7 @@ does not contain:
 
   /// Toggle whether a selection is still in the storage structure.
   void toggle(List<T> selection) {
-    _checkselection(selection);
+    _checkSelection(selection);
     final index = combinatorics.indexOf(selection).toInt(),
         byte = index ~/ 8,
         bit = index % 8,
@@ -56,7 +56,7 @@ does not contain:
 
   /// Remove a selection from the storage structure.
   void remove(List<T> selection) {
-    _checkselection(selection);
+    _checkSelection(selection);
     if (contains(selection)) {
       toggle(selection);
     }
@@ -78,7 +78,7 @@ does not contain:
 
   /// Add a selection to the storage structure.
   void add(List<T> selection) {
-    _checkselection(selection);
+    _checkSelection(selection);
     if (!contains(selection)) {
       toggle(selection);
     }
