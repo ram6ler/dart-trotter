@@ -1,24 +1,10 @@
-/// Classes for representing _structures_ commonly encountered in combinatorics.
-///
-/// The `trotter` library contains class definitions for `Permutations`,
-/// `Combinations`, `Amalgams` (permutations with repetition), `Selections`
-/// (combinations with repetition), `Subsets` and `Compounds` (permutations of
-/// unspecified length) of objects taken from a list. These classes define objects
-/// that are moderately analogous to lists containing all possible respective arrangements.
-///
-
-library trotter;
-
-import 'dart:math' show Random;
-import 'dart:typed_data' show ByteData;
-
-part 'src/trotter_helpers.dart';
-part 'src/combinatorics.dart';
-part 'src/permutations.dart';
-part 'src/combinations.dart';
-part 'src/amalgams.dart';
-part 'src/compositions.dart';
-part 'src/subsets.dart';
-part 'src/compounds.dart';
-part 'src/storage.dart';
-part 'src/misc.dart';
+export 'src/combinatorics.dart' show Combinatorics;
+export "src/amalgams.dart" show Amalgams;
+export "src/combinations.dart" show Combinations;
+export "src/compositions.dart" show Compositions;
+export "src/compounds.dart" show Compounds;
+export "src/permutations.dart" show Permutations;
+export "src/subsets.dart" show Subsets;
+export "src/storage.dart" show Storage;
+export 'src/extensions.dart' show ListNumCandy, ListStringCandy, StringCandy;
+export 'src/helpers.dart' show factorial, nCr, nPr, characters, string;

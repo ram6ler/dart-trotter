@@ -1,4 +1,5 @@
-part of trotter;
+import "dart:typed_data" show ByteData;
+import "combinatorics.dart" show Combinatorics;
 
 /// A storage wrapper for a combinatorics instance.
 ///
@@ -9,27 +10,20 @@ part of trotter;
 /// (Only meant for small to moderate sized combinatorics structures.)
 ///
 class Storage<T> {
-  Storage(this.combinatorics) {
-    final bitsInByte = BigInt.from(8),
-        numberOfBytes =
-            (combinatorics.length ~/ bitsInByte + BigInt.one).toInt();
-    _data = ByteData(numberOfBytes);
-  }
+  Storage(this.combinatorics)
+      : _data = ByteData(
+            (combinatorics.length ~/ BigInt.from(8) + BigInt.one).toInt());
 
   /// The combinatorics object being wrapped.
-  late Combinatorics<T> combinatorics;
+  final Combinatorics<T> combinatorics;
 
   /// The data storing whether each selection is contained.
-  late final ByteData _data;
+  final ByteData _data;
 
   void _checkSelection(List<T> selection) {
     if (!combinatorics.contains(selection)) {
-      throw Exception('''
-Combinatorics structure:
-  $combinatorics
-does not contain:
-  $selection
-''');
+      throw Exception("Combinatorics structure:\n  $combinatorics"
+          "does not contain:\n  $selection");
     }
   }
 

@@ -1,11 +1,17 @@
 # Change log
 
+## 2.2.0
+
+* Restructured the library to better fit the dart.dev guidelines.
+
 ## 2.1.0
 
 * Update for Dart 3.
+
 ## 2.0.0-dev.1
 
 * Null-safety migration.
+
 ## 1.2.0
 
 * Added a `Storage` class to wrap other classes; this allows us to add, remove and keep track of arrangements in a memory efficient (one bit per arrangement) way. Can only be used for moderately sized structures.
@@ -39,7 +45,7 @@ Made the abstract, parent class `Combinatorics` visible to the user for those ca
 ## 1.0.0
 
 * Cleaned up code to be more in line with Dart 2.
-* Added `example.dart` (and an example output, `fun-with-mastermind.md`) to `example/`. 
+* Added `example.dart` (and an example output, `fun-with-mastermind.md`) to `example/`.
 
 ## 0.9.5
 
@@ -74,6 +80,7 @@ Made the abstract, parent class `Combinatorics` visible to the user for those ca
 * Made the code more readable. Made a few minor tweaks to the existing code.
 
 ## 0.5.1
+
 Improved the documentation; minor bug fixes.
 
 ## 0.5.0

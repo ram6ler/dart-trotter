@@ -1,9 +1,9 @@
-import 'package:trotter/trotter.dart';
+import "package:trotter/trotter.dart";
 
 void main() {
-  final combos = 'abcde'.combinations(3);
+  final combos = "abcde".combinations(3);
   print(combos);
-  String createKey(combo) => combo.join('');
+  String createKey(combo) => combo.join("");
   final sampleSize = 10000,
       p = 1 / sampleSize,
       map = Map<String, num>.fromIterable(combos(),
@@ -15,7 +15,7 @@ void main() {
   }
 
   for (final combo in combos()) {
-    final key = combo.join('');
-    print('$key\t${map[key]}');
+    final key = combo.join("");
+    print("$key\t${map[key]}");
   }
 }

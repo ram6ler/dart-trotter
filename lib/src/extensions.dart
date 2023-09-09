@@ -1,14 +1,14 @@
-part of trotter;
-
-/// Splits string [x] into its characters.
-List<String> characters(String x) => x.split('');
-
-/// Creates a string from the characters in [x].
-String string(List<String> x) => x.join('');
+import "amalgams.dart" show Amalgams;
+import "combinations.dart" show Combinations;
+import "compositions.dart" show Compositions;
+import "compounds.dart" show Compounds;
+import "permutations.dart" show Permutations;
+import "subsets.dart" show Subsets;
+import "helpers.dart" show characters;
 
 /// Convenience methods to create combinatorics instances from
 /// lists of strings.
-extension TrotterListStringCandy on List<String> {
+extension ListStringCandy on List<String> {
   Amalgams<String> amalgams([int? take]) {
     take = take ?? this.length;
     return Amalgams<String>(take, this);
@@ -35,8 +35,8 @@ extension TrotterListStringCandy on List<String> {
 }
 
 /// Convenience methods to create combinatorics instances from
-/// lists of nums.
-extension TrotterListNumCandy on List<num> {
+/// lists of num types.
+extension ListNumCandy on List<num> {
   Amalgams<num> amalgams([int? take]) {
     take = take ?? this.length;
     return Amalgams<num>(take, this);
@@ -62,7 +62,7 @@ extension TrotterListNumCandy on List<num> {
   Subsets<num> subsets() => Subsets<num>(this);
 }
 
-extension TrotterStringCandy on String {
+extension StringCandy on String {
   Amalgams<String> amalgams([int? take]) {
     take = take ?? this.length;
     return Amalgams<String>(take, characters(this));
