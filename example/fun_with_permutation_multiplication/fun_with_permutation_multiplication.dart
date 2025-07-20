@@ -6,48 +6,47 @@ final indices = List<int>.generate(10, (i) => i);
 void main() {
   final permutations = indices.permutations();
 
-  print("There are ${permutations.length} permutations of the digits 0-9.");
+  print('There are ${permutations.length} permutations of the digits 0-9.');
   print(
-      "\nHere are the first, middle and last ten in the Johnson-Trotter ordering:\n");
+      '\nHere are the first, middle and last ten in the Johnson-Trotter ordering:\n');
 
-  print(row("Index", "Permutation", "Cyclic Notation", 10, 35));
+  print(row('Index', 'Permutation', 'Cyclic Notation', 10, 35));
   void table(BigInt start, BigInt end, [BigInt? mark]) {
     for (BigInt i = start; i < end; i += BigInt.one) {
-      print("  " +
-          row("$i", permutations[i].toString(),
-              cyclic(List<int>.from(permutations[i])), 10, 35) +
-          (i == mark ? " <---- Here!" : ""));
+      final r = row('$i', permutations[i].toString(),
+          cyclic(List<int>.from(permutations[i])), 10, 35);
+      print('  $r ${(i == mark ? ' <---- Here!' : '')}');
     }
   }
 
   table(BigInt.zero, BigInt.from(10));
-  print("...");
+  print('\n');
   table(permutations.length ~/ BigInt.from(2),
       permutations.length ~/ BigInt.from(2) + BigInt.from(10));
-  print("...");
+  print('\n');
   table(permutations.length - BigInt.from(10), permutations.length);
 
-  stdout.write("\nInput permutation p in cyclic notation: ");
+  stdout.write('\nInput permutation p in cyclic notation: ');
 
   final p = interpret();
 
-  print("...");
+  print('\n');
   table(permutations.indexOf(p) - BigInt.from(5),
       permutations.indexOf(p) + BigInt.from(5), permutations.indexOf(p));
 
-  stdout.write("\nInput permutation q in cyclic notation: ");
+  stdout.write('\nInput permutation q in cyclic notation: ');
 
   final q = interpret();
 
-  print("...");
+  print('\n');
   table(permutations.indexOf(q) - BigInt.from(5),
       permutations.indexOf(q) + BigInt.from(5), permutations.indexOf(q));
 
   final prod = product(p, q);
 
-  print("The product of p and q is ${cyclic(product(p, q))}:");
+  print('\nThe product of p and q is ${cyclic(product(p, q))}:');
 
-  print("...");
+  print('\n');
   table(permutations.indexOf(prod) - BigInt.from(5),
       permutations.indexOf(prod) + BigInt.from(5), permutations.indexOf(prod));
 }
@@ -100,5 +99,5 @@ List<int> product(List<int> p, List<int> q) {
 
 String display(List<int> permutation) {
   String spread(List<int> list) => list.map((x) => x.toString()).join(' ');
-  return spread(indices) + '\n' + spread(permutation);
+  return '${spread(indices)}\n${spread(permutation)}';
 }

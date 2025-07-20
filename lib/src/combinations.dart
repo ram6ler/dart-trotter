@@ -1,5 +1,5 @@
-import "combinatorics.dart" show Combinatorics;
-import "helpers.dart"
+import 'combinatorics.dart' show Combinatorics;
+import 'helpers.dart'
     show
         nCr,
         itemsAreUnique,
@@ -14,22 +14,14 @@ import "helpers.dart"
 /// A pseudo-list "containing" all the `r`-combinations of objects taken from
 /// the list `items`.
 ///
-/// _Example_
-///
-///     final c = Combinations(3, characters("abcd"));
-///     print("There are ${c.length} 3-combinations of the objects");
-///     print("in ${c.items}.");
-///     print("The first combination is ${c[0]}.");
-///
-
 class Combinations<T> extends Combinatorics<T> {
   Combinations(this.r, List<T> items)
       : _items = List<T>.from(items, growable: false),
         _length = nCr(items.length, r) {
     if (r < 0 || r > items.length) {
-      throw Exception("Cannot take $r items from ${items.length}.");
+      throw Exception('Cannot take $r items from ${items.length}.');
     }
-    if (!itemsAreUnique(items)) throw Exception("Items are not unique.");
+    if (!itemsAreUnique(items)) throw Exception('Items are not unique.');
   }
 
   /// The number of items taken from `items`.
@@ -45,8 +37,8 @@ class Combinations<T> extends Combinatorics<T> {
 
   @override
   List<T> operator [](Object k) {
-    BigInt biK = indexFromIntOrBigInt(k);
-    return combination(adjustedIndex(biK, length), r, items);
+    BigInt bK = indexFromIntOrBigInt(k);
+    return combination(adjustedIndex(bK, length), r, items);
   }
 
   /// Returns the index of `combination` in the list of
@@ -73,5 +65,5 @@ class Combinations<T> extends Combinatorics<T> {
 
   @override
   String toString() =>
-      "Pseudo-list containing all $length $r-combinations of items from $items.";
+      'Pseudo-list containing all $length $r-combinations of items from $items.';
 }

@@ -1,5 +1,5 @@
-import "combinatorics.dart" show Combinatorics;
-import "helpers.dart"
+import 'combinatorics.dart' show Combinatorics;
+import 'helpers.dart'
     show
         nPr,
         itemsAreUnique,
@@ -14,21 +14,13 @@ import "helpers.dart"
 /// A pseudo-list "containing" all the compounds (permutations of
 /// unspecified length) of objects taken from the list `elements`.
 ///
-/// _Example_
-///
-///     final com = Compounds(letters("abcd"));
-///     print("There are ${com.length} subsets of the objects");
-///     print("in ${com.items}.");
-///     print("The first subset is ${com[0]}.");
-///
-
 class Compounds<T> extends Combinatorics<T> {
   Compounds(List<T> items)
       : _items = List<T>.from(items, growable: false),
         _length = (List<BigInt>.generate(
                 items.length + 1, (r) => nPr(items.length, r))
             .fold<BigInt>(BigInt.zero, (a, b) => a + b)) {
-    if (!itemsAreUnique(items)) throw Exception("Items are not unique.");
+    if (!itemsAreUnique(items)) throw Exception('Items are not unique.');
   }
 
   final List<T> _items;
@@ -41,8 +33,8 @@ class Compounds<T> extends Combinatorics<T> {
 
   @override
   List<T> operator [](Object k) {
-    BigInt biK = indexFromIntOrBigInt(k);
-    return compound(adjustedIndex(biK, length), items);
+    BigInt bK = indexFromIntOrBigInt(k);
+    return compound(adjustedIndex(bK, length), items);
   }
 
   /// Returns the index of `subset` in the list of arranged subsets.
@@ -68,5 +60,5 @@ class Compounds<T> extends Combinatorics<T> {
 
   @override
   String toString() =>
-      "Pseudo-list containing all $length compounds of items from $items.";
+      'Pseudo-list containing all $length compounds of items from $items.';
 }

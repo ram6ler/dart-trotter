@@ -1,66 +1,71 @@
-import "package:trotter/trotter.dart";
+import 'package:trotter/trotter.dart';
 
 void main() {
-  final characters = (String x) => x.split("");
   {
-    print("\nCombinations...");
-    final bagOfItems = characters("abcde"),
+    print('\nCombinations...');
+    final bagOfItems = characters('abcde'),
         combos = Combinations(3, bagOfItems);
-    for (final combo in combos()) {
-      print("$combo (${combos.indexOf(combo)})");
+    for (final (i, combo) in combos().indexed) {
+      print('$i\t$combo\t${combos.indexOf(combo)}');
     }
 
     for (final combo in [
-      ["e", "c", "a"],
-      ["a", "c", "e"]
+      ['e', 'c', 'a'],
+      ['a', 'c', 'e']
     ]) {
-      print("... $combo -> ${combos.indexOf(combo)}");
+      print('... $combo -> ${combos.indexOf(combo)}');
     }
   }
 
   {
-    print("\nPermutations...");
-    final bagOfItems = characters("abcde"), perms = Permutations(3, bagOfItems);
-    for (final perm in perms()) {
-      print("$perm (${perms.indexOf(perm)})");
+    print('\nPermutations...');
+    final bagOfItems = characters('abcde'), perms = Permutations(3, bagOfItems);
+    for (final (i, perm) in perms().indexed) {
+      print('$i\t$perm\t${perms.indexOf(perm)}');
     }
   }
 
   {
-    print("\nCompositions...");
-    final bagOfItems = characters("abcde"), comps = Compositions(3, bagOfItems);
-    for (final comp in comps()) {
-      print("$comp (${comps.indexOf(comp)})");
+    print('\nCompositions...');
+    final bagOfItems = characters('abcde'), comps = Compositions(3, bagOfItems);
+    for (final (i, comp) in comps().indexed) {
+      print('$i\t$comp\t${comps.indexOf(comp)}');
     }
     for (final comp in [
-      ["e", "c", "a"],
-      ["a", "c", "e"]
+      ['e', 'c', 'a'],
+      ['a', 'c', 'e']
     ]) {
-      print("... $comp -> ${comps.indexOf(comp)}");
+      print('... $comp -> ${comps.indexOf(comp)}');
     }
   }
 
   {
-    print("\nAmalgams...");
-    final bagOfItems = characters("abcde"), amalgams = Amalgams(3, bagOfItems);
-    for (final amalgam in amalgams()) {
-      print("$amalgam (${amalgams.indexOf(amalgam)})");
+    print('\nAmalgams...');
+    final bagOfItems = characters('abcde'), amalgams = Amalgams(3, bagOfItems);
+    for (final (i, amalgam) in amalgams().indexed) {
+      print('$i\t$amalgam\t${amalgams.indexOf(amalgam)}');
     }
   }
 
   {
-    print("\nSubsets...");
-    final bagOfItems = characters("abcde"), subs = Subsets(bagOfItems);
-    for (final sub in subs()) {
-      print("$sub (${subs.indexOf(sub)})");
+    print('\nSubsets...');
+    final bagOfItems = characters('abcde'), subs = Subsets(bagOfItems);
+    for (final (i, sub) in subs().indexed) {
+      print('$i\t$sub\t${subs.indexOf(sub)}');
+    }
+    for (final sub in [
+      ['e', 'c', 'a'],
+      ['a', 'c', 'e']
+    ]) {
+      print('... $sub -> ${subs.indexOf(sub)}');
     }
   }
 
   {
-    print("\nCompounds...");
-    final bagOfItems = characters("abcde"), comps = Compounds(bagOfItems);
-    for (final comp in comps()) {
-      print("$comp (${comps.indexOf(comp)})");
+    print('\nCompounds...');
+    final bagOfItems = characters('abcde'), comps = Compounds(bagOfItems);
+    for (final (i, comp) in comps().indexed) {
+      print('$i\t$comp\t${comps.indexOf(comp)}');
     }
   }
 }

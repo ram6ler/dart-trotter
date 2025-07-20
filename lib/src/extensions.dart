@@ -1,89 +1,64 @@
-import "amalgams.dart" show Amalgams;
-import "combinations.dart" show Combinations;
-import "compositions.dart" show Compositions;
-import "compounds.dart" show Compounds;
-import "permutations.dart" show Permutations;
-import "subsets.dart" show Subsets;
-import "helpers.dart" show characters;
+import 'amalgams.dart' show Amalgams;
+import 'combinations.dart' show Combinations;
+import 'compositions.dart' show Compositions;
+import 'compounds.dart' show Compounds;
+import 'permutations.dart' show Permutations;
+import 'subsets.dart' show Subsets;
+import 'helpers.dart' show characters;
 
 /// Convenience methods to create combinatorics instances from
 /// lists of strings.
-extension ListStringCandy on List<String> {
-  Amalgams<String> amalgams([int? take]) {
-    take = take ?? this.length;
-    return Amalgams<String>(take, this);
-  }
+extension ListExtensions<T> on List<T> {
+  /// The amalgams of length `take` taken from the items.
+  Amalgams<T> amalgams([int? take]) => Amalgams<T>(take ?? length, this);
 
-  Combinations<String> combinations([int? take]) {
-    take = take ?? this.length;
-    return Combinations<String>(take, this);
-  }
+  /// The combinations of length `take` taken from the items.
+  Combinations<T> combinations([int? take]) =>
+      Combinations<T>(take ?? length, this);
 
-  Compositions<String> compositions([int? take]) {
-    take = take ?? this.length;
-    return Compositions<String>(take, this);
-  }
+  /// The compositions of length `take` taken from the items.
+  Compositions<T> compositions([int? take]) =>
+      Compositions<T>(take ?? length, this);
 
-  Compounds<String> compounds() => Compounds<String>(this);
+  /// The compounds taken from the items.
+  Compounds<T> compounds() => Compounds<T>(this);
 
-  Permutations<String> permutations([int? take]) {
-    take = take ?? this.length;
-    return Permutations<String>(take, this);
-  }
+  /// The permutations of length `take` taken from the items.
+  Permutations<T> permutations([int? take]) =>
+      Permutations<T>(take ?? length, this);
 
-  Subsets<String> subsets() => Subsets<String>(this);
+  /// The subsets taken from the items.
+  Subsets<T> subsets() => Subsets<T>(this);
 }
 
-/// Convenience methods to create combinatorics instances from
-/// lists of num types.
-extension ListNumCandy on List<num> {
-  Amalgams<num> amalgams([int? take]) {
-    take = take ?? this.length;
-    return Amalgams<num>(take, this);
-  }
-
-  Combinations<num> combinations([int? take]) {
-    take = take ?? this.length;
-    return Combinations<num>(take, this);
-  }
-
-  Compositions<num> compositions([int? take]) {
-    take = take ?? this.length;
-    return Compositions<num>(take, this);
-  }
-
-  Compounds<num> compounds() => Compounds<num>(this);
-
-  Permutations<num> permutations([int? take]) {
-    take = take ?? this.length;
-    return Permutations<num>(take, this);
-  }
-
-  Subsets<num> subsets() => Subsets<num>(this);
-}
-
-extension StringCandy on String {
+extension StringExtensions on String {
+  /// The amalgams of length `take` of the characters in the string.
   Amalgams<String> amalgams([int? take]) {
-    take = take ?? this.length;
+    take = take ?? length;
     return Amalgams<String>(take, characters(this));
   }
 
+  /// The combinations of length `take` of the characters in the string.
   Combinations<String> combinations([int? take]) {
-    take = take ?? this.length;
+    take = take ?? length;
     return Combinations<String>(take, characters(this));
   }
 
+  /// The compositions of length `take` of the characters in the string.
   Compositions<String> compositions([int? take]) {
-    take = take ?? this.length;
+    take = take ?? length;
     return Compositions<String>(take, characters(this));
   }
 
+  /// The compounds of the characters in the string.
   Compounds<String> compounds() => Compounds<String>(characters(this));
 
+  /// The permutations of length `take` of the characters in the string.
   Permutations<String> permutations([int? take]) {
-    take = take ?? this.length;
+    take = take ?? length;
     return Permutations<String>(take, characters(this));
   }
 
+  /// The subsets of the characters in the string.
   Subsets<String> subsets() => Subsets<String>(characters(this));
 }

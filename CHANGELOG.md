@@ -1,5 +1,10 @@
 # Change log
 
+## 2.2.2
+
+* Some typing clarification.
+* Removed README generator in favor of using popmark.
+
 ## 2.2.1
 
 * Housekeeping.

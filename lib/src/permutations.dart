@@ -1,5 +1,5 @@
-import "combinatorics.dart" show Combinatorics;
-import "helpers.dart"
+import 'combinatorics.dart' show Combinatorics;
+import 'helpers.dart'
     show
         nPr,
         itemsAreUnique,
@@ -14,23 +14,15 @@ import "helpers.dart"
 /// A pseudo-list "containing" all the `r`-permutations of objects taken from
 /// the list `items`.
 ///
-/// _Example_
-///
-///     final p = Permutations(3, characters("abcd"));
-///     print("There are ${p.length} 3-permutations of the objects");
-///     print("in ${p.items}.");
-///     print("The first permutation is ${p[0]}.");
-///
-
 class Permutations<T> extends Combinatorics<T> {
   Permutations(this.r, List<T> items)
       : _items = List<T>.from(items, growable: false),
         _length = nPr(items.length, r) {
     if (r < 0 || r > items.length) {
-      throw Exception("Cannot take $r items from ${items.length}.");
+      throw Exception('Cannot take $r items from ${items.length}.');
     }
     if (!itemsAreUnique(items)) {
-      throw Exception("Items are not unique.");
+      throw Exception('Items are not unique.');
     }
   }
 
@@ -47,8 +39,8 @@ class Permutations<T> extends Combinatorics<T> {
 
   @override
   List<T> operator [](Object k) {
-    BigInt biK = indexFromIntOrBigInt(k);
-    return permutation(adjustedIndex(biK, length), r, items);
+    BigInt bK = indexFromIntOrBigInt(k);
+    return permutation(adjustedIndex(bK, length), r, items);
   }
 
   /// Returns the index of `permutation` in the list of arranged permutations.
@@ -74,5 +66,5 @@ class Permutations<T> extends Combinatorics<T> {
 
   @override
   String toString() =>
-      "Pseudo-list containing all $length $r-permutations of items from $items.";
+      'Pseudo-list containing all $length $r-permutations of items from $items.';
 }

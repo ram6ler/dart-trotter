@@ -345,17 +345,6 @@
         return receiver;
       return J.getNativeInterceptor(receiver);
     },
-    getInterceptor$ns(receiver) {
-      if (typeof receiver == "number")
-        return J.JSNumber.prototype;
-      if (typeof receiver == "string")
-        return J.JSString.prototype;
-      if (receiver == null)
-        return receiver;
-      if (!(receiver instanceof A.Object))
-        return J.UnknownJavaScriptObject.prototype;
-      return receiver;
-    },
     getInterceptor$x(receiver) {
       if (receiver == null)
         return receiver;
@@ -390,11 +379,6 @@
       if (typeof receiver != "object")
         return a0 != null && receiver === a0;
       return J.getInterceptor$(receiver).$eq(receiver, a0);
-    },
-    $mul$ns(receiver, a0) {
-      if (typeof receiver == "number" && typeof a0 == "number")
-        return receiver * a0;
-      return J.getInterceptor$ns(receiver).$mul(receiver, a0);
     },
     asByteData$0$x(receiver) {
       return J.getInterceptor$x(receiver).asByteData$0(receiver);
@@ -3758,8 +3742,6 @@
     ConcurrentModificationError: function ConcurrentModificationError(t0) {
       this.modifiedObject = t0;
     },
-    OutOfMemoryError: function OutOfMemoryError() {
-    },
     StackOverflowError: function StackOverflowError() {
     },
     _Exception: function _Exception(t0) {
@@ -3962,6 +3944,9 @@
       return A.permutation(k, r, items, $T);
     },
     indexFromIntOrBigInt(k) {
+      $label0$0: {
+        break $label0$0;
+      }
       return k;
     },
     amalgam_closure: function amalgam_closure(t0, t1, t2, t3) {
@@ -4283,9 +4268,6 @@
       scaled = absolute < 1 ? absolute / factor : factor / absolute;
       return ((scaled * 9007199254740992 | 0) + (scaled * 3542243181176521 | 0)) * 599197 + floorLog2 * 1259 & 536870911;
     },
-    $mul(receiver, other) {
-      return receiver * other;
-    },
     $mod(receiver, other) {
       var result = receiver % other;
       if (result === 0)
@@ -4367,24 +4349,6 @@
     $isTrustedGetRuntimeType: 1
   };
   J.JSString.prototype = {
-    $mul(receiver, times) {
-      var s, result;
-      if (0 >= times)
-        return "";
-      if (times === 1 || receiver.length === 0)
-        return receiver;
-      if (times !== times >>> 0)
-        throw A.wrapException(B.C_OutOfMemoryError);
-      for (s = receiver, result = ""; true;) {
-        if ((times & 1) === 1)
-          result = s + result;
-        times = times >>> 1;
-        if (times === 0)
-          break;
-        s += s;
-      }
-      return result;
-    },
     toString$0(receiver) {
       return receiver;
     },
@@ -5872,10 +5836,9 @@
       return other._absSubSetSign$2(_this, !isNegative);
     },
     $mul(_, other) {
-      var used, otherUsed, resultUsed, digits, otherDigits, resultDigits, t1, i, t2;
-      type$._BigIntImpl._as(other);
-      used = this._used;
-      otherUsed = other._used;
+      var resultUsed, digits, otherDigits, resultDigits, t1, i, t2,
+        used = this._used,
+        otherUsed = other._used;
       if (used === 0 || otherUsed === 0)
         return $.$get$_BigIntImpl_zero();
       resultUsed = used + otherUsed;
@@ -6207,15 +6170,6 @@
       return "Concurrent modification during iteration: " + A.Error_safeToString(t1) + ".";
     }
   };
-  A.OutOfMemoryError.prototype = {
-    toString$0(_) {
-      return "Out of Memory";
-    },
-    get$stackTrace() {
-      return null;
-    },
-    $isError: 1
-  };
   A.StackOverflowError.prototype = {
     toString$0(_) {
       return "Stack Overflow";
@@ -6411,9 +6365,6 @@
     },
     call$1(fromTo) {
       return this.call$2(fromTo, null);
-    },
-    $index(_, k) {
-      throw A.wrapException(new A.Error());
     }
   };
   A.Compositions.prototype = {
@@ -6536,53 +6487,50 @@
         _this = t2._as(t2._as(init.G.document).createElement("canvas"));
       _this.width = 373;
       _this.height = height;
-      for (t3 = type$.nullable_JSObject, t4 = this.combinatorics, t5 = this.sprites, row = from; row.compareTo$1(0, t1) < 0; row = row.$add(0, $.$get$_BigIntImpl_one())) {
-        for (col = 0; col < t4.$index(0, row).length; ++col) {
-          t6 = t3._as(_this.getContext("2d"));
+      for (t3 = this.combinatorics, t4 = this.sprites, t5 = type$.nullable_JSObject, row = from; row.compareTo$1(0, t1) < 0; row = row.$add(0, $.$get$_BigIntImpl_one()))
+        for (col = 0; col < t3.$index(0, row).length; ++col) {
+          t6 = t5._as(_this.getContext("2d"));
           if (t6 == null)
             t6 = t2._as(t6);
-          t7 = t4.$index(0, row);
+          t7 = t3.$index(0, row);
           if (!(col < t7.length))
             return A.ioore(t7, col);
-          t6.drawImage.apply(t6, [t5, A._asNum(J.$mul$ns(t7[col], 100)), 0, 100, 100, col * 69 + 25, row.$sub(0, from).toInt$0(0) * B.JSInt_methods.$tdiv(height, t1.$sub(0, from).toInt$0(0)), 74, B.JSInt_methods.$tdiv(height, t1.$sub(0, from).toInt$0(0))]);
+          t6.drawImage.apply(t6, [t4, t7[col] * 100, 0, 100, 100, col * 69 + 25, row.$sub(0, from).toInt$0(0) * B.JSInt_methods.$tdiv(height, t1.$sub(0, from).toInt$0(0)), 74, B.JSInt_methods.$tdiv(height, t1.$sub(0, from).toInt$0(0))]);
+          t7 = t5._as(_this.getContext("2d"));
+          t6 = t7 == null ? t2._as(t7) : t7;
+          t6.fillText("[" + row.toString$0(0) + "]", 5, row.$sub(0, from).toInt$0(0) * B.JSInt_methods.$tdiv(height, t1.$sub(0, from).toInt$0(0)) + 15);
         }
-        t6 = t3._as(_this.getContext("2d"));
-        if (t6 == null)
-          t6 = t2._as(t6);
-        t6.fillText("[" + row.toString$0(0) + "]", 5, row.$sub(0, from).toInt$0(0) * B.JSInt_methods.$tdiv(height, t1.$sub(0, from).toInt$0(0)) + 15);
-      }
       return _this;
     },
     $signature: 15
   };
   A.main_closure.prototype = {
     call$1(_) {
-      var t5, t6, t7, t8, t9, t10, t11, t12,
+      var t4, t5, t6, t7, t8, t9, t10, t11,
         _s21_ = "Items are not unique.",
         $frames = A._setArrayType([0, 1, 2, 3, 4], type$.JSArray_int),
-        t1 = type$.dynamic,
+        t1 = type$.int,
         t2 = A.List_List$from($frames, false, t1),
-        t3 = A.factorial(5).$tdiv(0, A.factorial(2)),
-        t4 = type$.int;
-      if (A.LinkedHashSet_LinkedHashSet$from($frames, t4)._collection$_length !== 5)
+        t3 = A.factorial(5).$tdiv(0, A.factorial(2));
+      if (A.LinkedHashSet_LinkedHashSet$from($frames, t1)._collection$_length !== 5)
         A.throwExpression(A.Exception_Exception(_s21_));
-      t5 = A.List_List$from($frames, false, t1);
-      t6 = A.factorial(5).$tdiv(0, A.factorial(2)).$tdiv(0, A.factorial(3));
-      if (A.LinkedHashSet_LinkedHashSet$from($frames, t4)._collection$_length !== 5)
+      t4 = A.List_List$from($frames, false, t1);
+      t5 = A.factorial(5).$tdiv(0, A.factorial(2)).$tdiv(0, A.factorial(3));
+      if (A.LinkedHashSet_LinkedHashSet$from($frames, t1)._collection$_length !== 5)
         A.throwExpression(A.Exception_Exception(_s21_));
-      t7 = A.List_List$from($frames, false, t1);
-      t8 = A._BigIntImpl__BigIntImpl$from(5).pow$1(3);
-      if (A.LinkedHashSet_LinkedHashSet$from($frames, t4)._collection$_length !== 5)
+      t6 = A.List_List$from($frames, false, t1);
+      t7 = A._BigIntImpl__BigIntImpl$from(5).pow$1(3);
+      if (A.LinkedHashSet_LinkedHashSet$from($frames, t1)._collection$_length !== 5)
         A.throwExpression(A.Exception_Exception(_s21_));
-      t9 = A.List_List$from($frames, false, t1);
-      t10 = A.factorial(7).$tdiv(0, A.factorial(4)).$tdiv(0, A.factorial(3));
-      if (A.LinkedHashSet_LinkedHashSet$from($frames, t4)._collection$_length !== 5)
+      t8 = A.List_List$from($frames, false, t1);
+      t9 = A.factorial(7).$tdiv(0, A.factorial(4)).$tdiv(0, A.factorial(3));
+      if (A.LinkedHashSet_LinkedHashSet$from($frames, t1)._collection$_length !== 5)
         A.throwExpression(A.Exception_Exception(_s21_));
-      t11 = A.List_List$from($frames, false, t1);
-      t12 = $.$get$_BigIntImpl_one().$shl(0, 5);
-      if (A.LinkedHashSet_LinkedHashSet$from($frames, t4)._collection$_length !== 5)
+      t10 = A.List_List$from($frames, false, t1);
+      t11 = $.$get$_BigIntImpl_one().$shl(0, 5);
+      if (A.LinkedHashSet_LinkedHashSet$from($frames, t1)._collection$_length !== 5)
         A.throwExpression(A.Exception_Exception(_s21_));
-      B.JSArray_methods.forEach$1(A._setArrayType([new A.Arrangement(new A.Permutations(3, t2, t3, type$.Permutations_dynamic), "      <h2>3-Permutations</h2>\n      <p>\n        If we take three of the five trotters, <em>without replacement</em>,\n        and arrange them so that <em>order is important</em>, then the possible\n        arrangements are:\n      </p>\n      "), new A.Arrangement(new A.Combinations(3, t5, t6, type$.Combinations_dynamic), "      <h2>3-Combinations</h2>\n      <p>\n        If we take three of the five trotters, <em>without replacement</em>,\n        and arrange them so that <em>order is not important</em>, then the\n        possible arrangements are:\n      </p>\n      "), new A.Arrangement(new A.Amalgams(3, t7, t8, type$.Amalgams_dynamic), "      <h2>3-Amalgams</h2>\n      <p>\n        If we take three of the five trotters, <em>with replacement</em>,\n        and arrange them so that <em>order is important</em>, then the\n        possible arrangements are:\n      </p>\n      "), new A.Arrangement(new A.Compositions(3, t9, t10, type$.Compositions_dynamic), "      <h2>3-Compositions</h2>\n      <p>\n        If we take three of the five trotters, <em>with replacement</em>,\n        and arrange them so that <em>order is not important</em>, then the\n        possible arrangements are:\n      </p>\n      "), new A.Arrangement(new A.Subsets(t11, t12, type$.Subsets_dynamic), "      <h2>Subsets</h2>\n      <p>\n        If we take <em>any number</em> of the five trotters, <em>without\n        replacement</em>, and arrange them so that <em>order is not \n        important</em>, then the possible arrangements are:\n      </p>\n      "), new A.Arrangement(A.Compounds$($frames, t1), "      <h2>Compounds</h2>\n      <p>\n        If we take <em>any number</em> of the five trotters, <em>without\n        replacement</em>, and arrange them so that <em>order is \n        important</em>, then the possible arrangements are:\n      </p>\n      ")], type$.JSArray_Arrangement), this.draw);
+      B.JSArray_methods.forEach$1(A._setArrayType([new A.Arrangement(new A.Permutations(3, t2, t3, type$.Permutations_int), "      <h2>3-Permutations</h2>\n      <p>\n        If we take three of the five trotters, <em>without replacement</em>,\n        and arrange them so that <em>order is important</em>, then the possible\n        arrangements are:\n      </p>\n      "), new A.Arrangement(new A.Combinations(3, t4, t5, type$.Combinations_int), "      <h2>3-Combinations</h2>\n      <p>\n        If we take three of the five trotters, <em>without replacement</em>,\n        and arrange them so that <em>order is not important</em>, then the\n        possible arrangements are:\n      </p>\n      "), new A.Arrangement(new A.Amalgams(3, t6, t7, type$.Amalgams_int), "      <h2>3-Amalgams</h2>\n      <p>\n        If we take three of the five trotters, <em>with replacement</em>,\n        and arrange them so that <em>order is important</em>, then the\n        possible arrangements are:\n      </p>\n      "), new A.Arrangement(new A.Compositions(3, t8, t9, type$.Compositions_int), "      <h2>3-Compositions</h2>\n      <p>\n        If we take three of the five trotters, <em>with replacement</em>,\n        and arrange them so that <em>order is not important</em>, then the\n        possible arrangements are:\n      </p>\n      "), new A.Arrangement(new A.Subsets(t10, t11, type$.Subsets_int), "      <h2>Subsets</h2>\n      <p>\n        If we take <em>any number</em> of the five trotters, <em>without\n        replacement</em>, and arrange them so that <em>order is not \n        important</em>, then the possible arrangements are:\n      </p>\n      "), new A.Arrangement(A.Compounds$($frames, t1), "      <h2>Compounds</h2>\n      <p>\n        If we take <em>any number</em> of the five trotters, <em>without\n        replacement</em>, and arrange them so that <em>order is \n        important</em>, then the possible arrangements are:\n      </p>\n      ")], type$.JSArray_Arrangement), this.draw);
     },
     $signature: 4
   };
@@ -6603,7 +6551,7 @@
       _inherit = hunkHelpers.inherit,
       _inheritMany = hunkHelpers.inheritMany;
     _inherit(A.Object, null);
-    _inheritMany(A.Object, [A.JS_CONST, J.Interceptor, J.ArrayIterator, A.Error, A.Iterable, A.ListIterator, A.FixedLengthListMixin, A.TypeErrorDecoder, A.NullThrownFromJavaScriptException, A._StackTrace, A.Closure, A.MapBase, A.LinkedHashMapCell, A._Cell, A._UnmodifiableNativeByteBufferView, A.Rti, A._FunctionParameters, A._Type, A._TimerImpl, A._SyncStarIterator, A.AsyncError, A._FutureListener, A._Future, A._AsyncCallbackEntry, A.Stream, A._Zone, A.SetBase, A._LinkedHashSetCell, A._LinkedHashSetIterator, A.ListBase, A._BigIntImpl, A.OutOfMemoryError, A.StackOverflowError, A._Exception, A.IntegerDivisionByZeroException, A.Null, A._StringStackTrace, A.StringBuffer, A.Combinatorics, A.EventStreamProvider, A._EventStreamSubscription, A.Arrangement]);
+    _inheritMany(A.Object, [A.JS_CONST, J.Interceptor, J.ArrayIterator, A.Error, A.Iterable, A.ListIterator, A.FixedLengthListMixin, A.TypeErrorDecoder, A.NullThrownFromJavaScriptException, A._StackTrace, A.Closure, A.MapBase, A.LinkedHashMapCell, A._Cell, A._UnmodifiableNativeByteBufferView, A.Rti, A._FunctionParameters, A._Type, A._TimerImpl, A._SyncStarIterator, A.AsyncError, A._FutureListener, A._Future, A._AsyncCallbackEntry, A.Stream, A._Zone, A.SetBase, A._LinkedHashSetCell, A._LinkedHashSetIterator, A.ListBase, A._BigIntImpl, A.StackOverflowError, A._Exception, A.IntegerDivisionByZeroException, A.Null, A._StringStackTrace, A.StringBuffer, A.Combinatorics, A.EventStreamProvider, A._EventStreamSubscription, A.Arrangement]);
     _inheritMany(J.Interceptor, [J.JSBool, J.JSNull, J.JavaScriptObject, J.JavaScriptBigInt, J.JavaScriptSymbol, J.JSNumber, J.JSString]);
     _inheritMany(J.JavaScriptObject, [J.LegacyJavaScriptObject, J.JSArray, A.NativeByteBuffer, A.NativeTypedData]);
     _inheritMany(J.LegacyJavaScriptObject, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction]);
@@ -6650,7 +6598,7 @@
     leafTags: null,
     arrayRti: Symbol("$ti")
   };
-  A._Universe_addRules(init.typeUniverse, JSON.parse('{"PlainJavaScriptObject":"LegacyJavaScriptObject","UnknownJavaScriptObject":"LegacyJavaScriptObject","JavaScriptFunction":"LegacyJavaScriptObject","JSBool":{"bool":[],"TrustedGetRuntimeType":[]},"JSNull":{"TrustedGetRuntimeType":[]},"JavaScriptObject":{"JSObject":[]},"LegacyJavaScriptObject":{"JSObject":[]},"JSArray":{"List":["1"],"JSObject":[],"Iterable":["1"]},"JSUnmodifiableArray":{"JSArray":["1"],"List":["1"],"JSObject":[],"Iterable":["1"]},"ArrayIterator":{"Iterator":["1"]},"JSNumber":{"double":[],"num":[]},"JSInt":{"double":[],"int":[],"num":[],"TrustedGetRuntimeType":[]},"JSNumNotInt":{"double":[],"num":[],"TrustedGetRuntimeType":[]},"JSString":{"String":[],"TrustedGetRuntimeType":[]},"LateError":{"Error":[]},"EfficientLengthIterable":{"Iterable":["1"]},"ListIterable":{"Iterable":["1"]},"ListIterator":{"Iterator":["1"]},"ReversedListIterable":{"ListIterable":["1"],"Iterable":["1"]},"NullError":{"TypeError":[],"Error":[]},"JsNoSuchMethodError":{"Error":[]},"UnknownJsTypeError":{"Error":[]},"_StackTrace":{"StackTrace":[]},"Closure":{"Function":[]},"Closure0Args":{"Function":[]},"Closure2Args":{"Function":[]},"TearOffClosure":{"Function":[]},"StaticClosure":{"Function":[]},"BoundClosure":{"Function":[]},"RuntimeError":{"Error":[]},"JsLinkedHashMap":{"MapBase":["1","2"]},"NativeByteBuffer":{"JSObject":[],"TrustedGetRuntimeType":[]},"NativeTypedData":{"JSObject":[]},"NativeByteData":{"JSObject":[],"TrustedGetRuntimeType":[]},"NativeTypedArray":{"JavaScriptIndexingBehavior":["1"],"JSObject":[]},"NativeTypedArrayOfDouble":{"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"JSObject":[],"Iterable":["double"],"FixedLengthListMixin":["double"]},"NativeTypedArrayOfInt":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"]},"NativeFloat32List":{"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"JSObject":[],"Iterable":["double"],"FixedLengthListMixin":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double"},"NativeFloat64List":{"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"JSObject":[],"Iterable":["double"],"FixedLengthListMixin":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double"},"NativeInt16List":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeInt32List":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeInt8List":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint16List":{"Uint16List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint32List":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint8ClampedList":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint8List":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"_Error":{"Error":[]},"_TypeError":{"TypeError":[],"Error":[]},"_SyncStarIterator":{"Iterator":["1"]},"_SyncStarIterable":{"Iterable":["1"]},"AsyncError":{"Error":[]},"_Future":{"Future":["1"]},"_Zone":{"Zone":[]},"_RootZone":{"_Zone":[],"Zone":[]},"_LinkedHashSet":{"SetBase":["1"],"Iterable":["1"]},"_LinkedHashSetIterator":{"Iterator":["1"]},"SetBase":{"Iterable":["1"]},"_SetBase":{"SetBase":["1"],"Iterable":["1"]},"double":{"num":[]},"int":{"num":[]},"List":{"Iterable":["1"]},"_BigIntImpl":{"BigInt":[]},"AssertionError":{"Error":[]},"TypeError":{"Error":[]},"ArgumentError":{"Error":[]},"RangeError":{"Error":[]},"IndexError":{"Error":[]},"UnsupportedError":{"Error":[]},"UnimplementedError":{"Error":[]},"StateError":{"Error":[]},"ConcurrentModificationError":{"Error":[]},"OutOfMemoryError":{"Error":[]},"StackOverflowError":{"Error":[]},"IntegerDivisionByZeroException":{"Error":[]},"_StringStackTrace":{"StackTrace":[]},"Amalgams":{"Combinatorics":["1"]},"Combinations":{"Combinatorics":["1"]},"Compositions":{"Combinatorics":["1"]},"Compounds":{"Combinatorics":["1"]},"Permutations":{"Combinatorics":["1"]},"Subsets":{"Combinatorics":["1"]},"_EventStream":{"Stream":["1"]},"_ElementEventStreamImpl":{"_EventStream":["1"],"Stream":["1"]},"Int8List":{"List":["int"],"Iterable":["int"]},"Uint8List":{"List":["int"],"Iterable":["int"]},"Uint8ClampedList":{"List":["int"],"Iterable":["int"]},"Int16List":{"List":["int"],"Iterable":["int"]},"Uint16List":{"List":["int"],"Iterable":["int"]},"Int32List":{"List":["int"],"Iterable":["int"]},"Uint32List":{"List":["int"],"Iterable":["int"]},"Float32List":{"List":["double"],"Iterable":["double"]},"Float64List":{"List":["double"],"Iterable":["double"]}}'));
+  A._Universe_addRules(init.typeUniverse, JSON.parse('{"PlainJavaScriptObject":"LegacyJavaScriptObject","UnknownJavaScriptObject":"LegacyJavaScriptObject","JavaScriptFunction":"LegacyJavaScriptObject","JSBool":{"bool":[],"TrustedGetRuntimeType":[]},"JSNull":{"TrustedGetRuntimeType":[]},"JavaScriptObject":{"JSObject":[]},"LegacyJavaScriptObject":{"JSObject":[]},"JSArray":{"List":["1"],"JSObject":[],"Iterable":["1"]},"JSUnmodifiableArray":{"JSArray":["1"],"List":["1"],"JSObject":[],"Iterable":["1"]},"ArrayIterator":{"Iterator":["1"]},"JSNumber":{"double":[],"num":[]},"JSInt":{"double":[],"int":[],"num":[],"TrustedGetRuntimeType":[]},"JSNumNotInt":{"double":[],"num":[],"TrustedGetRuntimeType":[]},"JSString":{"String":[],"TrustedGetRuntimeType":[]},"LateError":{"Error":[]},"EfficientLengthIterable":{"Iterable":["1"]},"ListIterable":{"Iterable":["1"]},"ListIterator":{"Iterator":["1"]},"ReversedListIterable":{"ListIterable":["1"],"Iterable":["1"]},"NullError":{"TypeError":[],"Error":[]},"JsNoSuchMethodError":{"Error":[]},"UnknownJsTypeError":{"Error":[]},"_StackTrace":{"StackTrace":[]},"Closure":{"Function":[]},"Closure0Args":{"Function":[]},"Closure2Args":{"Function":[]},"TearOffClosure":{"Function":[]},"StaticClosure":{"Function":[]},"BoundClosure":{"Function":[]},"RuntimeError":{"Error":[]},"JsLinkedHashMap":{"MapBase":["1","2"]},"NativeByteBuffer":{"JSObject":[],"TrustedGetRuntimeType":[]},"NativeTypedData":{"JSObject":[]},"NativeByteData":{"JSObject":[],"TrustedGetRuntimeType":[]},"NativeTypedArray":{"JavaScriptIndexingBehavior":["1"],"JSObject":[]},"NativeTypedArrayOfDouble":{"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"JSObject":[],"Iterable":["double"],"FixedLengthListMixin":["double"]},"NativeTypedArrayOfInt":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"]},"NativeFloat32List":{"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"JSObject":[],"Iterable":["double"],"FixedLengthListMixin":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double"},"NativeFloat64List":{"ListBase":["double"],"List":["double"],"JavaScriptIndexingBehavior":["double"],"JSObject":[],"Iterable":["double"],"FixedLengthListMixin":["double"],"TrustedGetRuntimeType":[],"ListBase.E":"double"},"NativeInt16List":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeInt32List":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeInt8List":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint16List":{"Uint16List":[],"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint32List":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint8ClampedList":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"NativeUint8List":{"ListBase":["int"],"List":["int"],"JavaScriptIndexingBehavior":["int"],"JSObject":[],"Iterable":["int"],"FixedLengthListMixin":["int"],"TrustedGetRuntimeType":[],"ListBase.E":"int"},"_Error":{"Error":[]},"_TypeError":{"TypeError":[],"Error":[]},"_SyncStarIterator":{"Iterator":["1"]},"_SyncStarIterable":{"Iterable":["1"]},"AsyncError":{"Error":[]},"_Future":{"Future":["1"]},"_Zone":{"Zone":[]},"_RootZone":{"_Zone":[],"Zone":[]},"_LinkedHashSet":{"SetBase":["1"],"Iterable":["1"]},"_LinkedHashSetIterator":{"Iterator":["1"]},"SetBase":{"Iterable":["1"]},"_SetBase":{"SetBase":["1"],"Iterable":["1"]},"double":{"num":[]},"int":{"num":[]},"List":{"Iterable":["1"]},"_BigIntImpl":{"BigInt":[]},"AssertionError":{"Error":[]},"TypeError":{"Error":[]},"ArgumentError":{"Error":[]},"RangeError":{"Error":[]},"IndexError":{"Error":[]},"UnsupportedError":{"Error":[]},"UnimplementedError":{"Error":[]},"StateError":{"Error":[]},"ConcurrentModificationError":{"Error":[]},"StackOverflowError":{"Error":[]},"IntegerDivisionByZeroException":{"Error":[]},"_StringStackTrace":{"StackTrace":[]},"Amalgams":{"Combinatorics":["1"]},"Combinations":{"Combinatorics":["1"]},"Compositions":{"Combinatorics":["1"]},"Compounds":{"Combinatorics":["1"]},"Permutations":{"Combinatorics":["1"]},"Subsets":{"Combinatorics":["1"]},"_EventStream":{"Stream":["1"]},"_ElementEventStreamImpl":{"_EventStream":["1"],"Stream":["1"]},"Int8List":{"List":["int"],"Iterable":["int"]},"Uint8List":{"List":["int"],"Iterable":["int"]},"Uint8ClampedList":{"List":["int"],"Iterable":["int"]},"Int16List":{"List":["int"],"Iterable":["int"]},"Uint16List":{"List":["int"],"Iterable":["int"]},"Int32List":{"List":["int"],"Iterable":["int"]},"Uint32List":{"List":["int"],"Iterable":["int"]},"Float32List":{"List":["double"],"Iterable":["double"]},"Float64List":{"List":["double"],"Iterable":["double"]}}'));
   A._Universe_addErasedTypes(init.typeUniverse, JSON.parse('{"EfficientLengthIterable":1,"NativeTypedArray":1,"_SetBase":1}'));
   var string$ = {
     Error_: "Error handler must accept one Object or one Object and a StackTrace as arguments, and return a value of the returned future's type"
@@ -6658,12 +6606,12 @@
   var type$ = (function rtii() {
     var findType = A.findType;
     return {
-      Amalgams_dynamic: findType("Amalgams<@>"),
+      Amalgams_int: findType("Amalgams<int>"),
       Arrangement: findType("Arrangement"),
       AsyncError: findType("AsyncError"),
       BigInt: findType("BigInt"),
-      Combinations_dynamic: findType("Combinations<@>"),
-      Compositions_dynamic: findType("Compositions<@>"),
+      Combinations_int: findType("Combinations<int>"),
+      Compositions_int: findType("Compositions<int>"),
       Error: findType("Error"),
       Function: findType("Function"),
       Iterable_dynamic: findType("Iterable<@>"),
@@ -6679,12 +6627,12 @@
       List_dynamic: findType("List<@>"),
       Null: findType("Null"),
       Object: findType("Object"),
-      Permutations_dynamic: findType("Permutations<@>"),
+      Permutations_int: findType("Permutations<int>"),
       Record: findType("Record"),
       ReversedListIterable_String: findType("ReversedListIterable<String>"),
       StackTrace: findType("StackTrace"),
       String: findType("String"),
-      Subsets_dynamic: findType("Subsets<@>"),
+      Subsets_int: findType("Subsets<int>"),
       TrustedGetRuntimeType: findType("TrustedGetRuntimeType"),
       TypeError: findType("TypeError"),
       UnknownJavaScriptObject: findType("UnknownJavaScriptObject"),
@@ -6851,7 +6799,6 @@
 };
     B.C_JS_CONST3 = function(hooks) { return hooks; }
 ;
-    B.C_OutOfMemoryError = new A.OutOfMemoryError();
     B.C__RootZone = new A._RootZone();
     B.C__StringStackTrace = new A._StringStackTrace();
     B.Type_ByteBuffer_rqD = A.typeLiteral("ByteBuffer");

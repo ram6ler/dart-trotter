@@ -1,11 +1,8 @@
-import "dart:math" show Random;
-import "helpers.dart" show adjustedIndex, indexFromIntOrBigInt;
+import 'dart:math' show Random;
+import 'helpers.dart' show adjustedIndex, indexFromIntOrBigInt;
 
 /// The base class for the other classes in this library.
 abstract class Combinatorics<T> {
-  //late final List<T> _items;
-  //late final BigInt _length;
-
   /// The list from which the objects are selected
   List<T> get items; // => List<T>.from(_items, growable: false);
 
@@ -25,73 +22,73 @@ abstract class Combinatorics<T> {
   /// up to but not including `to`.
   ///
   Iterable<List<T>> range(Object fromTo, [Object? to]) {
-    BigInt biFrom = indexFromIntOrBigInt(fromTo), biTo;
+    BigInt bFrom = indexFromIntOrBigInt(fromTo), bTo;
 
     if (to == null) {
-      biTo = biFrom;
-      biFrom = BigInt.zero;
+      bTo = bFrom;
+      bFrom = BigInt.zero;
     } else {
-      biTo = indexFromIntOrBigInt(to);
+      bTo = indexFromIntOrBigInt(to);
     }
 
-    if (biFrom == biTo) {
+    if (bFrom == bTo) {
       return Iterable.empty();
     }
 
-    return _range(biFrom, biTo);
+    return _range(bFrom, bTo);
   }
 
   Iterable<List<T>> call([Object? fromTo, Object? to]) {
-    BigInt biFrom, biTo;
+    BigInt bFrom, bTo;
     if (fromTo == null && to == null) {
-      biFrom = BigInt.zero;
-      biTo = length;
+      bFrom = BigInt.zero;
+      bTo = length;
     } else {
       if (fromTo is int) {
-        biFrom = BigInt.from(fromTo);
+        bFrom = BigInt.from(fromTo);
       } else if (fromTo is BigInt) {
-        biFrom = fromTo;
+        bFrom = fromTo;
       } else {
-        throw Exception("Expecting int or BigInt in range.");
+        throw Exception('Expecting int or BigInt in range.');
       }
       if (to == null) {
-        biTo = biFrom;
-        biFrom = BigInt.zero;
+        bTo = bFrom;
+        bFrom = BigInt.zero;
       } else {
         if (to is int) {
-          biTo = BigInt.from(to);
+          bTo = BigInt.from(to);
         } else if (to is BigInt) {
-          biTo = to;
+          bTo = to;
         } else {
-          throw Exception("Expecting int or BigInt in range.");
+          throw Exception('Expecting int or BigInt in range.');
         }
       }
     }
 
-    return _range(biFrom, biTo);
+    return _range(bFrom, bTo);
   }
 
   /// An `Iterable` object that "contains" all the arrangements.
   ///
   /// Example:
   ///
-  ///     final permutations = Permutations(3, characters("abcd"));
+  ///     final permutations = Permutations(3, characters('abcd'));
   ///     for (final permutation in permutations.iterable) {
   ///       print(permutation);
   ///     }
   ///
   /// The `iterable` property can also be obtained by simply calling the
-  /// combinatoric object. For example, the above code is equivalent to:
+  /// combinatorics object. For example, the above code is equivalent to:
   ///
-  ///     final permutations = Permutations(3, characters("abcd"));
+  ///     final permutations = Permutations(3, characters('abcd'));
   ///     for (final permutation in permutations()) {
   ///       print(permutation);
   ///     }
   ///
-  Iterable get iterable => this();
+  Iterable<List<T>> get iterable => this();
 
   /// Generates a random sample of arrangements from this pseudo-list.
-  Iterable sample(int n, {int? seed, bool withReplacement = false}) {
+  Iterable<List<T>> sample(int n, {int? seed, bool withReplacement = false}) {
     final length = this.length;
     BigInt indexGenerator() {
       final rand = Random(seed);
@@ -114,7 +111,7 @@ abstract class Combinatorics<T> {
           .map((i) => this[i]);
     } else {
       if (BigInt.from(n) > length) {
-        throw Exception("Cannot take more than $length without replacement.");
+        throw Exception('Cannot take more than $length without replacement.');
       }
       final indices = <BigInt>{};
       while (indices.length < n) {
@@ -125,9 +122,7 @@ abstract class Combinatorics<T> {
   }
 
   /// The `k`th arrangement.
-  List<T> operator [](Object k) {
-    throw Error();
-  }
+  List<T> operator [](Object k);
 
   /// The index of  `arrangement`.
   BigInt indexOf(List<T> arrangement, [BigInt? start]);

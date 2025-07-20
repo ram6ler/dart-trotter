@@ -37,7 +37,7 @@ Include the following dependency in your `pubspec.yaml`:
 
 ```
 dependencies:
-  trotter: ^2.2.0
+  trotter: ^2.2.2
 ```
 
 Then, to import the library:

@@ -1,5 +1,5 @@
-import "combinatorics.dart" show Combinatorics;
-import "helpers.dart"
+import 'combinatorics.dart' show Combinatorics;
+import 'helpers.dart'
     show
         nCr,
         itemsAreUnique,
@@ -14,20 +14,12 @@ import "helpers.dart"
 /// A pseudo-list "containing" all the `r`-Compositions of objects taken from
 /// the list `items`.
 ///
-/// _Example_
-///
-///     final s = Compositions(3, characters("abcd"));
-///     print("There are ${s.length} 3-Compositions of the objects");
-///     print("in ${s.items}.");
-///     print("The first selection is ${c[0]}.");
-///
-
 class Compositions<T> extends Combinatorics<T> {
   Compositions(this.r, List<T> items)
       : _items = List<T>.from(items, growable: false),
         _length = nCr(items.length + r - 1, r) {
-    if (r < 0) throw Exception("Cannot take $r items from ${items.length}.");
-    if (!itemsAreUnique(items)) throw Exception("Items are not unique.");
+    if (r < 0) throw Exception('Cannot take $r items from ${items.length}.');
+    if (!itemsAreUnique(items)) throw Exception('Items are not unique.');
   }
 
   /// The number of items taken from `items`.
@@ -43,8 +35,8 @@ class Compositions<T> extends Combinatorics<T> {
 
   @override
   List<T> operator [](Object k) {
-    BigInt biK = indexFromIntOrBigInt(k);
-    return composition(adjustedIndex(biK, length), r, items);
+    BigInt bK = indexFromIntOrBigInt(k);
+    return composition(adjustedIndex(bK, length), r, items);
   }
 
   /// Returns the index of `selection` in the list of arranged Compositions.
@@ -69,5 +61,5 @@ class Compositions<T> extends Combinatorics<T> {
 
   @override
   String toString() =>
-      "Pseudo-list containing all $length $r-Compositions of items from $items.";
+      'Pseudo-list containing all $length $r-Compositions of items from $items.';
 }

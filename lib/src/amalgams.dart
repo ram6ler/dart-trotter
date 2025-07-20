@@ -1,5 +1,5 @@
-import "combinatorics.dart" show Combinatorics;
-import "helpers.dart"
+import 'combinatorics.dart' show Combinatorics;
+import 'helpers.dart'
     show
         itemsAreUnique,
         indexFromIntOrBigInt,
@@ -13,20 +13,12 @@ import "helpers.dart"
 /// A pseudo-list "containing" all the `r`-amalgams (order important,
 /// repetition allowed) of objects taken from the list `items`.
 ///
-/// *Example*
-///
-///     final a = Amalgams(3, characters("abcd"));
-///     print("There are ${a.length} 3-amalgams of the objects");
-///     print("in ${a.items}.");
-///     print("The first amalgam is ${a[0]}.");
-///
-
 class Amalgams<T> extends Combinatorics<T> {
   Amalgams(this.r, List<T> items)
       : _items = List<T>.from(items, growable: false),
         _length = BigInt.from(items.length).pow(r) {
-    if (r < 0) throw Exception("Cannot take $r items from ${items.length}.");
-    if (!itemsAreUnique(items)) throw Exception("Items are not unique.");
+    if (r < 0) throw Exception('Cannot take $r items from ${items.length}.');
+    if (!itemsAreUnique(items)) throw Exception('Items are not unique.');
   }
 
   /// The number of items taken from `items`.
@@ -42,8 +34,8 @@ class Amalgams<T> extends Combinatorics<T> {
 
   @override
   List<T> operator [](Object k) {
-    BigInt biK = indexFromIntOrBigInt(k);
-    return amalgam(adjustedIndex(biK, length), r, items);
+    BigInt bK = indexFromIntOrBigInt(k);
+    return amalgam(adjustedIndex(bK, length), r, items);
   }
 
   /// Returns the index of `amalgam` in the list of arranged amalgams.
@@ -68,5 +60,5 @@ class Amalgams<T> extends Combinatorics<T> {
 
   @override
   String toString() =>
-      "Pseudo-list containing all $length $r-amalgams of items from $items.";
+      'Pseudo-list containing all $length $r-amalgams of items from $items.';
 }

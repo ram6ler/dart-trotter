@@ -1,10 +1,10 @@
-import "dart:typed_data" show ByteData;
-import "combinatorics.dart" show Combinatorics;
+import 'dart:typed_data' show ByteData;
+import 'combinatorics.dart' show Combinatorics;
 
 /// A storage wrapper for a combinatorics instance.
 ///
 /// This allows us to remove selections from the structure and
-/// keep track of the remaining selectsions in a memory efficient
+/// keep track of the remaining selections in a memory efficient
 /// way (one bit per selection).
 ///
 /// (Only meant for small to moderate sized combinatorics structures.)
@@ -22,8 +22,8 @@ class Storage<T> {
 
   void _checkSelection(List<T> selection) {
     if (!combinatorics.contains(selection)) {
-      throw Exception("Combinatorics structure:\n  $combinatorics"
-          "does not contain:\n  $selection");
+      throw Exception('Combinatorics structure:\n  $combinatorics'
+          'does not contain:\n  $selection');
     }
   }
 

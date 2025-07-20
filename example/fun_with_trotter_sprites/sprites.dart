@@ -5,7 +5,7 @@ import 'package:trotter/trotter.dart';
 
 class Arrangement {
   Arrangement(this.combinatorics, this.html);
-  Combinatorics combinatorics;
+  Combinatorics<int> combinatorics;
   String html;
 }
 
@@ -38,19 +38,10 @@ void main() {
               (row - from).toInt() * (height ~/ (n - from).toInt()),
               width ~/ 5,
               height ~/ (n - from).toInt());
-          // pPic.context2D.drawImageToRect(
-          //     sprites,
-          //     Rectangle(
-          //         col * ((width - 25) ~/ 5) + 25,
-          //         (row - from).toInt() * (height ~/ (n - from).toInt()),
-          //         width ~/ 5,
-          //         height ~/ (n - from).toInt()),
-          //     sourceRect:
-          //         Rectangle(combinatorics[row][col] * 100, 0, 100, 100));
-        }
 
-        pPic.context2D.fillText('[$row]', 5,
-            (row - from).toInt() * (height ~/ (n - from).toInt()) + 15);
+          pPic.context2D.fillText('[$row]', 5,
+              (row - from).toInt() * (height ~/ (n - from).toInt()) + 15);
+        }
       }
 
       return pPic;
