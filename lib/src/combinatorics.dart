@@ -94,7 +94,7 @@ abstract class Combinatorics<T> {
   Iterable sample(int n, {int? seed, bool withReplacement = false}) {
     final length = this.length;
     BigInt indexGenerator() {
-      final rand = seed == null ? Random() : Random(seed);
+      final rand = Random(seed);
       var index = BigInt.zero, bits = length.bitLength + 1;
       for (var i = 0; i < bits; i++) {
         index += rand.nextBool() ? BigInt.one : BigInt.zero;

@@ -1,5 +1,11 @@
 # Change log
 
+## 2.2.1
+
+* Housekeeping.
+* Some mistakes in the readme fixed.
+* Updated *fun-with-trotter-sprites* example to work with *web*.
+
 ## 2.2.0
 
 * Restructured the library to better fit the dart.dev guidelines.

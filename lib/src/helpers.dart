@@ -181,8 +181,7 @@ BigInt inverseAmalgam<T>(List<T> amalgam, List<T> items) {
           powers[r - position - 1]).fold<BigInt>(BigInt.zero, (a, b) => a + b);
 }
 
-/// Gives `k`th subset in the ordered list of subsets of
-/// items taken from `items`.
+/// Gives `k`th subset in the ordered list of subsets of items taken from `items`.
 List<T> subset<T>(BigInt k, List<T> items) {
   k = adjustedIndex(k, BigInt.one << items.length);
   List<T> r = [];
@@ -240,20 +239,17 @@ BigInt inverseCompound<T>(List<T> compound, List<T> items) {
 BigInt adjustedIndex(BigInt k, BigInt n) => k % n;
 
 /// Ensures an index is of type BigInt.
-BigInt indexFromIntOrBigInt(Object k) {
-  BigInt biK;
-  if (k is int) {
-    biK = BigInt.from(k);
-  } else if (k is BigInt) {
-    biK = k;
-  } else {
-    throw Exception('Index must be an int or BigInt.');
-  }
-  return biK;
-}
+BigInt indexFromIntOrBigInt(Object k) => switch (k) {
+      int k => BigInt.from(k),
+      BigInt k => k,
+      _ => throw Exception('Index must be an int or BigInt.')
+    };
 
 /// Splits string [x] into its characters.
 List<String> characters(String x) => x.split('');
 
-/// Creates a string from the characters in [x].
-String string(List<String> x) => x.join('');
+/// Creates a string from the items in [x].
+///
+/// The optional argument [process] generates a string from each element.
+String string<T>(List<T> x, {String Function(T)? process}) =>
+    [for (final t in x) process == null ? t.toString() : process(t)].join(' ');

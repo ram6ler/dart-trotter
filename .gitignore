@@ -1,5 +1,4 @@
-/lib/src/test.dart
-/lib/scrap.dart
-/.idea
 ignore/
-.dart_tool
+.dart_tool/
+.DS_Store
+.popmark/

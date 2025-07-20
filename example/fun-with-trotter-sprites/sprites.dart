@@ -1,4 +1,6 @@
-import 'dart:html';
+import 'dart:js_interop';
+
+import 'package:web/web.dart' as web;
 import 'package:trotter/trotter.dart';
 
 class Arrangement {
@@ -8,30 +10,43 @@ class Arrangement {
 }
 
 void main() {
-  final sprites = ImageElement(src: 'images/sprites.png');
+  final sprites = web.HTMLImageElement()..src = 'images/sprites.png';
 
   void draw(Arrangement arrangement) {
     final combinatorics = arrangement.combinatorics,
         html = arrangement.html,
         n = combinatorics.length;
 
-    CanvasElement illustrateFrom(BigInt from) {
+    web.HTMLCanvasElement illustrateFrom(BigInt from) {
       final base = 70,
           width = 5 * base + 23,
           height = ((n - from).toInt() * base),
-          pPic = CanvasElement(width: width, height: height);
+          pPic = web.HTMLCanvasElement()
+            ..width = width
+            ..height = height;
+      ;
 
       for (var row = from; row < n; row += BigInt.one) {
         for (var col = 0; col < combinatorics[row].length; col++) {
-          pPic.context2D.drawImageToRect(
+          pPic.context2D.drawImage(
               sprites,
-              Rectangle(
-                  col * ((width - 25) ~/ 5) + 25,
-                  (row - from).toInt() * (height ~/ (n - from).toInt()),
-                  width ~/ 5,
-                  height ~/ (n - from).toInt()),
-              sourceRect:
-                  Rectangle(combinatorics[row][col] * 100, 0, 100, 100));
+              combinatorics[row][col] * 100,
+              0,
+              100,
+              100,
+              col * ((width - 25) ~/ 5) + 25,
+              (row - from).toInt() * (height ~/ (n - from).toInt()),
+              width ~/ 5,
+              height ~/ (n - from).toInt());
+          // pPic.context2D.drawImageToRect(
+          //     sprites,
+          //     Rectangle(
+          //         col * ((width - 25) ~/ 5) + 25,
+          //         (row - from).toInt() * (height ~/ (n - from).toInt()),
+          //         width ~/ 5,
+          //         height ~/ (n - from).toInt()),
+          //     sourceRect:
+          //         Rectangle(combinatorics[row][col] * 100, 0, 100, 100));
         }
 
         pPic.context2D.fillText('[$row]', 5,
@@ -41,16 +56,14 @@ void main() {
       return pPic;
     }
 
-    document.body!.children.add(DivElement()
-      ..classes.add('cell')
-      ..children.addAll([
-        DivElement()
-          ..classes.add('legend')
-          ..innerHtml = html,
-        DivElement()
-          ..classes.add('illustration')
-          ..children.add(illustrateFrom(BigInt.zero))
-      ]));
+    web.document.body!.appendChild(web.HTMLDivElement()
+      ..className = 'cell'
+      ..appendChild(web.HTMLDivElement()
+        ..className = 'legend'
+        ..innerHTML = html.toJS)
+      ..appendChild(web.HTMLDivElement()
+        ..className = 'illustration'
+        ..appendChild(illustrateFrom(BigInt.zero))));
   }
 
   sprites.onLoad.listen((_) {
