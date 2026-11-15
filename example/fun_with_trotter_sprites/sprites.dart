@@ -21,14 +21,13 @@ void main() {
       final base = 70,
           width = 5 * base + 23,
           height = ((n - from).toInt() * base),
-          pPic = web.HTMLCanvasElement()
+          pigPic = web.HTMLCanvasElement()
             ..width = width
             ..height = height;
-      ;
 
       for (var row = from; row < n; row += BigInt.one) {
         for (var col = 0; col < combinatorics[row].length; col++) {
-          pPic.context2D.drawImage(
+          pigPic.context2D.drawImage(
               sprites,
               combinatorics[row][col] * 100,
               0,
@@ -39,12 +38,12 @@ void main() {
               width ~/ 5,
               height ~/ (n - from).toInt());
 
-          pPic.context2D.fillText('[$row]', 5,
+          pigPic.context2D.fillText('[$row]', 5,
               (row - from).toInt() * (height ~/ (n - from).toInt()) + 15);
         }
       }
 
-      return pPic;
+      return pigPic;
     }
 
     web.document.body!.appendChild(web.HTMLDivElement()
@@ -61,7 +60,7 @@ void main() {
     final frames = [0, 1, 2, 3, 4];
 
     [
-      Arrangement(Permutations(3, frames), '''
+      Arrangement(Permutations(take: 3, items: frames), '''
       <h2>3-Permutations</h2>
       <p>
         If we take three of the five trotters, <em>without replacement</em>,
@@ -69,7 +68,7 @@ void main() {
         arrangements are:
       </p>
       '''),
-      Arrangement(Combinations(3, frames), '''
+      Arrangement(Combinations(take: 3, items: frames), '''
       <h2>3-Combinations</h2>
       <p>
         If we take three of the five trotters, <em>without replacement</em>,
@@ -77,7 +76,7 @@ void main() {
         possible arrangements are:
       </p>
       '''),
-      Arrangement(Amalgams(3, frames), '''
+      Arrangement(Amalgams(take: 3, items: frames), '''
       <h2>3-Amalgams</h2>
       <p>
         If we take three of the five trotters, <em>with replacement</em>,
@@ -85,7 +84,7 @@ void main() {
         possible arrangements are:
       </p>
       '''),
-      Arrangement(Compositions(3, frames), '''
+      Arrangement(Compositions(take: 3, items: frames), '''
       <h2>3-Compositions</h2>
       <p>
         If we take three of the five trotters, <em>with replacement</em>,
@@ -93,7 +92,7 @@ void main() {
         possible arrangements are:
       </p>
       '''),
-      Arrangement(Subsets(frames), '''
+      Arrangement(Subsets(items: frames), '''
       <h2>Subsets</h2>
       <p>
         If we take <em>any number</em> of the five trotters, <em>without
@@ -101,7 +100,7 @@ void main() {
         important</em>, then the possible arrangements are:
       </p>
       '''),
-      Arrangement(Compounds(frames), '''
+      Arrangement(Compounds(items: frames), '''
       <h2>Compounds</h2>
       <p>
         If we take <em>any number</em> of the five trotters, <em>without

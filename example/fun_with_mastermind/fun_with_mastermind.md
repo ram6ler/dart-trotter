@@ -12,7 +12,7 @@ takes to win a game of Mastermind using a simple algorithm:
 
 We are investigating the version of the game that has six colors (which we arbitrarily refer to as A, B, C, D, E and F) and four positions.
 
-Clues are represented by the characters `*` (for black, which means that a color is in the correct position) and `o` (for white, which means a color not already accounted for is in an incorrect position).
+Clues are represented by the characters ⚫ (for black, which means that a color is in the correct position) and ⚪ (for white, which means a color not already accounted for is in an incorrect position).
 
 We will let the computer play 500 games; we will only display the first and last 5 games.
   
@@ -24,147 +24,146 @@ Here goes:
 
 ### Game 1
 
-The secret code: BCFC
+The secret code: EAEF
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|FFDA|`  o `|
-|2|EDBB|`  o `|
-|3|AAAE|`   `|
-|4|BCCF|` ** oo `|
-|5|BCFC|` ****  `|
+|1|CFBB| ⚪ |
+|2|DCEE| ⚫⚪ |
+|3|EBAE| ⚫⚪⚪ |
+|4|ABED| ⚫⚪ |
+|5|AEFE| ⚪⚪⚪⚪ |
+|6|EAEF| ⚫⚫⚫⚫ |
 
-Solved in 5 guesses.
+Solved in 6 guesses.
 
 ### Game 2
 
-The secret code: CCCA
+The secret code: DECC
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|CBFB|` *  `|
-|2|AAAB|`  o `|
-|3|CCCA|` ****  `|
+|1|CCBF| ⚪⚪ |
+|2|AACB| ⚫ |
+|3|BBFB|  |
+|4|DDCC| ⚫⚫⚫ |
+|5|DECC| ⚫⚫⚫⚫ |
 
-Solved in 3 guesses.
+Solved in 5 guesses.
 
 ### Game 3
 
-The secret code: AECC
+The secret code: BAAD
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|FEDE|` *  `|
-|2|AAAE|` * o `|
-|3|ABDA|` *  `|
-|4|AECC|` ****  `|
+|1|BEEC| ⚫ |
+|2|AAAC| ⚫⚫ |
+|3|AAED| ⚫⚫⚪ |
+|4|BAAD| ⚫⚫⚫⚫ |
 
 Solved in 4 guesses.
 
 ### Game 4
 
-The secret code: FEEF
+The secret code: EFDA
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|BAFA|`  o `|
-|2|ACCC|`   `|
-|3|DBBB|`   `|
-|4|EEEF|` ***  `|
-|5|EFEF|` ** oo `|
-|6|FEEF|` ****  `|
+|1|CADD| ⚫⚪ |
+|2|AAAC| ⚪ |
+|3|BBCD| ⚪ |
+|4|EEDA| ⚫⚫⚫ |
+|5|EFDA| ⚫⚫⚫⚫ |
 
-Solved in 6 guesses.
+Solved in 5 guesses.
 
 ### Game 5
 
-The secret code: FFDF
+The secret code: BBDC
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|EBEA|`   `|
-|2|CCCC|`   `|
-|3|DDDD|` *  `|
-|4|DFFF|` ** oo `|
-|5|FDFF|` ** oo `|
-|6|FFDF|` ****  `|
+|1|EEBA| ⚪ |
+|2|AAAC| ⚫ |
+|3|ADDD| ⚫ |
+|4|AFFF|  |
+|5|BBDC| ⚫⚫⚫⚫ |
 
-Solved in 6 guesses.
+Solved in 5 guesses.
 
 ### Game 496
 
-The secret code: BFFA
+The secret code: FDEC
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|BDCE|` *  `|
-|2|AAAE|`  o `|
-|3|BBBA|` **  `|
-|4|BFFA|` ****  `|
+|1|FDAD| ⚫⚫ |
+|2|AAAD| ⚪ |
+|3|FDBB| ⚫⚫ |
+|4|FDCC| ⚫⚫⚫ |
+|5|FDCE| ⚫⚫⚪⚪ |
+|6|FDEC| ⚫⚫⚫⚫ |
 
-Solved in 4 guesses.
+Solved in 6 guesses.
 
 ### Game 497
 
-The secret code: EDBD
+The secret code: DBCA
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|BEDC|`  ooo `|
-|2|DBFE|`  ooo `|
-|3|ADEB|` * oo `|
-|4|EDBD|` ****  `|
+|1|CDFE| ⚪⚪ |
+|2|AACD| ⚫⚪⚪ |
+|3|ABDC| ⚫⚪⚪⚪ |
+|4|DABC| ⚫⚪⚪⚪ |
+|5|DBCA| ⚫⚫⚫⚫ |
 
-Solved in 4 guesses.
+Solved in 5 guesses.
 
 ### Game 498
 
-The secret code: FAAA
+The secret code: CBAC
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|AABD|` * o `|
-|2|ABCB|`  o `|
-|3|BDDD|`   `|
-|4|EAAA|` ***  `|
-|5|EAAE|` **  `|
-|6|FAAA|` ****  `|
+|1|BEBF| ⚪ |
+|2|ABDD| ⚫⚪ |
+|3|AAAB| ⚫⚪ |
+|4|ADEA| ⚪ |
+|5|CBAC| ⚫⚫⚫⚫ |
 
-Solved in 6 guesses.
+Solved in 5 guesses.
 
 ### Game 499
 
-The secret code: AAAE
+The secret code: DDED
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|FDCF|`   `|
-|2|AEBA|` * oo `|
-|3|AAAB|` ***  `|
-|4|AAAE|` ****  `|
+|1|EDEB| ⚫⚫ |
+|2|AAEB| ⚫ |
+|3|BDBB| ⚫ |
+|4|CDEC| ⚫⚫ |
+|5|DDED| ⚫⚫⚫⚫ |
 
-Solved in 4 guesses.
+Solved in 5 guesses.
 
 ### Game 500
 
-The secret code: CBBC
+The secret code: CBAF
 
 |Guess number|Guess|Clues|
 |:--:|:--|:--|
-|1|FECF|`  o `|
-|2|CADD|` *  `|
-|3|AAAE|`   `|
-|4|BBFD|` * o `|
-|5|CBBB|` ***  `|
-|6|CBBC|` ****  `|
+|1|DDCB| ⚪⚪ |
+|2|ABDF| ⚫⚫⚪ |
+|3|ABAD| ⚫⚫ |
+|4|ABFC| ⚫⚪⚪⚪ |
+|5|CBAF| ⚫⚫⚫⚫ |
 
-Solved in 6 guesses.
+Solved in 5 guesses.
+
 ## Summary
 
-In 500 games, the computer found the code in at least 1 guesses, at most 8 guesses, and on average 4.890 guesses.
-
-Thanks for your interest! Please let me know if you find any interesting use cases for this library!
-
-Richard Ambler rambler@ibwya.net
-
+In 500 games, the computer found the code in at least 2 guesses, at most 8 guesses, and on average 4.844 guesses.
 

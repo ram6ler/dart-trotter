@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+
 import 'package:trotter/trotter.dart';
 
 class Clue {
@@ -24,7 +25,7 @@ takes to win a game of Mastermind using a simple algorithm:
 
 We are investigating the version of the game that has six colors (which we arbitrarily refer to as A, B, C, D, E and F) and four positions.
 
-Clues are represented by the characters `*` (for black, which means that a color is in the correct position) and `o` (for white, which means a color not already accounted for is in an incorrect position).
+Clues are represented by the characters ⚫ (for black, which means that a color is in the correct position) and ⚪ (for white, which means a color not already accounted for is in an incorrect position).
 
 We will let the computer play $games games; we will only display the first and last $gamesToDisplay games.
   
@@ -43,25 +44,20 @@ Here goes:
     return playGame(display);
   });
 
-  print('## Summary\n');
+  print('\n## Summary\n');
   final mean = scores.fold<num>(0, (a, b) => a + b) / games,
       min = scores.reduce(math.min),
       max = scores.reduce(math.max);
   print('''
 In $games games, the computer found the code in at least $min guesses, at most $max guesses, and on average ${mean.toStringAsFixed(3)} guesses.
-
-Thanks for your interest! Please let me know if you find any interesting use cases for this library!
-
-Richard Ambler rambler@ibwya.net
-
 ''');
 }
 
-String showClues(Clue clue) => '` ${'*' * clue.blacks} ${'o' * clue.whites} `';
+String showClues(Clue clue) => ' ${'⚫' * clue.blacks}${'⚪' * clue.whites} ';
 
 int playGame(bool display) {
   final rand = math.Random(),
-      amalgams = Amalgams(4, characters('ABCDEF')),
+      amalgams = 'ABCDEF'.toAmalgams(take: 4),
       length = amalgams.length.toInt(),
       storage = Storage(amalgams),
       secretCode = amalgams[rand.nextInt(length)];
@@ -87,22 +83,23 @@ int playGame(bool display) {
       }
     }
     // Otherwise return the first available guess.
-    return storage.firstRemaining();
+    return storage.firstRemaining()!;
   }
 
   do {
     guesses++;
     final guess = makeGuess();
     clue = getClues(secretCode, guess);
-    if (display) print('|$guesses|${string(guess)}|${showClues(clue)}|');
+    if (display) print('|$guesses|${guess.join('')}|${showClues(clue)}|');
 
     storage.removeWhere((potentialGuess) {
       final potentialClues = getClues(guess, potentialGuess);
       if (potentialClues.blacks != clue.blacks ||
           potentialClues.whites != clue.whites) {
         return true;
-      } else
+      } else {
         return false;
+      }
     });
   } while (clue.blacks != 4);
 

@@ -1,43 +1,28 @@
 
-![](https://bitbucket.org/ram6ler/dart_trotter/wiki/dart_trotter_banner.png)
+[![pub package](https://img.shields.io/pub/v/trotter.svg)](https://pub.dev/packages/trotter)
+[![license](https://img.shields.io/github/license/ram6ler/trotter)](LICENSE)
 
-Welcome to `trotter`, a library that simplifies working with meta-arrangements commonly
-encountered in combinatorics, such as arrangements of combinations and permutations.
+Welcome to trotter, a library that simplifies working with meta-arrangements commonly encountered in combinatorics, such as arrangements of combinations and permutations.
 
-`trotter` gives the developer access to pseudo-lists that "contain" all selections
-(combinations, permutations, etc.) of objects taken from a specified list of items.
+Trotter gives the developer access to pseudo-lists that "contain" all selections (combinations, permutations, etc.) of objects taken from a specified set of items, which can be helpful in "embarrassingly parallel" distributed workloads, steganography and other contexts.
 
-The order of arrangements is based on the the order produced by the
-[Steinhaus–Johnson–Trotter algorithm](https://en.wikipedia.org/wiki/Steinhaus%E2%80%93Johnson%E2%80%93Trotter_algorithm)
-for ordering permutations, which I have generalized to combinations and arrangements
-that allow for replacement after item selection.
+The order of arrangements is inspired by that of the [Steinhaus–Johnson–Trotter algorithm](https://en.wikipedia.org/wiki/Steinhaus%E2%80%93Johnson%E2%80%93Trotter_algorithm) for ordering permutations, which has been generalized to combinations and arrangements that allow for replacement after item selection.
 
-The pseudo-list classes available are:
+The pseudo-list classes available in trotter are:
 
-* Combinations.
-* Permutations.
-* Compositions (combinations with replacement).
-* Amalgams (permutations with replacement).
-* Subsets (combinations with unspecified number of items taken).
-* Compounds (permutations with unspecified number of items taken).
+* Combinations
+* Permutations
+* Compositions (combinations with replacement)
+* Amalgams (permutations with replacement)
+* Subsets (combinations with unspecified number of items taken)
+* Compounds (permutations with unspecified number of items taken)
 
-# Demos
+# Using Trotter
 
-To see `trotter` in action:
-
-* Play [Falco Shapes](https://falco-shapes.netlify.com/), a little puzzle
-based on Marsha Falco's game of *Set*.
-
-* Explore the *huge* number of permutations of letters of the alphabet with
-[Permutation Products](https://permutation-products.netlify.com/).
-
-# Using trotter
-
-Include the following dependency in your `pubspec.yaml`:
+Add the package to your project:
 
 ```
-dependencies:
-  trotter: ^2.2.2
+dart pub add trotter
 ```
 
 Then, to import the library:
@@ -46,20 +31,24 @@ Then, to import the library:
 import 'package:trotter/trotter.dart'
 ```
 
-## The basic classes
+## The Basic Classes
+
+The following classes can be conceptually thought of as "containers" of combinatorics selections of elements. Under the hood, they provide mappings between indices and the selections, which means that they consume a very small amount of space, even if they conceptually "contain" vast numbers of arrangements of elements.
+
+We can access individual arrangements through indexing on an instance (using `BigInt` indices where necessary), or iterate through generated arrangements by calling the instance.
 
 ### Combinations
 
-A *combination* is a selection of items for which order is *not*
-important and items are *not* replaced after being selected.
-
-The `Combinations` class "contains" all combinations of a set of items.
+A *combination* is a selection of items for which order is *not* important and items are *not* replaced after being selected.
 
 **Example:**
 
 ```dart
-final bagOfItems = characters('abcde'),
-  combinations = Combinations(3, bagOfItems);
+final combinations = Combinations(
+  items: {'a', 'b', 'c', 'd', 'e'},
+  take: 3,
+);
+
 for (final (i, combination) in combinations().indexed) {
   print('[$i]: $combination');
 }
@@ -80,15 +69,16 @@ for (final (i, combination) in combinations().indexed) {
 
 ### Permutations
 
-A *permutation* is a selection of items for which order *is* important
-and items are *not* replaced after being selected.
-
-The `Permutations` class "contains" all permutations of a set of items.
+A *permutation* is a selection of items for which order *is* important and items are *not* replaced after being selected.
 
 **Example:**
 
 ```dart
-final bagOfItems = characters('abcde'), permutations = Permutations(3, bagOfItems);
+final permutations = Permutations(
+  items: {'a', 'b', 'c', 'd', 'e'},
+  take: 3,
+);
+
 for (final (i, permutation) in permutations().indexed) {
   print('[$i]: $permutation');
 }
@@ -157,28 +147,20 @@ for (final (i, permutation) in permutations().indexed) {
 [59]: [d, c, e]
 ```
 
-(Notice that this library arranges permutations similarly to the way the
-[Steinhaus-Johnson-Trotter](https://en.wikipedia.org/wiki/Steinhaus%E2%80%93Johnson%E2%80%93Trotter_algorithm)
-algorithm arranges permutations. In fact, if we get the permutations of
-*all* the specified items, e.g. `final permutations = Permutations(bagOfItems.length, bagOfItems);`
-in the above code, the arrangement of permutations is exactly what would
-have resulted from applying the S-J-T algorithm. The algorithms in this library
-have an advantage in that they do not iterate through all k - 1 permutations in
-order to determine the kth permutation, however.)
+Notice that this library arranges permutations similarly to the way the [Steinhaus-Johnson-Trotter](https://en.wikipedia.org/wiki/Steinhaus%E2%80%93Johnson%E2%80%93Trotter_algorithm) algorithm arranges permutations (if we get the permutations of *all* the specified items, in the above code, the arrangement of permutations is exactly what would have resulted from applying the SJT algorithm). Of course, the algorithms in this library do not iterate through all k - 1 permutations in order to determine the kth permutation.
 
 ### Compositions
 
-A *composition* (or combination with replacement) is a selection of items for
-which order is *not* important and items *are* replaced after being selected.
-
-The `Compositions` class "contains" all compositions of a set of items.
-
-Here are all the compositions of three items taken from a bag of five items:
+A *composition* (or combination with replacement) is a selection of items for which order is *not* important and items *are* replaced after being selected.
 
 **Example:**
 
 ```dart
-final bagOfItems = characters('abcde'), compositions = Compositions(3, bagOfItems);
+final compositions = Compositions(
+  items: {'a', 'b', 'c', 'd', 'e'},
+  take: 3,
+);
+
 for (final (i, composition) in compositions().indexed) {
   print('[$i]: $composition');
 }
@@ -224,15 +206,16 @@ for (final (i, composition) in compositions().indexed) {
 
 ### Amalgams
 
-An *amalgam* (or permutation with replacement) is a selection of items for
-which order *is* important and items *are* replaced after being selected.
-
-The `Amalgams` class "contains" all amalgams of a set of items.
+An *amalgam* (or permutation with replacement) is a selection of items for which order *is* important and items *are* replaced after being selected.
 
 **Example:**
 
 ```dart
-final bagOfItems = characters('abcde'), amalgams = Amalgams(3, bagOfItems);
+final amalgams = Amalgams(
+  items: {'a', 'b', 'c', 'd', 'e'},
+  take: 3,
+);
+
 for (final (i, amalgam) in amalgams().indexed) {
   print('[$i]: $amalgam');
 }
@@ -368,16 +351,12 @@ for (final (i, amalgam) in amalgams().indexed) {
 
 ### Subsets
 
-A *subset* (or combination of unspecified length) is a selection of items for
-which order is *not* important, items are *not* replaced and the number of
-items is not specified.
-
-The `Subsets` class "contains" all subsets of a set of items.
+A *subset* (or combination of unspecified length) is a selection of items for which order is *not* important, items are *not* replaced and the number of items is not specified.
 
 **Example:**
 
 ```dart
-final bagOfItems = characters('abcde'), subsets = Subsets(bagOfItems);
+final subsets = Subsets(items: {'a', 'b', 'c', 'd', 'e'});
 for (final (i, subset) in subsets().indexed) {
   print('[$i]: $subset');
 }
@@ -420,16 +399,12 @@ for (final (i, subset) in subsets().indexed) {
 
 ### Compounds
 
-A *compound* (or permutation of unspecified length) is a selection of items for
-which order *is* important, items are *not* replaced and the number of items is
-not specified.
-
-The `Compounds` class "contains" all compounds of a set of items.
+A *compound* (or permutation of unspecified length) is a selection of items for which order *is* important, items are *not* replaced and the number of items is not specified.
 
 **Example:**
 
 ```dart
-final bagOfItems = characters('abcde'), compounds = Compounds(bagOfItems);
+final compounds = Compounds(items: {'a', 'b', 'c', 'd', 'e'});
 for (final (i, compound) in compounds().indexed) {
   print('[$i]: $compound');
 }
@@ -764,80 +739,136 @@ for (final (i, compound) in compounds().indexed) {
 [325]: [b, a, c, d, e]
 ```
 
-## Large indices
+## Calling instances
 
-Arrangement numbers often grow very quickly. For example, consider the number
-of 10-permutations of the letters of the alphabet:
+Calling an instance accepts two optional arguments to indicate the indices for which iteration is to start and end. Indexing is wrap-around, so starting and ending at the same index still generates all arrangements.
 
 **Example:**
 
 ```dart
-final largeBagOfItems = characters('abcdefghijklmnopqrstuvwxyz'),
-  permutations = Permutations(10, largeBagOfItems);
+final combos = Combinations(items: {1, 2, 3, 4, 5}, take: 3);
+print('All combinations:');
+for (final (i, c) in combos().indexed) {
+  print('[$i]: $c');
+}
+print('\nUntil index 2:');
+for (final c in combos(2)) {
+  print(c);
+}
+
+print('\nFrom index 2 to <5:');
+for (final c in combos(2, 5)) {
+  print(c);
+}
+
+print('\nAll combinations from index 2 on, wrapping around to <2:');
+for (final c in combos(2, 2)) {
+  print(c);
+}
+```
+
+```text
+All combinations:
+[0]: [1, 2, 3]
+[1]: [1, 2, 4]
+[2]: [1, 2, 5]
+[3]: [1, 3, 4]
+[4]: [1, 3, 5]
+[5]: [1, 4, 5]
+[6]: [2, 3, 4]
+[7]: [2, 3, 5]
+[8]: [2, 4, 5]
+[9]: [3, 4, 5]
+
+Until index 2:
+[1, 2, 3]
+[1, 2, 4]
+
+From index 2 to <5:
+[1, 2, 5]
+[1, 3, 4]
+[1, 3, 5]
+
+All combinations from index 2 on, wrapping around to <2:
+[1, 2, 5]
+[1, 3, 4]
+[1, 3, 5]
+[1, 4, 5]
+[2, 3, 4]
+[2, 3, 5]
+[2, 4, 5]
+[3, 4, 5]
+[1, 2, 3]
+[1, 2, 4]
+```
+
+## Large Indices
+
+Arrangement indices often grow very quickly with the number of items to choose from. For example, consider the number of 10-permutations of the letters of the alphabet:
+
+**Example:**
+
+```dart
+final letters = 'abcdefghijklmnopqrstuvwxyz'.split(''),
+  permutations = Permutations(items: letters, take: 10);
+
 print(permutations);
 ```
 
 ```text
-Pseudo-list containing all 19275223968000 10-permutations of items from [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z].
+Pseudo-list containing all 19,275,223,968,000 10-permutations of items from [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z].
 ```
 
-Wow! That's a lot of permutations! Don't iterate over them all!
+That's a lot of permutations — don't iterate over them all!
 
-Notice that the word `algorithms` is a 10-permutation of the letters of the
-alphabet. What is the index of this permutation in our list of permutations?
+Notice that the word `algorithms` is a 10-permutation of the letters of the alphabet. What is the index of this permutation in our list of permutations?
 
 **Example:**
 
 ```dart
-final largeBagOfItems = characters('abcdefghijklmnopqrstuvwxyz'),
-    permutations = Permutations(10, largeBagOfItems),
-    permutationOfInterest = characters('algorithms'),
-    index = permutations.indexOf(permutationOfInterest);
-print('The index of $permutationOfInterest is $index.');
-print('permutations[$index]: ${permutations[index]}');
+final letters = 'abcdefghijklmnopqrstuvwxyz'.split(''),
+  permutations = Permutations(items: letters, take: 10),
+  needle = 'algorithms'.split(''),
+  index = permutations.indexOf(needle);
+
+print('The index of $needle is ${addCommas(index)}.');
+print('permutations[${addCommas(index)}]: ${permutations[index]}');
 
 ```
 
 ```text
-The index of [a, l, g, o, r, i, t, h, m, s] is 6831894769563.
-permutations[6831894769563]: [a, l, g, o, r, i, t, h, m, s]
+The index of [a, l, g, o, r, i, t, h, m, s] is 6,831,894,769,563.
+permutations[6,831,894,769,563]: [a, l, g, o, r, i, t, h, m, s]
 ```
 
-Wow! That's almost seven trillion! Luckily we didn't need to perform that
-search using brute force!
-
-Since we sometimes can be working with indices so large they cannot be
-represented using a 64 bit `int`, indexing and length are implemented using `BigInt`.
+Because we often deal with such large numbers, this package uses `BigInt` indices. For example, let's say we want to know the last permutation "contained" in this "large" structure:
 
 **Example:**
 
 ```dart
-final largeBagOfItems = characters('abcdefghijklmnopqrstuvwxyz'),
-    compounds = Compounds(largeBagOfItems);
-print('There are ${compounds.length} compounds of these letters!');
-BigInt lastCompoundIndex = compounds.length - BigInt.one;
-print('The last compound is ${compounds[lastCompoundIndex]}.');
+final letters = 'abcdefghijklmnopqrstuvwxyz'.split(''),
+  permutations = Permutations(items: letters, take: 10),
+  lastElementIndex = permutations.length - BigInt.one;
 
+print(permutations[lastElementIndex]);
 ```
 
 ```text
-There are 1096259850353149530222034277 compounds of these letters!
-The last compound is [b, a, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z].
+[r, q, s, t, u, v, w, x, y, z]
 ```
 
-Unless you're immortal, don't use `compounds().last` to access the last compound in the previous example!
+(Unless you're immortal, don't use `permutations().last` to access the last compound in this example!)
 
-## Syntactic sugar
+## Syntactic Sugar
 
-### Lists
+### Lists & Sets
 
-`trotter` provides extensions that allow us to generate combinatorics
-arrangements directly from lists...
+Trotter provides extensions that allow us to conveniently generate combinatorics arrangements directly from iterables, like lists and sets.
 
 **Example:**
 
 ```dart
-final subsets = [1, 2, 3, 4, 5].subsets();
+final subsets = [1, 2, 3, 4].toSubsets();
 for (final subset in subsets()) {
   print(subset);
 }
@@ -860,26 +891,12 @@ for (final subset in subsets()) {
 [1, 3, 4]
 [2, 3, 4]
 [1, 2, 3, 4]
-[5]
-[1, 5]
-[2, 5]
-[1, 2, 5]
-[3, 5]
-[1, 3, 5]
-[2, 3, 5]
-[1, 2, 3, 5]
-[4, 5]
-[1, 4, 5]
-[2, 4, 5]
-[1, 2, 4, 5]
-[3, 4, 5]
-[1, 3, 4, 5]
-[2, 3, 4, 5]
-[1, 2, 3, 4, 5]
 ```
 
+**Example:**
+
 ```dart
-final combinations = [1, 2, 3, 4, 5].combinations(3);
+final combinations = {1, 2, 3, 4, 5}.toCombinations(take: 3);
 for (final combination in combinations()) {
   print(combination);
 }
@@ -900,13 +917,12 @@ for (final combination in combinations()) {
 
 ### Strings
 
-... and strings, in which case it assumes we mean arrangements of the
-characters in the string.
+Similarly, we can conveniently generate combinatorics structures on strings, in which case the string is treated as the set of characters it contains.
 
 **Example:**
 
 ```dart
-final subsets = 'abcde'.subsets();
+final subsets = 'abcd'.toSubsets();
 for (final subset in subsets()) {
   print(subset);
 }
@@ -929,26 +945,10 @@ for (final subset in subsets()) {
 [a, c, d]
 [b, c, d]
 [a, b, c, d]
-[e]
-[a, e]
-[b, e]
-[a, b, e]
-[c, e]
-[a, c, e]
-[b, c, e]
-[a, b, c, e]
-[d, e]
-[a, d, e]
-[b, d, e]
-[a, b, d, e]
-[c, d, e]
-[a, c, d, e]
-[b, c, d, e]
-[a, b, c, d, e]
 ```
 
 ```dart
-final combinations = 'abcde'.combinations(3);
+final combinations = 'abcde'.toCombinations(take: 3);
 for (final combination in combinations()) {
   print(combination);
 }
@@ -967,9 +967,238 @@ for (final combination in combinations()) {
 [c, d, e]
 ```
 
----
+## The Importance of Order
 
-`trotter` was written by [Richard Nathan Ambler](mailto:rambler@wya.top).
+Some of the classes (namely `Combinations`, `Subsets` and `Compositions`) are order-agnostic. They thus do not take order into account when checking whether an arrangement is contained or when finding the position of an arrangement.
 
-Thanks for your interest in this library. Please file any bugs, issues
-and suggestions [here](https://github.com/ram6ler/dart-trotter/issues).
+**Example:**
+
+```dart
+final combos = {'a', 'b', 'c', 'd', 'e'}.toCombinations(take: 3);
+for (final (i, combo) in combos().indexed) {
+  print('[$i] $combo');
+}
+
+final needle = ['b', 'e', 'd'];
+print('\n$needle does not appear to be listed...');
+print('$needle is in combos: ${combos.contains(needle)}');
+print('$needle is at index: ${combos.indexOf(needle)}');
+
+```
+
+```text
+[0] [a, b, c]
+[1] [a, b, d]
+[2] [a, b, e]
+[3] [a, c, d]
+[4] [a, c, e]
+[5] [a, d, e]
+[6] [b, c, d]
+[7] [b, c, e]
+[8] [b, d, e]
+[9] [c, d, e]
+
+[b, e, d] does not appear to be listed...
+[b, e, d] is in combos: true
+[b, e, d] is at index: 8
+```
+
+## Sampling
+
+We can generate a random sample of elements using the `drawSample` method:
+
+**Example:**
+
+```dart
+final combinations = '12345abcde'.toPermutations(take: 4);
+
+final sample = combinations.drawSample(
+  10,
+  seed: 0,
+  withReplacement: true,
+);
+
+for (final combination in sample) {
+    print(combination.join(''));
+}
+```
+
+```text
+2a4d
+be4d
+45b1
+ba4e
+cb3d
+e4c2
+ecb4
+a3e1
+23ad
+1d35
+```
+
+## The `Storage` Class
+
+In some use cases (e.g., see [fun_with_mastermind](example/fun_with_mastermind/fun_with_mastermind.dart)), it can be helpful to keep track of which arrangements have been processed. The `Storage` class can be used to mark this. `Storage` uses a minimal amount of memory (one bit per arrangement), but is still only suitable for structures "containing" a small to moderate number of arrangements.
+
+**Example:**
+
+```dart
+final storage = Storage({'a', 'b', 'c', 'd', 'e'}.toCombinations(take: 3));
+  
+for (final c in storage.combinatorics()) {
+  if (storage.contains(c)) {
+    print(c);
+  }
+}
+
+print('\nRemoving all combinations containing "b"...\n');
+storage.removeWhere((c) => c.contains('b'));
+
+for (final c in storage.combinatorics()) {
+  if (storage.contains(c)) {
+    print(c);
+  }
+}
+```
+
+```text
+[a, b, c]
+[a, b, d]
+[a, b, e]
+[a, c, d]
+[a, c, e]
+[a, d, e]
+[b, c, d]
+[b, c, e]
+[b, d, e]
+[c, d, e]
+
+Removing all combinations containing "b"...
+
+[a, c, d]
+[a, c, e]
+[a, d, e]
+[c, d, e]
+```
+
+## Examples
+
+The example folder has several examples of trotter applications, including:
+
+### Mastermind
+
+Demonstrates using trotter to solve the game of Mastermind by guessing amalgams of colors and responding to clues, for example:
+
+The secret code: EAEF
+
+| Guess number | Guess | Clues |
+| :----------: | :---- | :---- |
+|      1       | CFBB  | ⚪     |
+|      2       | DCEE  | ⚫⚪    |
+|      3       | EBAE  | ⚫⚪⚪   |
+|      4       | ABED  | ⚫⚪    |
+|      5       | AEFE  | ⚪⚪⚪⚪  |
+|      6       | EAEF  | ⚫⚫⚫⚫  |
+
+Solved in 6 guesses.
+
+### Piggy Sprites
+
+Demonstrates using trotter to generate images of sprites in a web application, such as the combinations of three sprites selected from five:
+
+![](pics/piggy_combinations.png)
+
+### Permutation Multiplication
+
+Demonstrates using trotter to calculate and locate permutation products:
+
+<pre>
+There are 3,628,800 permutations of the digits 0-9.
+
+Here are the first, middle and last ten in the Johnson-Trotter ordering:
+
+  Index     Permutation                        Cyclic Notation
+  0         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]     () 
+  1         [0, 1, 2, 3, 4, 5, 6, 7, 9, 8]     (89) 
+  2         [0, 1, 2, 3, 4, 5, 6, 9, 7, 8]     (798) 
+  3         [0, 1, 2, 3, 4, 5, 9, 6, 7, 8]     (6987) 
+  4         [0, 1, 2, 3, 4, 9, 5, 6, 7, 8]     (59876) 
+  5         [0, 1, 2, 3, 9, 4, 5, 6, 7, 8]     (498765) 
+  6         [0, 1, 2, 9, 3, 4, 5, 6, 7, 8]     (3987654) 
+  7         [0, 1, 9, 2, 3, 4, 5, 6, 7, 8]     (29876543) 
+  8         [0, 9, 1, 2, 3, 4, 5, 6, 7, 8]     (198765432) 
+  9         [9, 0, 1, 2, 3, 4, 5, 6, 7, 8]     (0987654321) 
+
+  1,814,400 [3, 2, 1, 0, 4, 5, 6, 7, 8, 9]     (03)(12) 
+  1,814,401 [3, 2, 1, 0, 4, 5, 6, 7, 9, 8]     (03)(12)(89) 
+  1,814,402 [3, 2, 1, 0, 4, 5, 6, 9, 7, 8]     (03)(12)(798) 
+  1,814,403 [3, 2, 1, 0, 4, 5, 9, 6, 7, 8]     (03)(12)(6987) 
+  1,814,404 [3, 2, 1, 0, 4, 9, 5, 6, 7, 8]     (03)(12)(59876) 
+  1,814,405 [3, 2, 1, 0, 9, 4, 5, 6, 7, 8]     (03)(12)(498765) 
+  1,814,406 [3, 2, 1, 9, 0, 4, 5, 6, 7, 8]     (03987654)(12) 
+  1,814,407 [3, 2, 9, 1, 0, 4, 5, 6, 7, 8]     (0312987654) 
+  1,814,408 [3, 9, 2, 1, 0, 4, 5, 6, 7, 8]     (031987654) 
+  1,814,409 [9, 3, 2, 1, 0, 4, 5, 6, 7, 8]     (0987654)(13) 
+
+  3,628,790 [9, 1, 0, 2, 3, 4, 5, 6, 7, 8]     (098765432) 
+  3,628,791 [1, 9, 0, 2, 3, 4, 5, 6, 7, 8]     (0198765432) 
+  3,628,792 [1, 0, 9, 2, 3, 4, 5, 6, 7, 8]     (01)(29876543) 
+  3,628,793 [1, 0, 2, 9, 3, 4, 5, 6, 7, 8]     (01)(3987654) 
+  3,628,794 [1, 0, 2, 3, 9, 4, 5, 6, 7, 8]     (01)(498765) 
+  3,628,795 [1, 0, 2, 3, 4, 9, 5, 6, 7, 8]     (01)(59876) 
+  3,628,796 [1, 0, 2, 3, 4, 5, 9, 6, 7, 8]     (01)(6987) 
+  3,628,797 [1, 0, 2, 3, 4, 5, 6, 9, 7, 8]     (01)(798) 
+  3,628,798 [1, 0, 2, 3, 4, 5, 6, 7, 9, 8]     (01)(89) 
+  3,628,799 [1, 0, 2, 3, 4, 5, 6, 7, 8, 9]     (01) 
+
+Input permutation p in cyclic notation: <strong>(58)(1932)</strong>
+
+  52,063    [0, 1, 2, 4, 8, 6, 9, 7, 5, 3]     (348569) 
+  52,064    [0, 1, 2, 4, 8, 9, 6, 7, 5, 3]     (34859) 
+  52,065    [0, 1, 2, 4, 9, 8, 6, 7, 5, 3]     (349)(58) 
+  52,066    [0, 1, 2, 9, 4, 8, 6, 7, 5, 3]     (39)(58) 
+  52,067    [0, 1, 9, 2, 4, 8, 6, 7, 5, 3]     (293)(58) 
+  52,068    [0, 9, 1, 2, 4, 8, 6, 7, 5, 3]     (1932)(58)  <---- Here!
+  52,069    [9, 0, 1, 2, 4, 8, 6, 7, 5, 3]     (09321)(58) 
+  52,070    [9, 0, 1, 2, 8, 4, 6, 7, 5, 3]     (09321)(485) 
+  52,071    [0, 9, 1, 2, 8, 4, 6, 7, 5, 3]     (1932)(485) 
+  52,072    [0, 1, 9, 2, 8, 4, 6, 7, 5, 3]     (293)(485) 
+
+Input permutation q in cyclic notation: <strong>(246)(357)</strong>
+
+  72,175    [0, 1, 4, 5, 6, 9, 2, 7, 3, 8]     (246)(3598) 
+  72,176    [0, 1, 4, 5, 6, 2, 9, 7, 3, 8]     (2469835) 
+  72,177    [0, 1, 4, 5, 6, 2, 7, 9, 3, 8]     (24679835) 
+  72,178    [0, 1, 4, 5, 6, 2, 7, 3, 9, 8]     (246735)(89) 
+  72,179    [0, 1, 4, 5, 6, 2, 7, 3, 8, 9]     (246735) 
+  72,180    [0, 1, 4, 5, 6, 7, 2, 3, 8, 9]     (246)(357)  <---- Here!
+  72,181    [0, 1, 4, 5, 6, 7, 2, 3, 9, 8]     (246)(357)(89) 
+  72,182    [0, 1, 4, 5, 6, 7, 2, 9, 3, 8]     (246)(35798) 
+  72,183    [0, 1, 4, 5, 6, 7, 9, 2, 3, 8]     (24698357) 
+  72,184    [0, 1, 4, 5, 6, 9, 7, 2, 3, 8]     (2467)(3598) 
+
+The product of p and q is (193857246):
+
+  114,183   [0, 4, 8, 6, 7, 1, 9, 2, 5, 3]     (147285)(369) 
+  114,184   [0, 4, 8, 6, 7, 9, 1, 2, 5, 3]     (147285936) 
+  114,185   [0, 4, 8, 6, 9, 7, 1, 2, 5, 3]     (14936)(2857) 
+  114,186   [0, 4, 8, 9, 6, 7, 1, 2, 5, 3]     (146)(2857)(39) 
+  114,187   [0, 4, 9, 8, 6, 7, 1, 2, 5, 3]     (146)(293857) 
+  114,188   [0, 9, 4, 8, 6, 7, 1, 2, 5, 3]     (193857246)  <---- Here!
+  114,189   [9, 0, 4, 8, 6, 7, 1, 2, 5, 3]     (0938572461) 
+  114,190   [9, 0, 8, 4, 6, 7, 1, 2, 5, 3]     (093461)(2857) 
+  114,191   [0, 9, 8, 4, 6, 7, 1, 2, 5, 3]     (19346)(2857) 
+  114,192   [0, 8, 9, 4, 6, 7, 1, 2, 5, 3]     (185729346) 
+</pre>
+
+## Time & Space Complexity
+
+Trotter uses mathematical mapping for ranking (finding the location of a given arrangement), which takes place in O(k), and un-ranking (finding the arrangement at a given location), which takes place in O(k log n). We can thus access element in fairly optimized time. Because trotter maintains no internal state (except for the `Storage` class), we can query vast containers without risking memory exhaustion.
+
+## Disclosure: Use of AI
+
+Trotter was written by a human (at least his mother claims he's human) long before the advent of large language models. From version 3.0.0, AI has been used to assist with bug-checking, edge-case considerations, optimization (e.g., rewriting the original tail-recursion functions as iteration-based functions), test generation and final checks before publication.
+
+## Thanks!
+
+Thanks for your interest in this library. Please file any bugs, issues and suggestions [here](https://github.com/ram6ler/dart-trotter/issues).

@@ -1,5 +1,14 @@
 # Change log
 
+## 3.0.0
+
+* Fixed bug that re-seeded the random generator during sampling.
+* Rewrote tail-recursion functions to be evaluated iteratively, which removes the risk of stack overflows during deep recursions and improves speed.
+* Optimized some of the combinatorics calculations to avoid large factorials.
+* Renamed some methods, extensions and functions to align more closely with idiomatic Dart.
+* Updated extensions to work on general iterables.
+* Formalized tests.
+
 ## 2.2.2
 
 * Some typing clarification.

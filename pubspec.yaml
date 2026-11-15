@@ -1,11 +1,11 @@
 name: trotter
-version: 2.2.2
+version: 3.0.0
 description: Class definitions for pseudo-lists that simplify working with structures commonly encountered in combinatorics such as permutations, combinations and subsets.
 homepage: https://github.com/ram6ler/dart-trotter
 issue_tracker: https://github.com/ram6ler/dart-trotter/issues
 environment:
-  sdk: '>=3.0.0 < 4.0.0'
+    sdk: "^3.13.0"
 dev_dependencies:
-  web: ^1.1.1
-  lints: ^6.0.0
-
+    lints: ^6.1.0
+    test: ^1.33.0
+    web: ^1.1.2
